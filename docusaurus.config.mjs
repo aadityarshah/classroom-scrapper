@@ -3,19 +3,33 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 
+/**
+ * Custom Remark plugin to use 'lecture_name' as the card description
+ * without requiring a separate 'description' field in Markdown.
+ */
+const lectureNameAsDescription = () => {
+  return (tree, file) => {
+    // @ts-ignore
+    const frontMatter = file.data.frontMatter;
+    if (frontMatter && frontMatter.lecture_name && !frontMatter.description) {
+      frontMatter.description = frontMatter.lecture_name;
+    }
+  };
+};
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Classroom Notes',
   tagline: 'AI-Generated Academic Insights',
-  url: 'https://your-github-username.github.io',
-  baseUrl: '/',
+  url: 'https://AadityaRushabhShah.github.io',
+  baseUrl: '/classroom-to-gh-pages/',
   onBrokenLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'your-org',
-  projectName: 'classroom-scrapper',
+  organizationName: 'AadityaRushabhShah',
+  projectName: 'classroom-to-gh-pages',
+  trailingSlash: false,
 
   markdown: {
-    // Smart format: Use 'md' for notes to support LaTeX/braces, 'mdx' for homepage
     format: 'detect', 
     mermaid: true,
     // @ts-ignore
@@ -32,8 +46,8 @@ const config = {
         docs: {
           sidebarPath: './sidebars.mjs',
           routeBasePath: '/',
-          breadcrumbs: false, // Removes the "Index" text from above the notes
-          remarkPlugins: [remarkMath],
+          breadcrumbs: false,
+          remarkPlugins: [remarkMath, lectureNameAsDescription],
           rehypePlugins: [rehypeKatex],
         },
         blog: false,
@@ -76,7 +90,7 @@ const config = {
       },
       footer: {
         style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} Classroom Scrapper.`,
+        copyright: `Developed by <b>Aaditya Rushabh Shah</b><br/>Copyright © ${new Date().getFullYear()} Classroom Scrapper.`,
       },
       prism: {
         theme: prismThemes.github,

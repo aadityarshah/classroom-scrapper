@@ -1,31 +1,104 @@
-# classroom-scrapper
+# Classroom to Docusaurus: AI-Powered Lecture Notes
 
-This repository contains `sync_classroom.py` which downloads PDFs from Google Classroom, sends them to Gemini to generate structured Markdown notes, and saves them under `docs/`.
+A modern, professional portal that automatically synchronizes your Google Classroom PDF materials, processes them using Gemini AI into concise, high-quality Markdown notes, and serves them via a sleek, monochrome Docusaurus site.
 
-We scaffolded a minimal Docusaurus site to present the generated notes with math support (KaTeX).
+## ✨ Features
 
-Quick start:
+- **AI Note Generation**: Converts messy PDFs into structured, revision-ready Markdown.
+- **$\LaTeX$ Support**: Beautifully rendered mathematical formulas via KaTeX.
+- **Smart Categorization**: Automatically detects course sub-sections (e.g., Linear Algebra vs. Calculus).
+- **Master Summaries**: Generates category-level "Big Picture" overviews using the `--summarize` flag.
+- **Mobile Responsive**: Optimized for studying on-the-go with a premium glassmorphism design.
+- **Instant Search**: Local search functionality across all synchronized notes.
 
-1. Install Node.js (v16+ recommended) and Python dependencies.
+---
 
-2. Install Docusaurus dependencies:
+## 🚀 Getting Started
+
+### 1. Prerequisites
+
+- **Node.js**: v18 or higher.
+- **Python**: v3.10 or higher.
+- **Google Cloud Account**: To access Classroom and Drive APIs.
+- **Google AI Studio Key**: To access Gemini.
+
+### 2. Setup Google Cloud (Classroom & Drive Access)
+
+1.  Go to the [Google Cloud Console](https://console.cloud.google.com/).
+2.  Create a new project named `Classroom-Scrapper`.
+3.  **Enable APIs**: Search for and enable the following:
+    - **Google Classroom API**
+    - **Google Drive API**
+4.  **Configure OAuth Consent Screen**:
+    - Choose "External" (or "Internal" if you have a Workspace).
+    - Add the scope: `.../auth/classroom.courses.readonly`, `.../auth/classroom.courseworkmaterials.readonly`, `.../auth/classroom.topics.readonly`, and `.../auth/drive.readonly`.
+5.  **Create Credentials**:
+    - Go to **Credentials** > **Create Credentials** > **OAuth client ID**.
+    - Select **Desktop App**.
+    - Download the JSON file and rename it to `credentials.json` in the root of this repository.
+
+### 3. Setup Gemini API
+
+1.  Get an API Key from [Google AI Studio](https://aistudio.google.com/).
+2.  Create a file named `api_key.py` in the root directory:
+    ```python
+    GEMINI_API_KEY = "your_actual_key_here"
+    ```
+
+### 4. Install Dependencies
 
 ```bash
-npm install
+# Install Python libraries
+pip install -r requirements.txt
+
+# Install Node.js dependencies
+npm install --legacy-peer-deps
 ```
 
-3. Run locally:
+---
+
+## 🛠️ Usage
+
+### Synchronizing Notes
+
+The sync script is highly flexible. It will download new PDFs, send them to Gemini, and save them to the `docs/` folder.
+
+```bash
+# Synchronize ALL configured courses (MA103, MA104)
+python sync_classroom.py
+
+# Synchronize ONLY a specific course
+python sync_classroom.py --course "MA104"
+
+# Update an existing note (overwrite)
+python sync_classroom.py --filter "Lec 7" --force
+```
+
+### Generating Master Summaries
+
+Build high-level overviews for specific categories:
+
+```bash
+# Summarize everything
+python sync_classroom.py --summarize
+
+# Summarize a specific category (e.g., Linear Algebra)
+python sync_classroom.py --summarize --filter "Linear Algebra"
+```
+
+### Running the Website
 
 ```bash
 npm run start
 ```
+Your notes will be live at `http://localhost:3000`.
 
-4. Edit `api_key.py` and set `GEMINI_API_KEY`.
+---
 
-5. Run the sync script:
+## 🎨 Personalization
 
-```bash
-python sync_classroom.py
-```
+- **Course Logic**: Edit `TARGET_IDS` in `sync_classroom.py` to add your own course codes.
+- **Styling**: Modify `src/css/custom.css` to change the monochrome theme.
+- **Logo**: Replace `static/img/logo.svg` with your own branding.
 
-The script will write Markdown files into `docs/` that Docusaurus serves.
+**Developed by Aaditya Rushabh Shah**

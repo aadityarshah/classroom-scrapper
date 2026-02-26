@@ -1,0 +1,9 @@
+{
+  "label": "MA 103 Calculus",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Single Variable Calculus and Linear Algebra lecture notes.",
+    "slug": "ma103"
+  }
+}

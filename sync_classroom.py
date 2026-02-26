@@ -6,6 +6,7 @@ import pickle
 import warnings
 import glob
 import yaml
+import argparse
 
 # Mute warnings
 warnings.filterwarnings("ignore")
@@ -20,18 +21,18 @@ from google.auth.transport.requests import Request
 from api_key import GEMINI_API_KEY
 
 # We will look for these IDs regardless of spaces or underscores
-TARGET_IDS = ["MA103", "MA104", "ES116"]
+TARGET_IDS = ["MA103", "MA104"]
 
-MODELS_TO_TRY = ["models/gemini-2.5-flash", "models/gemini-2.0-flash", "models/gemini-1.5-flash"]
+MODELS_TO_TRY = ["models/gemini-2.5-flash", "models/gemini-1.5-flash"]
 BLACKLIST = ["tut", "solution", "assignment", "problem set", "quiz", "exam", "answer", "lab", "practice"]
 
 genai.configure(api_key=GEMINI_API_KEY)
 
 def sanitize(name):
     if not name: return "General"
-    # Keep spaces, remove only truly illegal path chars
+    # Keep spaces, remove only truly illegal path chars, and strip ALL types of newlines
     clean = re.sub(r'[\\/*?:"<>|]', "", name)
-    return clean.strip()
+    return clean.replace("\n", " ").replace("\r", "").strip()
 
 def get_services():
     creds = None
@@ -53,14 +54,8 @@ def get_services():
             pickle.dump(creds, token)
     return build('classroom', 'v1', credentials=creds), build('drive', 'v3', credentials=creds)
 
-def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, topic_folder=None):
-    """Generate structured Markdown from a PDF using Gemini.
-
-    Produces Markdown that begins with a YAML front-matter block containing:
-    title, course, topic, date, tags, summary, math: true/false, key_formulas.
-    Also includes a HTML comment block <!--KEY_FORMULAS_JSON--> containing
-    the `key_formulas` array in JSON for programmatic parsing.
-    """
+def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, topic_folder=None, lec_hint=None, is_extra_file=False):
+    """Generate structured Markdown from a PDF using Gemini."""
     print(f"    --- AI processing: {filename} (Math: {is_math}) ...")
 
     # Prefer KaTeX-friendly delimiters; instruct both inline and block formats
@@ -70,30 +65,47 @@ def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, topic_fold
         "Do NOT escape the dollar signs. Do NOT use code blocks for math."
     )
 
+    # Build specialized instructions based on filename analysis
+    hint_instruction = ""
+    if is_extra_file:
+        hint_instruction = "CRITICAL: This is an EXTRA material file. Set lecture_number to 999.\n"
+    elif lec_hint:
+        hint_instruction = f"CRITICAL: The filename suggests this is Lecture {lec_hint}. Prioritize this number for the lecture_number field.\n"
+
     # Core structured prompt used for both math and non-math lectures
     prompt_base = (
-        "You are an expert academic assistant producing short, concise lecture notes.\n"
-        "Output a single Markdown document. Start with a YAML front-matter block enclosed in '---'.\n"
-        "CRITICAL: Use the YAML literal block scalar style (a pipe '|' followed by a NEWLINE and INDENTATION) "
-        "for ALL string values. Example:\n"
-        "---\n"
+        "You are an expert academic revision assistant producing punchy, highly concise lecture notes.\n"
+        "Output a single Markdown document (or multiple if split).\n"
+        "Start with a YAML front-matter block enclosed in '---'.\n"
+        "CRITICAL YAML RULE: Use the pipe '|' for EVERY string value. THE PIPE MUST BE FOLLOWED IMMEDIATELY BY A NEWLINE. "
+        "The string content must start on the NEXT line, indented by two spaces.\n"
+        "Example:\n"
         "title: |\n"
-        "  Lecture Title Here\n"
-        "tags:\n"
-        "  - |\n"
-        "    Calculus\n"
-        "---\n\n"
+        "  My Correct Title\n\n"
         "STRICT CONTENT RULES:\n"
-        "1. Only include topics explicitly covered in the provided PDF.\n"
+        "1. ONLY include topics explicitly covered in the PDF.\n"
         "2. Do NOT add examples.\n"
-        "3. Do NOT add outside information.\n"
-        "4. Be extremely concise.\n\n"
-        "STRUCTURE:\n"
-        "- YAML Front-matter (keys: title, lecture_number, lecture_name, sidebar_label, course, topic, date, tags, summary, math: true, table_of_contents).\n"
-        "  CRITICAL: sidebar_label must be exactly 'Lecture X' where X is the lecture number.\n"
+        "3. Do NOT add outside information or long derivations.\n"
+        "4. STRICT LENGTH: Summarize each section into a single concise paragraph or high-value bullet points.\n"
+        "5. Be direct and minimalist.\n\n"
+        "CATEGORIZATION:\n"
+        + hint_instruction +
+        "- Identify if the course has distinct major sub-sections (e.g., MA103 is split into 'Single Variable Calculus' and 'Linear Algebra').\n"
+        "- If it's a distinct sub-section, put it in 'category'. Otherwise, leave 'category' empty (CRITICAL: Do not just repeat the course name).\n"
+        "- If it is a standard lecture, assign its lecture_number (1, 2, 3...).\n"
+        "- If it is extra material (contains 'extra' in filename), set lecture_number to 999 and sidebar_label to its descriptive name (e.g., 'Syllabus').\n"
+        "- If the PDF covers multiple distinct lectures (e.g., Lec 9 AND 10), provide TWO full Markdown documents, separated by: <!-- LECTURE_SPLIT -->\n\n"
+        "STRUCTURE PER DOCUMENT:\n"
+        "- YAML Front-matter (keys: title, lecture_number, lecture_name, category, sidebar_label, sidebar_position, course, topic, date, tags, summary, math: true).\n"
+        "  CRITICAL: 'tags' must be a YAML block sequence (one per line with a dash). Example:\n"
+        "  tags:\n"
+        "    - Math\n"
+        "    - Calculus\n"
+        "  CRITICAL: sidebar_label must be 'Lecture X'. sidebar_position must be the integer lecture_number.\n"
+        "  CRITICAL: lecture_name must be the TOPIC only, NOT the word 'Lecture X'.\n"
         "- # Title (matching front-matter title)\n"
-        "- ## Table of Contents\n"
-        "- Sections (matching the TOC as H2 headings)\n"
+        "- ## Table of Contents (followed by a simple bulleted list of the sections below)\n"
+        "- Lecture Content (create an H2 heading for each item in the Table of Contents, then provide the content for that section. Keep content extremely short and dense.)\n"
         "- ## Key Formulas\n"
         "- ## Quick Summary\n\n"
         "Format ALL math using LaTeX ($...$ or $$...$$). Do NOT use code blocks for math. Use clear, hierarchical headings."
@@ -127,12 +139,11 @@ def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, topic_fold
             for model_id in MODELS_TO_TRY:
                 try:
                     model = genai.GenerativeModel(model_name=model_id)
-                    response = model.generate_content([prompt, uploaded_file], request_options={"timeout": 160})
+                    response = model.generate_content([prompt, uploaded_file], request_options={"timeout": 300})
                     if response.text:
                         text = response.text
                         # Clean triple backticks if model wraps the whole response
                         if text.strip().startswith("```"):
-                            # Remove the first line (e.g. ```markdown) and the last line (```)
                             lines = text.strip().split("\n")
                             if lines[0].startswith("```"):
                                 lines = lines[1:]
@@ -150,14 +161,11 @@ def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, topic_fold
                     continue
         except Exception as e:
             print(f"      [!] AI Attempt {attempt+1} failed: {e}")
-            time.sleep(2)
+            time.sleep(5)
     return None
 
 def extract_lecture_metadata(markdown_content):
-    """Parse YAML front-matter to extract lecture_number and lecture_name.
-    
-    Returns a tuple (lecture_number, lecture_name) or (None, None) if not found.
-    """
+    """Parse YAML front-matter to extract metadata."""
     try:
         if markdown_content.startswith("---"):
             end_index = markdown_content.find("---", 3)
@@ -166,133 +174,191 @@ def extract_lecture_metadata(markdown_content):
                 try:
                     front_matter = yaml.safe_load(yaml_block)
                     if front_matter:
-                        return front_matter.get("lecture_number"), front_matter.get("lecture_name")
+                        return (front_matter.get("lecture_number"), 
+                                front_matter.get("lecture_name"),
+                                front_matter.get("category"))
                 except:
-                    # Fallback regex if YAML parsing fails
+                    # Fallback regex
                     num_match = re.search(r"lecture_number:\s*\|?\s*(\d+)", yaml_block)
                     name_match = re.search(r"lecture_name:\s*\|?\s*['\"]?(.*?)['\"]?\s*$", yaml_block, re.MULTILINE)
+                    cat_match = re.search(r"category:\s*\|?\s*['\"]?(.*?)['\"]?\s*$", yaml_block, re.MULTILINE)
                     
-                    lec_num = num_match.group(1) if num_match else None
+                    lec_num = num_match.group(1).strip() if num_match else None
                     lec_name = name_match.group(1).strip() if name_match else None
-                    return lec_num, lec_name
+                    category = cat_match.group(1).strip() if cat_match else None
+                    return lec_num, lec_name, category
     except Exception as e:
         print(f"      [!] Metadata extraction error: {e}")
-    return None, None
+    return None, None, None
 
 def generate_lecture_filename(original_filename, lecture_number, lecture_name):
-    """Generate a clean filename from lecture metadata.
-    
-    Examples:
-    - (1, 'Series and Convergence') -> 'Lec_01_Series_and_Convergence'
-    - ('2', 'Calculus Fundamentals') -> 'Lec_02_Calculus_Fundamentals'
-    """
+    """Generate a clean filename."""
     if lecture_number is not None and lecture_name:
-        # Format lecture_number as 2-digit zero-padded
-        if isinstance(lecture_number, str):
-            lec_num = lecture_number.strip()
-            try:
-                lec_num = str(int(float(lec_num))).zfill(2)
-            except:
-                pass
-        else:
-            lec_num = str(int(lecture_number)).zfill(2) if lecture_number else "00"
-        
-        # Sanitize lecture_name
-        clean_name = sanitize(lecture_name)
-        return f"Lec_{lec_num}_{clean_name}"
-    
-    # Fallback: sanitize original filename
-    fname = original_filename.replace(".pdf", "").replace(".PDF", "")
-    return sanitize(fname)
+        if str(lecture_number) == "999":
+            return f"Extra_{sanitize(lecture_name)}"
+        # Ensure lecture_number is just digits before padding
+        clean_num = re.sub(r'\D', '', str(lecture_number))
+        lec_num = clean_num.zfill(2) if clean_num else "00"
+        return f"Lec_{lec_num}_{sanitize(lecture_name)}"
+    return sanitize(original_filename.replace(".pdf", "").replace(".PDF", ""))
+
+def summarize_category(course_name, category_name, summaries):
+    """Generate a Master Summary for a course category."""
+    print(f"\n   >>> Generating Master Summary for: {course_name} - {category_name or 'Main'}")
+    combined_summaries = "\n".join([f"- {s}" for s in summaries])
+    prompt = (
+        f"You are an academic lead summarizing: '{category_name or course_name}'.\n"
+        f"Individual summaries:\n{combined_summaries}\n\n"
+        "Produce a cohesive, high-level Master Summary (3-5 paragraphs) connecting these topics. "
+        "Format as Markdown with a H1 title and NO front-matter."
+    )
+    for model_id in MODELS_TO_TRY:
+        try:
+            model = genai.GenerativeModel(model_name=model_id)
+            response = model.generate_content(prompt)
+            if response.text: return response.text
+        except: continue
+    return None
 
 def main():
+    parser = argparse.ArgumentParser(description='Sync Classroom PDFs to Docusaurus.')
+    parser.add_argument('--force', action='store_true', help='Overwrite existing files.')
+    parser.add_argument('--filter', type=str, help='Only process files/categories matching this substring.')
+    parser.add_argument('--course', type=str, help='Only process this specific course ID (e.g., MA104).')
+    parser.add_argument('--summarize', action='store_true', help='Generate Master Summaries.')
+    args = parser.parse_args()
+
     classroom, drive = get_services()
-    print("Fetching courses from Classroom...")
     courses = classroom.courses().list().execute().get('courses', [])
+    all_summaries = {}
 
     for course in courses:
         raw_name = course.get('name', 'Unknown')
-        
-        # FUZZY FILTER: Remove spaces/underscores for comparison
         clean_name = raw_name.replace("_", "").replace(" ", "").upper()
         
-        match = False
-        for target in TARGET_IDS:
-            if target in clean_name:
-                match = True
-                break
-        
-        if not match:
+        # Priority Filter: Specific Course ID
+        if args.course:
+            if args.course.upper() not in clean_name: continue
+        elif not any(target in clean_name for target in TARGET_IDS): 
             continue
 
-        is_math = "MA" in clean_name
         course_name = sanitize(raw_name)
-        print(f"\n>> Synchronizing: {course_name} (Math: {is_math})")
+        course_clean = sanitize(course_name.replace("_", " "))
+        print(f"\n>> Synchronizing: {course_clean}")
         
         try:
             topics_res = classroom.courses().topics().list(courseId=course['id']).execute()
             topic_map = {t['topicId']: t.get('name', 'Uncategorized') for t in topics_res.get('topic', [])}
-
-            materials_res = classroom.courses().courseWorkMaterials().list(courseId=course['id']).execute()
-            materials = materials_res.get('courseWorkMaterial', [])
+            materials = classroom.courses().courseWorkMaterials().list(courseId=course['id']).execute().get('courseWorkMaterial', [])
             
             for m in materials:
                 material_title = m.get('title', 'Untitled')
-                topic_id = m.get('topicId')
-                topic_folder_raw = topic_map.get(topic_id, "Uncategorized")
-
-                if any(word in material_title.lower() or word in topic_folder_raw.lower() for word in BLACKLIST):
-                    continue
+                topic_folder_raw = topic_map.get(m.get('topicId'), "Uncategorized")
+                if any(word in material_title.lower() or word in topic_folder_raw.lower() for word in BLACKLIST): continue
 
                 for attachment in m.get('materials', []):
                     if 'driveFile' in attachment:
-                        f_data = attachment['driveFile']['driveFile']
-                        original_filename = f_data.get('name', f_data.get('title', 'file.pdf'))
+                        f_data = attachment['driveFile'].get('driveFile', {})
+                        original_filename = f_data.get('title') or f_data.get('name') or 'file.pdf'
+                        if args.filter and args.filter.lower() not in original_filename.lower(): continue
+                        if not original_filename.lower().endswith(".pdf"): continue
+
+                        print(f"   Downloading: {original_filename}")
+                        download_success = False
+                        for attempt in range(3):
+                            try:
+                                request = drive.files().get_media(fileId=f_data['id'])
+                                with io.FileIO("temp.pdf", 'wb') as fh:
+                                    downloader = MediaIoBaseDownload(fh, request, chunksize=1024*1024)
+                                    done = False
+                                    while not done: _, done = downloader.next_chunk()
+                                download_success = True; break
+                            except: time.sleep(3)
                         
-                        if original_filename.lower().endswith(".pdf"):
-                            course_dir = sanitize(course_name.replace("_", " "))
-                            topic_dir = sanitize(topic_folder_raw)
-                            
-                            if topic_dir.lower() == "uncategorized":
-                                out_dir = os.path.join("docs", course_dir)
-                            else:
-                                out_dir = os.path.join("docs", course_dir, topic_dir)
-                            
-                            if not os.path.exists(out_dir):
-                                os.makedirs(out_dir, exist_ok=True)
+                        if not download_success: continue
 
-                            print(f"   Downloading: {original_filename}")
-                            request = drive.files().get_media(fileId=f_data['id'])
-                            with io.FileIO("temp.pdf", 'wb') as fh:
-                                MediaIoBaseDownload(fh, request).next_chunk()
-                            
-                            # Pass course and topic context to pdf_to_notes for AI smart naming
-                            md_text = pdf_to_notes("temp.pdf", original_filename, is_math=is_math, 
-                                                   course_name=course_name, topic_folder=topic_folder_raw)
-                            
-                            if md_text:
-                                # Extract lecture metadata for smart naming
-                                lecture_number, lecture_name = extract_lecture_metadata(md_text)
-                                filename = generate_lecture_filename(original_filename, lecture_number, lecture_name)
+                        lec_hint = None
+                        match = re.search(r'(?:SVC|Lec|Lecture)\D*(\d+)', original_filename, re.IGNORECASE)
+                        if match: lec_hint = match.group(1)
+                        is_extra_file = "extra" in original_filename.lower()
+
+                        md_text = pdf_to_notes("temp.pdf", original_filename, is_math=("MA" in clean_name), 
+                                               course_name=course_name, topic_folder=topic_folder_raw,
+                                               lec_hint=lec_hint, is_extra_file=is_extra_file)
+                        
+                        if md_text:
+                            segments = md_text.split("<!-- LECTURE_SPLIT -->")
+                            for seg in segments:
+                                seg = seg.strip()
+                                if not seg: continue
+                                lec_num, lec_name, category = extract_lecture_metadata(seg)
+                                
+                                if args.summarize:
+                                    try:
+                                        fm = yaml.safe_load(seg[3:seg.find("---", 3)])
+                                        s_val = fm.get('summary', '')
+                                        if s_val:
+                                            key = (course_clean, category)
+                                            if key not in all_summaries: all_summaries[key] = []
+                                            all_summaries[key].append(s_val)
+                                    except: pass
+
+                                simple_course = re.sub(r'^[A-Z0-9]+\s*', '', course_clean).lower()
+                                use_subfolder = False
+                                if category:
+                                    cat_clean = sanitize(category).lower()
+                                    if cat_clean not in ["uncategorized", course_clean.lower(), simple_course, "ordinary differential equations", "calculus"]:
+                                        if cat_clean not in simple_course and simple_course not in cat_clean:
+                                            use_subfolder = True
+
+                                out_dir = os.path.join("docs", course_clean, sanitize(category)) if use_subfolder else os.path.join("docs", course_clean)
+                                if not os.path.exists(out_dir): os.makedirs(out_dir, exist_ok=True)
+
+                                filename = generate_lecture_filename(original_filename, lec_num, lec_name)
                                 out_file = os.path.join(out_dir, f"{filename}.md")
-                                
-                                # Check if this smart-named file already exists
-                                if os.path.exists(out_file):
-                                    print(f"   [SKIP] Already exists: {filename}.md")
-                                    continue
-                                
-                                with open(out_file, "w", encoding="utf-8") as f:
-                                    f.write(md_text)
-                                
-                                # Display both original and smart-named versions
-                                display_name = lecture_name if lecture_name else filename
-                                print(f"   [DONE] Saved: {filename}.md ({display_name})")
-                            time.sleep(1)
+                                if os.path.exists(out_file) and not args.force: continue
+                                with open(out_file, "w", encoding="utf-8") as f: f.write(seg)
+                                print(f"   [DONE] Saved: {filename}.md in {category or 'root'}")
+                        time.sleep(1)
+        except Exception as e: print(f"   Error in {course_clean}: {e}")
 
-        except Exception as e:
-            print(f"   Error in {course_name}: {e}")
+    if args.summarize:
+        print("\n   >>> Scanning existing docs for summaries...")
+        for root, dirs, files in os.walk("docs"):
+            for file in files:
+                if file.endswith(".md") and file != "Summary.md":
+                    # Check filters if provided
+                    if args.course and args.course.lower() not in root.lower():
+                        continue
+                    if args.filter and args.filter.lower() not in root.lower() and args.filter.lower() not in file.lower():
+                        continue
+                    try:
+                        with open(os.path.join(root, file), "r", encoding="utf-8") as f:
+                            content = f.read()
+                            if content.startswith("---"):
+                                end_fm = content.find("---", 3)
+                                fm = yaml.safe_load(content[3:end_fm])
+                                s_val = fm.get('summary', '').replace("|", "").strip()
+                                course = fm.get('course', 'Unknown').replace("|", "").strip()
+                                category = fm.get('category', '').replace("|", "").strip()
+                                if not category or category.lower() in ["none", ""]: category = None
+                                if s_val:
+                                    key = (course, category)
+                                    if key not in all_summaries: all_summaries[key] = []
+                                    if s_val not in all_summaries[key]: all_summaries[key].append(s_val)
+                    except: continue
 
-    print("\n--- All Done! ---")
+        for (course, category), summaries in all_summaries.items():
+            if not summaries: continue
+            if args.filter and args.filter.lower() not in (category or "").lower() and args.filter.lower() not in course.lower():
+                continue
+            master_md = summarize_category(course, category, summaries)
+            if master_md:
+                course_folder = sanitize(course)
+                out_path = os.path.join("docs", course_folder, sanitize(category), "Summary.md") if category else os.path.join("docs", course_folder, "Summary.md")
+                final_text = f"---\ntitle: |\n  Summary: {category or course}\nsidebar_label: Summary\nsidebar_position: 0\n---\n\n{master_md}"
+                os.makedirs(os.path.dirname(out_path), exist_ok=True)
+                with open(out_path, "w", encoding="utf-8") as f: f.write(final_text)
+                print(f"   [CREATED] Master Summary for {course}/{category or 'root'}")
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()

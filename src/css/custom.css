@@ -8,11 +8,58 @@
   --ifm-color-primary-lightest: #595959;
   --ifm-code-font-size: 95%;
   --docusaurus-highlight-color-bg: rgba(0, 0, 0, 0.05);
-  --ifm-background-color: #ffffff;
   --ifm-navbar-background-color: #ffffff;
   --ifm-footer-background-color: #000000;
   --ifm-footer-color: #ffffff;
   --ifm-footer-link-color: #cccccc;
+}
+
+/* Glassmorphism Header */
+.navbar {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+  padding: 0.7rem 2rem;
+  transition: all 0.3s ease;
+}
+
+[data-theme='dark'] .navbar {
+  background-color: rgba(26, 26, 26, 0.8);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar__title {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+}
+
+.navbar__item {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin: 0 0.5rem;
+  position: relative;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--ifm-color-primary);
+  transition: width 0.3s ease;
+}
+
+.navbar__link:hover::after {
+  width: 100%;
+}
+
+.navbar__link--active::after {
+  width: 100%;
 }
 
 [data-theme='dark'] {
@@ -103,6 +150,18 @@ body {
   text-transform: uppercase;
 }
 
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  .hero-banner {
+    padding: 3rem 1rem;
+  }
+  .navbar {
+    padding: 0.5rem 1rem;
+  }
+}
+
 .hero-subtitle {
   font-size: 1.25rem;
   font-weight: 300;
@@ -114,7 +173,34 @@ body {
   text-decoration: underline;
   text-underline-offset: 10px;
   text-decoration-thickness: 2px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+/* AI TOC Card Styling */
+h2#table-of-contents + ul {
+  list-style: none;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid #eee;
+  border-left: 5px solid #000;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 3rem;
+}
+
+[data-theme='dark'] h2#table-of-contents + ul {
+  background: rgba(255, 255, 255, 0.02);
+  border-color: #333;
+  border-left-color: #fff;
+}
+
+h2#table-of-contents + ul li {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Hide 'Table of Contents' from the right-side Scroll-Spy menu to avoid redundancy */
+.table-of-contents li a[href="#table-of-contents"] {
+  display: none;
 }
 
 /* Enhanced Active Section Highlighting (Right TOC) */
@@ -132,6 +218,31 @@ body {
 .table-of-contents__link:hover {
   color: var(--ifm-color-primary);
   text-decoration: none;
+}
+
+/* Enhanced Premium Footer */
+.footer {
+  padding: 4rem 0;
+  background-color: #000000;
+  border-top: 1px solid #333;
+}
+
+.footer__copyright {
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+  line-height: 1.6;
+}
+
+.footer__copyright b {
+  color: #fff;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+[data-theme='dark'] .footer {
+  border-top-color: #222;
 }
 
 /* Clean Buttons */

@@ -1,0 +1,9 @@
+{
+  "label": "MA 104 ODE",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Ordinary Differential Equations lecture notes.",
+    "slug": "ma104"
+  }
+}
