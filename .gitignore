@@ -1,0 +1,8 @@
+# Ignore sensitive and generated files
+api_key.py
+credentials.json
+token.pickle
+temp.pdf
+__pycache__/
+*.pyc
+.DS_Store
