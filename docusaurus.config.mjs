@@ -82,7 +82,7 @@ const config = {
             label: 'Home',
           },
           {
-            href: 'https://aadityarshah.github.io/classroom-scrapper/',
+            href: 'https://github.com/aadityarshah/classroom-scrapper',
             label: 'GitHub',
             position: 'right',
           },
