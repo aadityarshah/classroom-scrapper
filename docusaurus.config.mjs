@@ -21,12 +21,12 @@ const lectureNameAsDescription = () => {
 const config = {
   title: 'Classroom Notes',
   tagline: 'AI-Generated Academic Insights',
-  url: 'https://AadityaRushabhShah.github.io',
+  url: 'https://aadityarshah.github.io',
   baseUrl: '/classroom-scrapper/',
   onBrokenLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'AadityaRushabhShah',
-  projectName: 'classroom-to-gh-pages',
+  projectName: 'classroom-scrapper',
   trailingSlash: false,
 
   markdown: {
@@ -82,7 +82,7 @@ const config = {
             label: 'Home',
           },
           {
-            href: 'https://github.com/your-github-username/classroom-to-gh-pages',
+            href: 'https://aadityarshah.github.io/classroom-scrapper/',
             label: 'GitHub',
             position: 'right',
           },
