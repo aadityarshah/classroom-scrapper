@@ -1,0 +1,4 @@
+:root{--ifm-color-primary: #0066cc}
+body{font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+.docSearch-Button{border-radius:8px}
+.markdown a{color:var(--ifm-color-primary)}
