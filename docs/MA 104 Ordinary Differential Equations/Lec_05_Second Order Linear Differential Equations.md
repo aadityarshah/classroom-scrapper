@@ -14,7 +14,14 @@ topic: |
   Second Order Linear Differential Equations
 date: |
   2023-10-27
-tags: ['Differential Equations', 'Second Order ODEs', 'Homogeneous ODEs', 'Nonhomogeneous ODEs', 'Linear ODEs', 'Constant Coefficients', 'Euler-Cauchy']
+tags:
+  - Differential Equations
+  - Second Order ODEs
+  - Homogeneous ODEs
+  - Nonhomogeneous ODEs
+  - Linear ODEs
+  - Constant Coefficients
+  - Euler-Cauchy
 summary: |
   A concise overview of second-order linear differential equations, covering definitions, homogeneous and nonhomogeneous forms, existence and uniqueness theorems, reduction of order, constant coefficient equations, and Euler-Cauchy equations.
 math: true

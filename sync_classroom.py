@@ -87,7 +87,8 @@ def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, topic_fold
         "2. Do NOT add examples.\n"
         "3. Do NOT add outside information or long derivations.\n"
         "4. STRICT LENGTH: Summarize each section into a single concise paragraph or high-value bullet points.\n"
-        "5. Be direct and minimalist.\n\n"
+        "5. Be direct and minimalist.\n"
+        "6. CRITICAL: Never use raw '<' or '>' signs. Always use LaTeX versions '$<$' and '$>$' even in headings.\n\n"
         "CATEGORIZATION:\n"
         + hint_instruction +
         "- Identify if the course has distinct major sub-sections (e.g., MA103 is split into 'Single Variable Calculus' and 'Linear Algebra').\n"
@@ -287,10 +288,24 @@ def main():
                                                lec_hint=lec_hint, is_extra_file=is_extra_file)
                         
                         if md_text:
+                            # Post-process to fix Docusaurus build crashes caused by raw < and >
+                            # We replace them globally with LaTeX versions unless they are likely HTML tags
+                            processed_segments = []
                             segments = md_text.split("<!-- LECTURE_SPLIT -->")
                             for seg in segments:
                                 seg = seg.strip()
                                 if not seg: continue
+                                
+                                # Replace < and > with LaTeX versions
+                                # We skip common HTML tags if the AI accidentally generates them
+                                seg = seg.replace("< ", " $<$ ").replace(" >", " $>$ ")
+                                # Handle cases like (n<0)
+                                seg = re.sub(r'([a-zA-Z0-9])<([a-zA-Z0-9])', r'\1 $<$ \2', seg)
+                                seg = re.sub(r'([a-zA-Z0-9])>([a-zA-Z0-9])', r'\1 $>$ \2', seg)
+                                
+                                processed_segments.append(seg)
+                            
+                            for seg in processed_segments:
                                 lec_num, lec_name, category = extract_lecture_metadata(seg)
                                 
                                 if args.summarize:
@@ -315,6 +330,8 @@ def main():
                                 if not os.path.exists(out_dir): os.makedirs(out_dir, exist_ok=True)
 
                                 filename = generate_lecture_filename(original_filename, lec_num, lec_name)
+                                seg = re.sub(r' < ', ' &lt; ', seg)
+                                seg = re.sub(r' > ', ' &gt; ', seg)
                                 out_file = os.path.join(out_dir, f"{filename}.md")
                                 if os.path.exists(out_file) and not args.force: continue
                                 with open(out_file, "w", encoding="utf-8") as f: f.write(seg)
