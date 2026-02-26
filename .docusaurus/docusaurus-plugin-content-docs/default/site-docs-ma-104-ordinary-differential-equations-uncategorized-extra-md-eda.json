@@ -1,0 +1,23 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Extra",
+  "title": "Extra",
+  "description": "title: \"Transforming Initial Value Problems and Global Uniqueness Theorem\"",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Extra.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Extra",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Extra",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "SVC-4",
+    "permalink": "/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/SVC-4"
+  },
+  "next": {
+    "title": "Lec2",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec2"
+  }
+}

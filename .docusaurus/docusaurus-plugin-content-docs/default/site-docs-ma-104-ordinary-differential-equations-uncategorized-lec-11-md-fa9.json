@@ -1,0 +1,23 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_11",
+  "title": "Lec_11",
+  "description": "---",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_11.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_11",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_11",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "MA 104 Lecture 7: Variation of Parameters and Higher-Order Linear ODEs",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_07_Variation_of_Parameters_&_Higher_Order_ODEs"
+  },
+  "next": {
+    "title": "Laplace Transforms: Derivatives, IVPs, Unit Step, Shifting, and Convolution",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_12_Laplace_Transform_Properties_&_Applications"
+  }
+}

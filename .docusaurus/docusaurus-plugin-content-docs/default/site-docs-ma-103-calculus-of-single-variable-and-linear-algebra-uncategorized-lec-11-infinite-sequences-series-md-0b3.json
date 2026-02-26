@@ -1,0 +1,123 @@
+{
+  "id": "MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/Lec_11_Infinite_Sequences_&_Series",
+  "title": "Infinite Sequences and Series: Definitions, Limits, and Convergence",
+  "description": "Infinite Sequences",
+  "source": "@site/docs/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/Lec_11_Infinite_Sequences_&_Series.md",
+  "sourceDirName": "MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized",
+  "slug": "/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/Lec_11_Infinite_Sequences_&_Series",
+  "permalink": "/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/Lec_11_Infinite_Sequences_&_Series",
+  "draft": false,
+  "unlisted": false,
+  "tags": [
+    {
+      "inline": true,
+      "label": "Calculus",
+      "permalink": "/tags/calculus"
+    },
+    {
+      "inline": true,
+      "label": "Sequences",
+      "permalink": "/tags/sequences"
+    },
+    {
+      "inline": true,
+      "label": "Series",
+      "permalink": "/tags/series"
+    },
+    {
+      "inline": true,
+      "label": "Limits",
+      "permalink": "/tags/limits"
+    },
+    {
+      "inline": true,
+      "label": "Convergence",
+      "permalink": "/tags/convergence"
+    },
+    {
+      "inline": true,
+      "label": "Divergence",
+      "permalink": "/tags/divergence"
+    },
+    {
+      "inline": true,
+      "label": "Epsilon-Delta",
+      "permalink": "/tags/epsilon-delta"
+    }
+  ],
+  "version": "current",
+  "frontMatter": {
+    "title": "Infinite Sequences and Series: Definitions, Limits, and Convergence",
+    "lecture_number": "11",
+    "lecture_name": "Infinite Sequences & Series",
+    "course": "MA 103 Calculus of Single Variable and Linear Algebra",
+    "topic": "Sequences and Series",
+    "date": "2023-10-27",
+    "tags": [
+      "Calculus",
+      "Sequences",
+      "Series",
+      "Limits",
+      "Convergence",
+      "Divergence",
+      "Epsilon-Delta"
+    ],
+    "summary": "Lecture notes covering definitions, theorems, and central formulas related to infinite sequences, their limits, convergence, divergence, and an introduction to infinite series including geometric series.",
+    "math": true,
+    "table_of_contents": [
+      "Infinite Sequences",
+      "Definition of Infinite Sequence",
+      "Convergence and Divergence of Sequences",
+      "Limit of a Sequence (Epsilon-Delta Definition)",
+      "Divergence to Infinity",
+      "Limit Laws for Sequences (Theorem 1)",
+      "Sandwich Theorem for Sequences (Theorem 2)",
+      "Continuous Function Theorem for Sequences (Theorem 3)",
+      "Connecting Functions and Sequences (Theorem 4)",
+      "Common Limits of Sequences (Theorem 5)",
+      "Monotonic and Bounded Sequences",
+      "Definition of Nondecreasing Sequence",
+      "Bounded Sequences",
+      "Introduction to Infinite Series",
+      "Definition of Infinite Series",
+      "Sequence of Partial Sums and Convergence",
+      "Geometric Series"
+    ],
+    "key_formulas": [
+      {
+        "name": "Epsilon-Delta Definition of Limit",
+        "formula": "\\forall \\epsilon > 0, \\exists N \\in \\mathbb{Z}^+ \\text{ s.t. } \\forall n > N, |a_n - L| < \\epsilon",
+        "note": "A sequence $a_n$ converges to $L$ if terms eventually get arbitrarily close to $L$."
+      },
+      {
+        "name": "Partial Sum of a Geometric Series",
+        "formula": "S_n = \\frac{a(1-r^n)}{1-r}",
+        "note": "Sum of the first $n$ terms of a geometric series with first term $a$ and common ratio $r$."
+      },
+      {
+        "name": "Sum of a Convergent Geometric Series",
+        "formula": "S = \\frac{a}{1-r}",
+        "note": "The sum of an infinite geometric series if the common ratio $|r| < 1$."
+      },
+      {
+        "name": "Limit of (1+x/n)^n",
+        "formula": "\\lim_{n \\to \\infty} \\left(1 + \\frac{x}{n}\\right)^n = e^x",
+        "note": "A fundamental limit definition for the exponential function."
+      },
+      {
+        "name": "Limit of x^n/n!",
+        "formula": "\\lim_{n \\to \\infty} \\frac{x^n}{n!} = 0",
+        "note": "Factorial growth outpaces exponential growth for any $x$."
+      }
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Calculus: Average Value, Area, and Improper Integrals",
+    "permalink": "/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/Lec_05_Average_Value,_Area_Between_Curves,_Improper_Integrals_&_Tests"
+  },
+  "next": {
+    "title": "SVC-2",
+    "permalink": "/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/SVC-2"
+  }
+}

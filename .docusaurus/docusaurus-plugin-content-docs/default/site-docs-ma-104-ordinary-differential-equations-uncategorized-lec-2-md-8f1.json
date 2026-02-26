@@ -1,0 +1,23 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Lec2",
+  "title": "Lec2",
+  "description": "---",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec2.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec2",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec2",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Extra",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Extra"
+  },
+  "next": {
+    "title": "MA 104: Introduction to Ordinary Differential Equations",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Basic_Concepts_and_First_Order_ODEs"
+  }
+}

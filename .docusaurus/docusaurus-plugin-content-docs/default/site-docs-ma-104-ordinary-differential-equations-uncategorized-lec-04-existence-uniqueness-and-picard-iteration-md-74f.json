@@ -1,0 +1,111 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_04_Existence_&_Uniqueness_and_Picard_Iteration",
+  "title": "Existence and Uniqueness Theorem & Picard's Iteration Method",
+  "description": "Introduction to the Existence and Uniqueness Theorem",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_04_Existence_&_Uniqueness_and_Picard_Iteration.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_04_Existence_&_Uniqueness_and_Picard_Iteration",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_04_Existence_&_Uniqueness_and_Picard_Iteration",
+  "draft": false,
+  "unlisted": false,
+  "tags": [
+    {
+      "inline": true,
+      "label": "ODE",
+      "permalink": "/tags/ode"
+    },
+    {
+      "inline": true,
+      "label": "Existence",
+      "permalink": "/tags/existence"
+    },
+    {
+      "inline": true,
+      "label": "Uniqueness",
+      "permalink": "/tags/uniqueness"
+    },
+    {
+      "inline": true,
+      "label": "Picard's Method",
+      "permalink": "/tags/picards-method"
+    },
+    {
+      "inline": true,
+      "label": "IVP",
+      "permalink": "/tags/ivp"
+    },
+    {
+      "inline": true,
+      "label": "Differential Equations",
+      "permalink": "/tags/differential-equations"
+    }
+  ],
+  "version": "current",
+  "frontMatter": {
+    "title": "Existence and Uniqueness Theorem & Picard's Iteration Method",
+    "lecture_number": 4,
+    "lecture_name": "Existence & Uniqueness and Picard Iteration",
+    "course": "MA 104 Ordinary Differential Equations",
+    "topic": "Existence and Uniqueness of Solutions, Picard's Iteration",
+    "date": "2023-10-27",
+    "tags": [
+      "ODE",
+      "Existence",
+      "Uniqueness",
+      "Picard's Method",
+      "IVP",
+      "Differential Equations"
+    ],
+    "summary": "Covers the Existence and Uniqueness Theorem for IVPs and introduces Picard's Iteration Method for finding solutions.",
+    "math": true,
+    "table_of_contents": [
+      "Introduction to the Existence and Uniqueness Theorem",
+      "The Picard-Lindelöf Existence and Uniqueness Theorem",
+      "Equivalence of IVP and Integral Equation",
+      "Picard's Iteration Method",
+      "Demonstration Example of Picard's Method",
+      "Uniqueness of Solution"
+    ],
+    "key_formulas": [
+      {
+        "name": "Initial Value Problem",
+        "formula": "y' = f(x,y), \\quad y(x_0)=y_0",
+        "note": "Standard form of a first-order IVP."
+      },
+      {
+        "name": "Translated IVP",
+        "formula": "\\tilde{y}' = f(\\tilde{x},\\tilde{y}), \\quad \\tilde{y}(0)=0",
+        "note": "IVP translated to the origin for simplified analysis."
+      },
+      {
+        "name": "Existence Interval Alpha",
+        "formula": "\\alpha = \\min\\{a, b/K\\}",
+        "note": "Defines the interval $|x| \\le \\alpha$ for which a unique solution exists."
+      },
+      {
+        "name": "Integral Equation",
+        "formula": "\\phi(x) = \\int_0^x f(\\tilde{x}, \\phi(\\tilde{x})) d\\tilde{x}",
+        "note": "Equivalent form of the IVP, fundamental for Picard's method."
+      },
+      {
+        "name": "Picard's Iteration Formula",
+        "formula": "\\phi_k(x) = \\int_0^x f(\\tilde{x}, \\phi_{k-1}(\\tilde{x})) d\\tilde{x}",
+        "note": "Generates a sequence of approximations to the solution."
+      },
+      {
+        "name": "Lipschitz Condition",
+        "formula": "|f(x,y_2) - f(x,y_1)| \\le K|y_2-y_1|",
+        "note": "Required for the uniqueness part of Picard-Lindelöf theorem."
+      }
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "MA 104: Introduction to Ordinary Differential Equations",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Basic_Concepts_and_First_Order_ODEs"
+  },
+  "next": {
+    "title": "MA 104 Lecture 7: Variation of Parameters and Higher-Order Linear ODEs",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_07_Variation_of_Parameters_&_Higher_Order_ODEs"
+  }
+}

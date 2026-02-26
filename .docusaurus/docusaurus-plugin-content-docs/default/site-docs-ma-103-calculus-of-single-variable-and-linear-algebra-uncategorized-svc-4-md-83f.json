@@ -1,0 +1,23 @@
+{
+  "id": "MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/SVC-4",
+  "title": "SVC-4",
+  "description": "---",
+  "source": "@site/docs/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/SVC-4.md",
+  "sourceDirName": "MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized",
+  "slug": "/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/SVC-4",
+  "permalink": "/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/SVC-4",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "SVC-3",
+    "permalink": "/MA_103_Calculus__of_Single_Variable_and_Linear_Algebra/Uncategorized/SVC-3"
+  },
+  "next": {
+    "title": "Extra",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Extra"
+  }
+}

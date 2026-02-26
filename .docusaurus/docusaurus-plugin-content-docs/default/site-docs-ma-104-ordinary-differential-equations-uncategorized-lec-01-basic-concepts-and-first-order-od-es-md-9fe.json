@@ -1,0 +1,129 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Basic_Concepts_and_First_Order_ODEs",
+  "title": "MA 104: Introduction to Ordinary Differential Equations",
+  "description": "Introduction to Ordinary Differential Equations",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Basic_Concepts_and_First_Order_ODEs.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Basic_Concepts_and_First_Order_ODEs",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Basic_Concepts_and_First_Order_ODEs",
+  "draft": false,
+  "unlisted": false,
+  "tags": [
+    {
+      "inline": true,
+      "label": "ODE",
+      "permalink": "/tags/ode"
+    },
+    {
+      "inline": true,
+      "label": "Differential Equations",
+      "permalink": "/tags/differential-equations"
+    },
+    {
+      "inline": true,
+      "label": "First Order ODEs",
+      "permalink": "/tags/first-order-od-es"
+    },
+    {
+      "inline": true,
+      "label": "Exact Equations",
+      "permalink": "/tags/exact-equations"
+    },
+    {
+      "inline": true,
+      "label": "Homogeneous Equations",
+      "permalink": "/tags/homogeneous-equations"
+    },
+    {
+      "inline": true,
+      "label": "Separation of Variables",
+      "permalink": "/tags/separation-of-variables"
+    },
+    {
+      "inline": true,
+      "label": "Initial Value Problems",
+      "permalink": "/tags/initial-value-problems"
+    }
+  ],
+  "version": "current",
+  "frontMatter": {
+    "title": "MA 104: Introduction to Ordinary Differential Equations",
+    "lecture_number": 1,
+    "lecture_name": "Basic Concepts and First Order ODEs",
+    "course": "MA 104 Ordinary Differential Equations",
+    "topic": "Introduction to ODEs, First Order ODEs, Solution Methods",
+    "date": "2026-01-07",
+    "tags": [
+      "ODE",
+      "Differential Equations",
+      "First Order ODEs",
+      "Exact Equations",
+      "Homogeneous Equations",
+      "Separation of Variables",
+      "Initial Value Problems"
+    ],
+    "summary": "This lecture introduces Ordinary Differential Equations (ODEs), their definitions, classification by order, basic solution concepts, and methods for solving first-order ODEs including separation of variables, homogeneous, and exact equations.",
+    "math": true,
+    "table_of_contents": [
+      "Introduction to Ordinary Differential Equations",
+      "First-Order Ordinary Differential Equations (ODEs)",
+      "Methods for First-Order ODEs"
+    ],
+    "key_formulas": [
+      {
+        "name": "Implicit Form of First-Order ODE",
+        "formula": "$F(x, y, y') = 0$",
+        "note": "General representation for a first-order ODE."
+      },
+      {
+        "name": "Explicit Form of First-Order ODE",
+        "formula": "$y' = f(x, y)$",
+        "note": "Derivative is expressed directly as a function of $x$ and $y$."
+      },
+      {
+        "name": "Exponential Growth/Decay ODE",
+        "formula": "$y' = ky$",
+        "note": "Describes quantities whose rate of change is proportional to their current value."
+      },
+      {
+        "name": "Solution to Exponential Growth/Decay",
+        "formula": "$y = ce^{kt}$",
+        "note": "The general solution to $y' = ky$, where $c$ is an arbitrary constant."
+      },
+      {
+        "name": "Separable First-Order ODE",
+        "formula": "$M(x)dx + N(y)dy = 0$",
+        "note": "An ODE where variables can be algebraically separated for integration."
+      },
+      {
+        "name": "Homogeneous First-Order ODE Test",
+        "formula": "$f(tx, ty) = f(x,y)$",
+        "note": "Condition for $y' = f(x,y)$ to be homogeneous (degree 0)."
+      },
+      {
+        "name": "Homogeneous Substitution",
+        "formula": "$u = y/x \\implies y = ux \\implies y' = u'x + u$",
+        "note": "Substitution used to transform a homogeneous ODE into a separable one."
+      },
+      {
+        "name": "Exact Differential Equation Condition",
+        "formula": "$\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}$",
+        "note": "Condition for $M(x,y)dx + N(x,y)dy = 0$ to be exact."
+      },
+      {
+        "name": "Solution to Exact Equation",
+        "formula": "$u(x,y) = C$",
+        "note": "The general solution, where $du = Mdx + Ndy$ and $C$ is an arbitrary constant."
+      }
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Lec2",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec2"
+  },
+  "next": {
+    "title": "Existence and Uniqueness Theorem & Picard's Iteration Method",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_04_Existence_&_Uniqueness_and_Picard_Iteration"
+  }
+}

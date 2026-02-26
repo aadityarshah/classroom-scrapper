@@ -1,0 +1,23 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_3",
+  "title": "Lec_3",
+  "description": "title: \"Solving First-Order ODEs and Initial Value Problems\"",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_3.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_3",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_3",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Laplace Transforms: Derivatives, IVPs, Unit Step, Shifting, and Convolution",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_12_Laplace_Transform_Properties_&_Applications"
+  },
+  "next": {
+    "title": "Lec_5",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_5"
+  }
+}

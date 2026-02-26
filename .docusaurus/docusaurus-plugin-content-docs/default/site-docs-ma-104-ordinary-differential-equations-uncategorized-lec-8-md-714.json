@@ -1,0 +1,23 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_8",
+  "title": "Lec_8",
+  "description": "title: \"Review of Power Series and Series Solutions for ODEs\"",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_8.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_8",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_8",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Lec_6",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_6"
+  },
+  "next": {
+    "title": "Power Series Solutions for Ordinary Differential Equations: Legendre's, Frobenius, and Bessel's Methods",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_9 & 10_Series_Solutions_for_ODEs"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/file",
+  "title": "file",
+  "description": "",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/file.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/file",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/file",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Welcome",
+    "permalink": "/"
+  }
+}

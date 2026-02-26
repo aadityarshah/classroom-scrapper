@@ -1,0 +1,130 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Introduction_to_Ordinary_Differential_Equations",
+  "title": "MA 104: Ordinary Differential Equations - Lecture 1\n",
+  "description": "Course Logistics",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Introduction_to_Ordinary_Differential_Equations.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Introduction_to_Ordinary_Differential_Equations",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_01_Introduction_to_Ordinary_Differential_Equations",
+  "draft": false,
+  "unlisted": false,
+  "tags": [
+    {
+      "inline": true,
+      "label": "ODE\n",
+      "permalink": "/tags/ode"
+    },
+    {
+      "inline": true,
+      "label": "Differential Equations\n",
+      "permalink": "/tags/differential-equations"
+    },
+    {
+      "inline": true,
+      "label": "Introduction\n",
+      "permalink": "/tags/introduction"
+    },
+    {
+      "inline": true,
+      "label": "First Order\n",
+      "permalink": "/tags/first-order"
+    },
+    {
+      "inline": true,
+      "label": "Homogeneous Equations\n",
+      "permalink": "/tags/homogeneous-equations"
+    },
+    {
+      "inline": true,
+      "label": "Exact Equations\n",
+      "permalink": "/tags/exact-equations"
+    },
+    {
+      "inline": true,
+      "label": "Initial Value Problem\n",
+      "permalink": "/tags/initial-value-problem"
+    },
+    {
+      "inline": true,
+      "label": "Mathematical Modeling\n",
+      "permalink": "/tags/mathematical-modeling"
+    }
+  ],
+  "version": "current",
+  "frontMatter": {
+    "title": "MA 104: Ordinary Differential Equations - Lecture 1\n",
+    "lecture_number": 1,
+    "lecture_name": "Introduction to Ordinary Differential Equations\n",
+    "course": "MA 104 Ordinary Differential Equations\n",
+    "topic": "Introduction to ODEs, Basic Concepts, First Order ODEs, Homogeneous Equations, Exact Equations\n",
+    "date": "2026-01-07T00:00:00.000Z",
+    "tags": [
+      "ODE\n",
+      "Differential Equations\n",
+      "Introduction\n",
+      "First Order\n",
+      "Homogeneous Equations\n",
+      "Exact Equations\n",
+      "Initial Value Problem\n",
+      "Mathematical Modeling\n"
+    ],
+    "summary": "This lecture introduces the fundamental concepts of Ordinary Differential Equations (ODEs), including their definition, order, and various applications in modeling physical systems. It covers the general forms of first-order ODEs, discusses the existence and uniqueness of solutions, and explores specific types such as homogeneous and exact equations. Key methods for solving certain first-order ODEs are also introduced.\n",
+    "math": true,
+    "table_of_contents": [
+      "Course Logistics\n",
+      "Grading Policy\n",
+      "References\n",
+      "Basic Concepts: Mathematical Modeling\n",
+      "Ordinary Differential Equations (ODEs)\n",
+      "Applications of Differential Equations\n",
+      "First Order ODEs\n",
+      "Existence and Uniqueness of Solutions\n",
+      "Initial Value Problems (IVPs)\n",
+      "Geometrical Meaning of ODEs\n",
+      "Homogeneous First Order ODEs\n",
+      "Exact First Order ODEs\n"
+    ],
+    "key_formulas": [
+      {
+        "name": "Definition of an Ordinary Differential Equation (ODE)\n",
+        "formula": "An equation that contains one or more derivatives of an unknown function, usually denoted by $y(x)$ (or $y(t)$).\n",
+        "note": "The order of an ODE is the highest derivative present in the equation.\n"
+      },
+      {
+        "name": "Implicit Form of a First Order ODE\n",
+        "formula": "$F(x, y, y') = 0$\n",
+        "note": "Where $y'$ is the first derivative of the unknown function $y$.\n"
+      },
+      {
+        "name": "Explicit Form of a First Order ODE\n",
+        "formula": "$y' = f(x, y)$\n",
+        "note": "This form is often easier to work with directly.\n"
+      },
+      {
+        "name": "General Solution for $y' = f(x)$\n",
+        "formula": "$y = \\int f(x) dx + C$\n",
+        "note": "When the derivative only depends on the independent variable.\n"
+      },
+      {
+        "name": "Homogeneous Function of Degree $n$\n",
+        "formula": "$f(tx, ty) = t^n f(x, y)$\n",
+        "note": "Important for identifying homogeneous ODEs.\n"
+      },
+      {
+        "name": "Transformation for Homogeneous ODEs ($y' = g(y/x)$)\n",
+        "formula": "Let $u = y/x$, then $y = ux$ and $y' = u'x + u$.\n",
+        "note": "This substitution transforms the ODE into a separable one in terms of $u$ and $x$.\n"
+      },
+      {
+        "name": "Exact Differential Equation Condition\n",
+        "formula": "An equation $M(x, y) dx + N(x, y) dy = 0$ is exact if and only if $\\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x}$.\n",
+        "note": "If exact, there exists a potential function $u(x,y)$ such that $du = M dx + N dy = 0$, leading to the general solution $u(x,y) = C$.\n"
+      }
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "next": {
+    "title": "Welcome",
+    "permalink": "/"
+  }
+}

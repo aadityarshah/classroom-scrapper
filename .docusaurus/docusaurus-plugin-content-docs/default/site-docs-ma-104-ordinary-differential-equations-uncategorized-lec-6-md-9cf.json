@@ -1,0 +1,23 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_6",
+  "title": "Lec_6",
+  "description": "---",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_6.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_6",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_6",
+  "draft": false,
+  "unlisted": false,
+  "tags": [],
+  "version": "current",
+  "frontMatter": {},
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Lec_5",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_5"
+  },
+  "next": {
+    "title": "Lec_8",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_8"
+  }
+}

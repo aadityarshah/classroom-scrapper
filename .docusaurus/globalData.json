@@ -1,0 +1,38 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/",
+          "mainDocId": "index",
+          "docs": [
+            {
+              "id": "index",
+              "path": "/",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "MA 104 Ordinary Differential Equations/Lec_01_Introduction to ODEs and First Order Equations",
+              "path": "/MA 104 Ordinary Differential Equations/Lec_01_Introduction to ODEs and First Order Equations",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/MA 104 Ordinary Differential Equations/Lec_01_Introduction to ODEs and First Order Equations",
+                "label": "MA 104 Ordinary Differential Equations/Lec_01_Introduction to ODEs and First Order Equations"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": false
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "id": "MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_9 & 10_Series_Solutions_for_ODEs",
+  "title": "Power Series Solutions for Ordinary Differential Equations: Legendre's, Frobenius, and Bessel's Methods",
+  "description": "Power Series Solutions About an Initial Point",
+  "source": "@site/docs/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_9 & 10_Series_Solutions_for_ODEs.md",
+  "sourceDirName": "MA_104_Ordinary_Differential_Equations/Uncategorized",
+  "slug": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_9 & 10_Series_Solutions_for_ODEs",
+  "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_9 & 10_Series_Solutions_for_ODEs",
+  "draft": false,
+  "unlisted": false,
+  "tags": [
+    {
+      "inline": true,
+      "label": "Ordinary Differential Equations",
+      "permalink": "/tags/ordinary-differential-equations"
+    },
+    {
+      "inline": true,
+      "label": "Power Series",
+      "permalink": "/tags/power-series"
+    },
+    {
+      "inline": true,
+      "label": "Legendre's Equation",
+      "permalink": "/tags/legendres-equation"
+    },
+    {
+      "inline": true,
+      "label": "Legendre Polynomials",
+      "permalink": "/tags/legendre-polynomials"
+    },
+    {
+      "inline": true,
+      "label": "Frobenius Method",
+      "permalink": "/tags/frobenius-method"
+    },
+    {
+      "inline": true,
+      "label": "Bessel's Equation",
+      "permalink": "/tags/bessels-equation"
+    },
+    {
+      "inline": true,
+      "label": "Bessel Functions",
+      "permalink": "/tags/bessel-functions"
+    },
+    {
+      "inline": true,
+      "label": "Rodrigues' Formula",
+      "permalink": "/tags/rodrigues-formula"
+    },
+    {
+      "inline": true,
+      "label": "Orthogonality",
+      "permalink": "/tags/orthogonality"
+    },
+    {
+      "inline": true,
+      "label": "Series Solutions",
+      "permalink": "/tags/series-solutions"
+    },
+    {
+      "inline": true,
+      "label": "Differential Equations",
+      "permalink": "/tags/differential-equations"
+    }
+  ],
+  "version": "current",
+  "frontMatter": {
+    "title": "Power Series Solutions for Ordinary Differential Equations: Legendre's, Frobenius, and Bessel's Methods",
+    "lecture_number": "9 & 10",
+    "lecture_name": "Series Solutions for ODEs",
+    "course": "MA 104 Ordinary Differential Equations",
+    "topic": "Series Solutions",
+    "date": "2023-10-27",
+    "tags": [
+      "Ordinary Differential Equations",
+      "Power Series",
+      "Legendre's Equation",
+      "Legendre Polynomials",
+      "Frobenius Method",
+      "Bessel's Equation",
+      "Bessel Functions",
+      "Rodrigues' Formula",
+      "Orthogonality",
+      "Series Solutions",
+      "Differential Equations"
+    ],
+    "summary": "Detailed lecture notes covering power series solutions for ODEs, including Legendre's Equation and Polynomials, the Frobenius method for regular singular points, and Bessel's Equation and Functions.",
+    "math": true,
+    "table_of_contents": [
+      "Power Series Solutions About an Initial Point",
+      "Legendre's Equation and Power Series Solution",
+      "Legendre Polynomials",
+      "Rodrigues' Formula",
+      "Orthogonality of Legendre Polynomials",
+      "Frobenius Method: Extended Power Series Solutions",
+      "Regular and Singular Points",
+      "Indicial Equation and Recurrence Relation",
+      "Cases for Roots of the Indicial Equation",
+      "Bessel's Equation and Bessel Functions"
+    ],
+    "key_formulas": [
+      {
+        "name": "Power Series Solution (general)",
+        "formula": "$$y(x) = \\sum_{k=0}^{\\infty} a_k(x-x_0)^k$$",
+        "note": "General form for series solutions around an ordinary point $x_0$."
+      },
+      {
+        "name": "Legendre's Equation",
+        "formula": "$$(1-x^2)y'' - 2xy' + \\alpha(\\alpha+1)y=0$$",
+        "note": "A second-order linear ODE frequently arising in physics and engineering."
+      },
+      {
+        "name": "Legendre's Recurrence Relation",
+        "formula": "$$a_{n+2} = -\\frac{(\\alpha-n)(\\alpha+n+1)}{(n+1)(n+2)} a_n$$",
+        "note": "Relates coefficients of the power series solution to Legendre's equation."
+      },
+      {
+        "name": "Rodrigues' Formula for Legendre Polynomials",
+        "formula": "$$P_n(x) = \\frac{1}{2^n n!} \\frac{d^n}{dx^n} (x^2-1)^n$$",
+        "note": "Explicit formula for Legendre polynomials of degree $n$."
+      },
+      {
+        "name": "Orthogonality of Legendre Polynomials",
+        "formula": "$$\\int_{-1}^1 P_m(x) P_n(x) dx = \\begin{cases} 0 & \\text{if } m \\neq n \\\\ \\frac{2}{2n+1} & \\text{if } m = n \\end{cases}$$",
+        "note": "Fundamental orthogonality property over the interval $[-1, 1]$."
+      },
+      {
+        "name": "Frobenius Method Solution Form",
+        "formula": "$$y(x) = x^r \\sum_{m=0}^{\\infty} a_m x^m$$",
+        "note": "Extended power series form for solutions around a regular singular point."
+      },
+      {
+        "name": "Frobenius Indicial Equation",
+        "formula": "$$I(r) = r(r-1) + r b_0 + c_0 = 0$$",
+        "note": "Quadratic equation whose roots determine the exponents $r$ in the Frobenius series."
+      },
+      {
+        "name": "Frobenius Recurrence Relation",
+        "formula": "$$a_n(r) = -\\frac{\\sum_{k=0}^{n-1} a_k [(r+k)b_{n-k} + c_{n-k}]}{I(r+n)}$$",
+        "note": "Determines coefficients for the Frobenius series solution."
+      },
+      {
+        "name": "Bessel's Equation",
+        "formula": "$$x^2 y'' + xy' + (x^2-\\nu^2)y=0$$",
+        "note": "A second-order linear ODE with a regular singular point at $x=0$."
+      },
+      {
+        "name": "Bessel Function of the First Kind ($J_n(x)$)",
+        "formula": "$$J_n(x) = \\sum_{m=0}^{\\infty} \\frac{(-1)^m}{m!(n+m)!} \\left(\\frac{x}{2}\\right)^{n+2m}$$",
+        "note": "A particular solution to Bessel's equation for integer order $n$."
+      }
+    ]
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Lec_8",
+    "permalink": "/MA_104_Ordinary_Differential_Equations/Uncategorized/Lec_8"
+  },
+  "next": {
+    "title": "Welcome",
+    "permalink": "/"
+  }
+}
