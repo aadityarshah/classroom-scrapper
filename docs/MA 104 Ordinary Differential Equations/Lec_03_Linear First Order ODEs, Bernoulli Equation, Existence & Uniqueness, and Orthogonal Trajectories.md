@@ -107,7 +107,7 @@ A first-order IVP may have no solution, a unique solution, or infinitely many so
 **Theorem (Peano, Existence Theorem)**
 Consider the IVP: $y'(x) = f(x,y)$ with $y(x_0) = y_0$.
 Suppose $f(x,y)$ is continuous for all points $(x,y)$ in some rectangle $D: |x-x_0| \leq a, |y-y_0| \leq b$.
-And $f(x,y)$ is bounded in $D$, i.e., there exists $K > 0$ such that $|f(x,y)| \leq K$ for all $(x,y) \in D$.
+And $f(x,y)$ is bounded in $D$, i.e., there exists $K $>$ 0$ such that $|f(x,y)| \leq K$ for all $(x,y) \in D$.
 Then the IVP has **at least one** solution $y(x)$ for $x$ in the interval $|x-x_0| \leq \alpha$, where $\alpha = \min\{a, b/K\}$.
 
 ## Uniqueness Theorem for First Order IVP
@@ -120,7 +120,7 @@ Then the IVP has **at most one** solution $y(x)$ for $x$ in the interval $|x-x_0
 *(Combining with the Existence Theorem, this guarantees a precisely one solution.)*
 
 **Remark**
-The condition $|\frac{\partial f}{\partial y}(x,y)| \leq M$ can be replaced by the **Lipschitz condition**: there exists $M>0$ such that $|f(x,y_2) - f(x,y_1)| \leq M|y_2 - y_1|$ for all $(x,y_1), (x,y_2) \in D$.
+The condition $|\frac{\partial f}{\partial y}(x,y)| \leq M$ can be replaced by the **Lipschitz condition**: there exists $M $>$ 0$ such that $|f(x,y_2) - f(x,y_1)| \leq M|y_2 - y_1|$ for all $(x,y_1), (x,y_2) \in D$.
 
 **Remark (Continuity is not enough for Uniqueness)**
 Continuity of $f(x,y)$ alone is not sufficient to guarantee the uniqueness of the solution. For instance, the IVP $y' = \sqrt{|y|}$ with $y(0)=0$ has multiple solutions (e.g., $y(x)=0$ and $y(x) = \pm x^2/4$). In this case, $f(x,y) = \sqrt{|y|}$ is continuous, but $\frac{\partial f}{\partial y}$ is not continuous (or Lipschitz) at $y=0$.

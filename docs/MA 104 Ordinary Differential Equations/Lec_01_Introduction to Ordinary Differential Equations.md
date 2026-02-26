@@ -71,7 +71,7 @@ $$F(x, y, y') = 0$$
 $$y' = f(x, y)$$
 
 ### Definition: Solution of a First-Order ODE
-A function $y = h(x)$ is called a **solution** of $F(x, y, y') = 0$ on an interval $a < x < b$ if:
+A function $y = h(x)$ is called a **solution** of $F(x, y, y') = 0$ on an interval $a $<$ x $<$ b$ if:
 *   $h$ is differentiable on $(a, b)$,
 *   Substitution of $y = h(x)$ and $y' = h'(x)$ into the equation gives an identity.
 
@@ -79,7 +79,7 @@ A function $y = h(x)$ is called a **solution** of $F(x, y, y') = 0$ on an interv
 The graph of a solution $h(x)$ is called a **solution curve** or an **integral curve**.
 
 ## Growth and Decay Curves
-The ODE $y' = ky$ models exponential growth (if $k > 0$) or exponential decay (if $k < 0$).
+The ODE $y' = ky$ models exponential growth (if $k $>$ 0$) or exponential decay (if $k $<$ 0$).
 
 ### Formula: Exponential Growth/Decay
 $$y = ce^{kt}$$

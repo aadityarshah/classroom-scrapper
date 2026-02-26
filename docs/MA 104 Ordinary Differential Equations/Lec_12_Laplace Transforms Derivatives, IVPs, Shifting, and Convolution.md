@@ -34,8 +34,8 @@ math: true
 
 ## Laplace Transform of Derivatives
 
-**Theorem:** Let $f: [0, \infty) \to \mathbb{R}$ be continuous and of exponential order $\alpha$. Let $f'$ be piecewise continuous on $[0, \infty)$. Then the Laplace transform for $f'$ exists for $s > \alpha$ and is given by:
-$$ \mathcal{L}\{f'(t)\} = s\mathcal{L}\{f(t)\} - f(0) \quad \text{for } s > \alpha $$
+**Theorem:** Let $f: [0, \infty) \to \mathbb{R}$ be continuous and of exponential order $\alpha$. Let $f'$ be piecewise continuous on $[0, \infty)$. Then the Laplace transform for $f'$ exists for $s $>$ \alpha$ and is given by:
+$$ \mathcal{L}\{f'(t)\} = s\mathcal{L}\{f(t)\} - f(0) \quad \text{for } s $>$ \alpha $$
 
 **Generalized Formula for Higher Order Derivatives:** With similar hypotheses on $f^{(k-1)}$ and $f^{(k)}$, we have:
 $$ \mathcal{L}\{f^{(k)}(t)\} = s^k \mathcal{L}\{f(t)\} - s^{k-1}f(0) - s^{k-2}f'(0) - \dots - f^{(k-1)}(0) $$
@@ -57,7 +57,7 @@ $$ \mathcal{L}\{f''(t)\} = s^2\mathcal{L}\{f(t)\} - sf(0) - f'(0) $$
 $$ \mathcal{L}\{y(t)\} = \frac{\mathcal{L}\{r(t)\} + k_0(s+a) + k_1}{s^2+as+b} $$
 $$ y(t) = \mathcal{L}^{-1}\left( \frac{\mathcal{L}\{r(t)\} + (s+a)y(0) + y'(0)}{s^2+as+b} \right) $$
 
-**Theorem (IVP with Piecewise Continuous Function $r(t)$):** Let $r(t)$ be a piecewise continuous function with discontinuities at $0 < t_1 < \dots < t_n$. Let $k_0, k_1$ be arbitrary real numbers. Consider the ODE $ay'' + by' + cy = r(t)$ with $a,b,c \in \mathbb{R}$. Then there exists a unique function $y$ defined on $[0, \infty)$ such that:
+**Theorem (IVP with Piecewise Continuous Function $r(t)$):** Let $r(t)$ be a piecewise continuous function with discontinuities at $0 $<$ t_1 $<$ \dots $<$ t_n$. Let $k_0, k_1$ be arbitrary real numbers. Consider the ODE $ay'' + by' + cy = r(t)$ with $a,b,c \in \mathbb{R}$. Then there exists a unique function $y$ defined on $[0, \infty)$ such that:
 1.  $y(0)=k_0$ and $y'(0)=k_1$.
 2.  $y$ and $y'$ are continuous on $[0, \infty)$.
 3.  $y''$ is defined on every subinterval $I$ of $[0, \infty)$ that does not contain any of the points $t_1, \dots, t_n$.
@@ -67,23 +67,23 @@ $$ y(t) = \mathcal{L}^{-1}\left( \frac{\mathcal{L}\{r(t)\} + (s+a)y(0) + y'(0)}{
 ## Unit Step Function
 
 **Definition (Unit Step Function / Heaviside Function):** The unit step function $u_a(t)$ is defined as:
-$$ u_a(t) = \begin{cases} 0 & t < a \\ 1 & t \ge a \end{cases} $$
+$$ u_a(t) = \begin{cases} 0 & t $<$ a \\ 1 & t \ge a \end{cases} $$
 This represents a jump of size 1 at $t=a$.
 
-**Remark:** $u_a(t) = u_0(t-a)$, where $u_0(t) = \begin{cases} 0 & t < 0 \\ 1 & t \ge 0 \end{cases}$.
+**Remark:** $u_a(t) = u_0(t-a)$, where $u_0(t) = \begin{cases} 0 & t $<$ 0 \\ 1 & t \ge 0 \end{cases}$.
 
 **Laplace Transform of Unit Step Function:**
 $$ \mathcal{L}\{u_a(t)\} = \frac{e^{-as}}{s} $$
 
 ## Second Shifting Theorem
 
-**Theorem (First Form):** If $a \ge 0$ and $F(s) = \mathcal{L}\{f(t)\}$ exists for $s > s_0$, then $\mathcal{L}\{u_a(t)f(t-a)\}$ exists for $s > s_0$ and is given by:
+**Theorem (First Form):** If $a \ge 0$ and $F(s) = \mathcal{L}\{f(t)\}$ exists for $s $>$ s_0$, then $\mathcal{L}\{u_a(t)f(t-a)\}$ exists for $s $>$ s_0$ and is given by:
 $$ \mathcal{L}\{u_a(t)f(t-a)\} = e^{-as}\mathcal{L}\{f(t)\} = e^{-as}F(s) $$
 
 **Inverse Second Shifting Theorem (First Form):**
 $$ u_a(t)f(t-a) = \mathcal{L}^{-1}\{e^{-as}F(s)\} $$
 
-**Theorem (Second Form):** If $a \ge 0$ and $G(s) = \mathcal{L}\{g(t+a)\}$ exists for $s > s_0$, then $\mathcal{L}\{u_a(t)g(t)\}$ exists for $s > s_0$ and is given by:
+**Theorem (Second Form):** If $a \ge 0$ and $G(s) = \mathcal{L}\{g(t+a)\}$ exists for $s $>$ s_0$, then $\mathcal{L}\{u_a(t)g(t)\}$ exists for $s $>$ s_0$ and is given by:
 $$ \mathcal{L}\{u_a(t)g(t)\} = e^{-as}\mathcal{L}\{g(t+a)\} = e^{-as}G(s) $$
 
 ## Derivative and Integration of Laplace Transforms

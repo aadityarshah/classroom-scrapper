@@ -55,14 +55,14 @@ It is a fundamental property that the row rank (number of non-zero rows in REF) 
 Consider the system of linear equations $A \cdot x = b$, where $A \in \mathbb{M}_{m \times n}(\mathbb{R})$, $x \in \mathbb{M}_{n \times 1}(\mathbb{R})$, and $b \in \mathbb{M}_{m \times 1}(\mathbb{R})$.
 For the homogeneous case, where $b = 0$, the system is $A \cdot x = 0$.
 
-**Theorem:** The homogeneous system $A \cdot x = 0$ has at least one non-zero solution in $\mathbb{R}^n$ if and only if $\text{rank}(A) < n$.
+**Theorem:** The homogeneous system $A \cdot x = 0$ has at least one non-zero solution in $\mathbb{R}^n$ if and only if $\text{rank}(A) $<$ n$.
 This theorem establishes a crucial link between the rank of the coefficient matrix and the existence of non-trivial solutions.
-- If $\text{rank}(A) < n$, the columns of $A$ are linearly dependent, implying a non-zero solution $x$.
-- If $A \cdot x = 0$ has a non-zero solution, the column vectors of $A$ are linearly dependent, which means $\text{rank}(A) < n$.
+- If $\text{rank}(A) $<$ n$, the columns of $A$ are linearly dependent, implying a non-zero solution $x$.
+- If $A \cdot x = 0$ has a non-zero solution, the column vectors of $A$ are linearly dependent, which means $\text{rank}(A) $<$ n$.
 
 ## Key Formulas
 - Homogeneous linear system: $A \cdot x = 0$
-- Condition for non-zero solution: $\text{rank}(A) < n$
+- Condition for non-zero solution: $\text{rank}(A) $<$ n$
 - Column vector linear combination for $A \cdot x = 0$: $x_1 C_1 + x_2 C_2 + \dots + x_n C_n = 0$, where $C_i$ are column vectors of $A$.
 
 ## Quick Summary

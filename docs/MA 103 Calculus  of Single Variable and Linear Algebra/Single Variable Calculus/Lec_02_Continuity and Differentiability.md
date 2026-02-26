@@ -46,7 +46,7 @@ math: true
 *   Rolle's Theorem (Theorem 3)
 
 ## Continuity Definition
-**Definition:** A function $f$ is continuous at point $p$ if for every $\epsilon > 0$, there exists a $\delta > 0$ such that $|f(x) - f(p)| < \epsilon$ whenever $|x - p| < \delta$.
+**Definition:** A function $f$ is continuous at point $p$ if for every $\epsilon $>$ 0$, there exists a $\delta $>$ 0$ such that $|f(x) - f(p)| $<$ \epsilon$ whenever $|x - p| $<$ \delta$.
 *   Every polynomial $p(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_0$ is continuous for all $x \in \mathbb{R}$, for any $n \in \mathbb{N}$.
 
 ## Properties of Continuous Functions (Theorem 9)
@@ -71,7 +71,7 @@ If functions $f$ and $g$ are continuous at $x=c$, then the following combination
 **Theorem:** A function $y = f(x)$ that is continuous on a closed interval $[a,b]$ takes on every value between $f(a)$ and $f(b)$. If $y_0$ is any value between $f(a)$ and $f(b)$, then $y_0 = f(c)$ for some $c \in [a,b]$.
 
 ## Boundedness Theorem for Continuous Functions
-**Theorem:** Let $f$ be a continuous function on a closed interval $[a,b]$. Then $f$ is bounded on $[a,b]$. That is, there is a number $C > 0$ such that $|f(x)| \leq C$ for all $x \in [a,b]$.
+**Theorem:** Let $f$ be a continuous function on a closed interval $[a,b]$. Then $f$ is bounded on $[a,b]$. That is, there is a number $C $>$ 0$ such that $|f(x)| \leq C$ for all $x \in [a,b]$.
 
 ## Differentiability Definition
 *   **Average Rate of Change:** For a function $f$ on $[a, a+h]$, $m_{sec} = \frac{f(a+h) - f(a)}{h}$.
@@ -122,7 +122,7 @@ If $y = f(u)$ is differentiable at $u=g(x)$ and $u=g(x)$ is differentiable at $x
 **Theorem:** Suppose that $y = f(x)$ is continuous at every point of the closed interval $[a,b]$ and differentiable at every point of its interior $(a,b)$. If $f(a) = f(b)$, then there is at least one number $c$ in $(a,b)$ at which $f'(c) = 0$.
 
 ## Key Formulas
-*   **Continuity Definition:** $|f(x) - f(p)| < \epsilon$ whenever $|x - p| < \delta$
+*   **Continuity Definition:** $|f(x) - f(p)| $<$ \epsilon$ whenever $|x - p| $<$ \delta$
 *   **Derivative at a Point:** $f'(a) = \lim_{h \to 0} \frac{f(a+h) - f(a)}{h}$
 *   **Derivative as a Function:** $f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}$
 *   **Constant Rule:** $\frac{d}{dx}(c) = 0$

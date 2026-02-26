@@ -49,14 +49,14 @@ math: true
 
 ## Improper Integrals and Convergence
 **Definition:**
-If $f$ is integrable over the interval $[a,T]$ for every $T>a$, then the integral of $f$ over $[a, \infty)$ is defined as:
+If $f$ is integrable over the interval $[a,T]$ for every $T $>$ a$, then the integral of $f$ over $[a, \infty)$ is defined as:
 $$ \int_a^\infty f(t) dt := \lim_{T \to \infty} \int_a^T f(t) dt $$
 **Convergence:**
 The integral **converges** if the limit exists and is finite. Otherwise, the integral ** diverges** or fails to exist.
 
 ## Definition of the Laplace Transform
 **Definition:**
-Let $f(t)$ be given for $t>0$. Suppose that $f$ satisfies "certain conditions". Then the Laplace transform of $f$, denoted by $\mathcal{L}\{f(t)\}$ or $F(s)$, is defined by the equation:
+Let $f(t)$ be given for $t $>$ 0$. Suppose that $f$ satisfies "certain conditions". Then the Laplace transform of $f$, denoted by $\mathcal{L}\{f(t)\}$ or $F(s)$, is defined by the equation:
 $$ \mathcal{L}\{f(t)\} = \int_0^\infty e^{-st} f(t) dt $$
 whenever this improper integral converges.
 
@@ -65,14 +65,14 @@ whenever this improper integral converges.
 ## Piecewise Continuous Functions
 **Definition:**
 A function $f: [a,b] \to \mathbb{R}$ is said to be **piecewise continuous** if:
-1.  There exist $a=t_0 < t_1 < \dots < t_{n+1}=b$ such that $f$ is continuous on $(t_i, t_{i+1})$ for all $i$.
+1.  There exist $a=t_0 $<$ t_1 $<$ \dots $<$ t_{n+1}=b$ such that $f$ is continuous on $(t_i, t_{i+1})$ for all $i$.
 2.  $f(t_i^+)$ and $f(t_{i+1}^-)$ exist and are finite for $i=0, \dots, n+1$.
 
-**Extension:** A function $f: [a, \infty) \to \mathbb{R}$ is called piecewise continuous if it is piecewise continuous on $[a,T]$ for every $T>a$.
+**Extension:** A function $f: [a, \infty) \to \mathbb{R}$ is called piecewise continuous if it is piecewise continuous on $[a,T]$ for every $T $>$ a$.
 
 ## Functions of Exponential Order
 **Definition:**
-A function $f$ is of **exponential order** if there exist $\alpha \in \mathbb{R}$, $t_0 \in \mathbb{R}$, and $M>0$ such that for all $t \ge t_0$:
+A function $f$ is of **exponential order** if there exist $\alpha \in \mathbb{R}$, $t_0 \in \mathbb{R}$, and $M $>$ 0$ such that for all $t \ge t_0$:
 $$ |f(t)| \le M e^{\alpha t} $$
 This implies $-M e^{\alpha t} \le f(t) \le M e^{\alpha t}$.
 
@@ -86,7 +86,7 @@ This implies $-M e^{\alpha t} \le f(t) \le M e^{\alpha t}$.
 
 ## Existence Theorem for the Laplace Transform
 **Theorem:**
-If $f$ is a piecewise continuous function on $[0, \infty)$ and of exponential order, say $\alpha$, then the Laplace transform $\mathcal{L}\{f(t)\}$ is defined for $s > \alpha$.
+If $f$ is a piecewise continuous function on $[0, \infty)$ and of exponential order, say $\alpha$, then the Laplace transform $\mathcal{L}\{f(t)\}$ is defined for $s $>$ \alpha$.
 
 ## Properties of the Laplace Transform
 ### Linearity
@@ -98,23 +98,23 @@ $$ \mathcal{L}\{c_1 f_1(t) + c_2 f_2(t)\} = c_1 \mathcal{L}\{f_1(t)\} + c_2 \mat
 **Theorem:**
 If the Laplace transform of $f$ exists for $s>\alpha$, then for any given $a \in \mathbb{R}$:
 $$ \mathcal{L}\{e^{at}f(t)\}(s) = \mathcal{L}\{f(t)\}(s-a) $$
-for $s > a+\alpha$.
+for $s $>$ a+\alpha$.
 
 ## Elementary Laplace Transforms
-1.  $\mathcal{L}\{1\} = \frac{1}{s}$, $s>0$
-2.  $\mathcal{L}\{e^{at}\} = \frac{1}{s-a}$, $s>a$
-3.  $\mathcal{L}\{t^n\} = \frac{n!}{s^{n+1}}$, $s>0$ (for $n \in \mathbb{Z}_{\ge 0}$)
-4.  $\mathcal{L}\{t^\alpha\} = \frac{\Gamma(\alpha+1)}{s^{\alpha+1}}$, $s>0$ (for $\alpha \in \mathbb{R}_{\ge 0}$)
-    *   **Gamma function:** $\Gamma(z) = \int_0^\infty e^{-t} t^{z-1} dt$, for $\text{Re}(z)>0$.
-5.  $\mathcal{L}\{t^n e^{at}\} = \frac{n!}{(s-a)^{n+1}}$, $s>a$
-6.  $\mathcal{L}\{\sin(\omega t)\} = \frac{\omega}{s^2+\omega^2}$, $s>0$
-7.  $\mathcal{L}\{\cos(\omega t)\} = \frac{s}{s^2+\omega^2}$, $s>0$
-8.  $\mathcal{L}\{e^{at} \sin(\omega t)\} = \frac{\omega}{(s-a)^2+\omega^2}$, $s>a$
-9.  $\mathcal{L}\{e^{at} \cos(\omega t)\} = \frac{s-a}{(s-a)^2+\omega^2}$, $s>a$
+1.  $\mathcal{L}\{1\} = \frac{1}{s}$, $s $>$ 0$
+2.  $\mathcal{L}\{e^{at}\} = \frac{1}{s-a}$, $s $>$ a$
+3.  $\mathcal{L}\{t^n\} = \frac{n!}{s^{n+1}}$, $s $>$ 0$ (for $n \in \mathbb{Z}_{\ge 0}$)
+4.  $\mathcal{L}\{t^\alpha\} = \frac{\Gamma(\alpha+1)}{s^{\alpha+1}}$, $s $>$ 0$ (for $\alpha \in \mathbb{R}_{\ge 0}$)
+    *   **Gamma function:** $\Gamma(z) = \int_0^\infty e^{-t} t^{z-1} dt$, for $\text{Re}(z) $>$ 0$.
+5.  $\mathcal{L}\{t^n e^{at}\} = \frac{n!}{(s-a)^{n+1}}$, $s $>$ a$
+6.  $\mathcal{L}\{\sin(\omega t)\} = \frac{\omega}{s^2+\omega^2}$, $s $>$ 0$
+7.  $\mathcal{L}\{\cos(\omega t)\} = \frac{s}{s^2+\omega^2}$, $s $>$ 0$
+8.  $\mathcal{L}\{e^{at} \sin(\omega t)\} = \frac{\omega}{(s-a)^2+\omega^2}$, $s $>$ a$
+9.  $\mathcal{L}\{e^{at} \cos(\omega t)\} = \frac{s-a}{(s-a)^2+\omega^2}$, $s $>$ a$
 10. $\mathcal{L}\{\sinh(bt)\} = \frac{b}{s^2-b^2}$, $s>|b|$
 11. $\mathcal{L}\{\cosh(bt)\} = \frac{s}{s^2-b^2}$, $s>|b|$
-12. $\mathcal{L}\{e^{at} \sinh(bt)\} = \frac{b}{(s-a)^2-b^2}$, $s>a+|b|$
-13. $\mathcal{L}\{e^{at} \cosh(bt)\} = \frac{s-a}{(s-a)^2-b^2}$, $s>a+|b|$
+12. $\mathcal{L}\{e^{at} \sinh(bt)\} = \frac{b}{(s-a)^2-b^2}$, $s $>$ a+|b|$
+13. $\mathcal{L}\{e^{at} \cosh(bt)\} = \frac{s-a}{(s-a)^2-b^2}$, $s $>$ a+|b|$
 
 ## Inverse Laplace Transform
 **Definition:**
@@ -135,7 +135,7 @@ Using the First Shifting Theorem:
 $$ \mathcal{L}^{-1}\{F(s-a)\} = e^{at} f(t) $$
 
 ### Heaviside Method Remark
-If $\frac{P(s)}{Q(s)}$ are polynomials with $\text{deg }P < \text{deg }Q$, then $\mathcal{L}^{-1}\left\{\frac{P(s)}{Q(s)}\right\}$ is found by partial fractions, often using the Heaviside method.
+If $\frac{P(s)}{Q(s)}$ are polynomials with $\text{deg }P $<$ \text{deg }Q$, then $\mathcal{L}^{-1}\left\{\frac{P(s)}{Q(s)}\right\}$ is found by partial fractions, often using the Heaviside method.
 
 ## Uniqueness of Continuous Inverse Laplace Transform
 **Theorem (Uniqueness):**

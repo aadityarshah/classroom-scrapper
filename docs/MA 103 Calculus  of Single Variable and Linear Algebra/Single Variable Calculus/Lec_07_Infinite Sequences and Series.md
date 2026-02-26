@@ -48,10 +48,10 @@ An infinite sequence of numbers is a function $f: \mathbb{N} \to \mathbb{R}$ who
 
 ## Convergence and Divergence of Sequences
 **DEFINITIONS: Converges, Diverges, Limit**
-A sequence $\{a_n\}$ converges to a number $L$ if for every positive number $\epsilon$ there corresponds an integer $N$ such that for all $n > N$, $|a_n - L| < \epsilon$. We write $\lim_{n \to \infty} a_n = L$. If no such number $L$ exists, the sequence $\{a_n\}$ diverges.
+A sequence $\{a_n\}$ converges to a number $L$ if for every positive number $\epsilon$ there corresponds an integer $N$ such that for all $n $>$ N$, $|a_n - L| $<$ \epsilon$. We write $\lim_{n \to \infty} a_n = L$. If no such number $L$ exists, the sequence $\{a_n\}$ diverges.
 
 **DEFINITION: Diverges to Infinity**
-A sequence $\{a_n\}$ diverges to infinity if for every number $M$ there is an integer $N$ such that for all $n > N$, $a_n > M$. We write $\lim_{n \to \infty} a_n = \infty$. Similarly, it diverges to negative infinity if for every number $m$ there is an integer $N$ such that for all $n > N$, $a_n < m$. We write $\lim_{n \to \infty} a_n = -\infty$.
+A sequence $\{a_n\}$ diverges to infinity if for every number $M$ there is an integer $N$ such that for all $n $>$ N$, $a_n $>$ M$. We write $\lim_{n \to \infty} a_n = \infty$. Similarly, it diverges to negative infinity if for every number $m$ there is an integer $N$ such that for all $n $>$ N$, $a_n $<$ m$. We write $\lim_{n \to \infty} a_n = -\infty$.
 
 ## Properties of Convergent Sequences (Theorem 1)
 Let $\{a_n\}$ and $\{b_n\}$ be sequences of real numbers with $\lim_{n \to \infty} a_n = A$ and $\lim_{n \to \infty} b_n = B$.
@@ -74,8 +74,8 @@ Suppose that $f(x)$ is a function defined for all $x \ge n_0$ and that $\{a_n\}$
 The following six sequences converge to the limits listed below:
 1.  $\lim_{n \to \infty} \frac{\ln n}{n} = 0$
 2.  $\lim_{n \to \infty} \sqrt[n]{n} = 1$
-3.  $\lim_{n \to \infty} x^{1/n} = 1$ ($x > 0$)
-4.  $\lim_{n \to \infty} x^n = 0$ ($|x| < 1$)
+3.  $\lim_{n \to \infty} x^{1/n} = 1$ ($x $>$ 0$)
+4.  $\lim_{n \to \infty} x^n = 0$ ($|x| $<$ 1$)
 5.  $\lim_{n \to \infty} \left(1 + \frac{x}{n}\right)^n = e^x$ (any $x$)
 6.  $\lim_{n \to \infty} \frac{x^n}{n!} = 0$ (any $x$)
 In formulas (3) through (6), $x$ remains fixed as $n \to \infty$.
@@ -103,27 +103,27 @@ If the sequence of partial sums $\{S_n\}$ converges to a limit $L$, i.e., $\lim_
 ## Geometric Series
 A geometric series is of the form $a + ar + ar^2 + \dots + ar^{n-1} + \dots = \sum_{n=1}^\infty ar^{n-1}$.
 The $n$-th partial sum is $S_n = \frac{a(1-r^n)}{1-r}$, provided $r \ne 1$.
-If $|r| < 1$, the series converges to the sum $\frac{a}{1-r}$. If $|r| \ge 1$, the series diverges (unless $a=0$).
+If $|r| $<$ 1$, the series converges to the sum $\frac{a}{1-r}$. If $|r| \ge 1$, the series diverges (unless $a=0$).
 
 ---
 
 ## Key Formulas
 
 *   **Infinite Sequence**: A function $f: \mathbb{N} \to \mathbb{R}$, denoted $\{a_n\}_{n=1}^\infty$.
-*   **Limit of a Sequence (Definition)**: $\lim_{n \to \infty} a_n = L \iff \forall \epsilon > 0, \exists N \in \mathbb{Z}^+ \text{ s.t. } \forall n > N, |a_n - L| < \epsilon$.
+*   **Limit of a Sequence (Definition)**: $\lim_{n \to \infty} a_n = L \iff \forall \epsilon $>$ 0, \exists N \in \mathbb{Z}^+ \text{ s.t. } \forall n $>$ N, |a_n - L| $<$ \epsilon$.
 *   **Sequence Limit Rules**:
     *   $\lim (a_n \pm b_n) = \lim a_n \pm \lim b_n = A \pm B$
     *   $\lim (k \cdot a_n) = k \cdot \lim a_n = kA$
     *   $\lim (a_n \cdot b_n) = (\lim a_n) \cdot (\lim b_n) = AB$
     *   $\lim \frac{a_n}{b_n} = \frac{\lim a_n}{\lim b_n} = \frac{A}{B}$ (if $B \ne 0$)
-*   **Sandwich Theorem**: If $a_n \le b_n \le c_n$ for $n>N_0$ and $\lim a_n = \lim c_n = L$, then $\lim b_n = L$.
+*   **Sandwich Theorem**: If $a_n \le b_n \le c_n$ for $n $>$ N_0$ and $\lim a_n = \lim c_n = L$, then $\lim b_n = L$.
 *   **Continuous Function Theorem**: If $a_n \to L$ and $f$ is continuous at $L$, then $\lim f(a_n) = f(\lim a_n) = f(L)$.
 *   **Function-Sequence Limit Theorem**: If $a_n = f(n)$ and $\lim_{x \to \infty} f(x) = L$, then $\lim_{n \to \infty} a_n = L$.
 *   **Common Limits (Theorem 5)**:
     1.  $\lim_{n \to \infty} \frac{\ln n}{n} = 0$
     2.  $\lim_{n \to \infty} \sqrt[n]{n} = 1$
-    3.  $\lim_{n \to \infty} x^{1/n} = 1 \quad (x > 0)$
-    4.  $\lim_{n \to \infty} x^n = 0 \quad (|x| < 1)$
+    3.  $\lim_{n \to \infty} x^{1/n} = 1 \quad (x $>$ 0)$
+    4.  $\lim_{n \to \infty} x^n = 0 \quad (|x| $<$ 1)$
     5.  $\lim_{n \to \infty} \left(1 + \frac{x}{n}\right)^n = e^x$
     6.  $\lim_{n \to \infty} \frac{x^n}{n!} = 0$
 *   **Nondecreasing Sequence**: $a_n \le a_{n+1}$ for all $n$.
@@ -133,7 +133,7 @@ If $|r| < 1$, the series converges to the sum $\frac{a}{1-r}$. If $|r| \ge 1$, t
 *   **Series Convergence**: $\sum_{n=1}^\infty a_n = L \iff \lim_{n \to \infty} S_n = L$.
 *   **Geometric Series Sum**: For $\sum_{n=1}^\infty ar^{n-1}$:
     *   Partial sum: $S_n = \frac{a(1-r^n)}{1-r}$ (if $r \ne 1$).
-    *   Converges to $\frac{a}{1-r}$ if $|r| < 1$.
+    *   Converges to $\frac{a}{1-r}$ if $|r| $<$ 1$.
     *   Diverges if $|r| \ge 1$.
 
 ---

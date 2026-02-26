@@ -55,14 +55,14 @@ If no constraints are present, it is an **Unconstrained Optimization** problem. 
 Let $x^*$ be a point in $\mathbb{R}$:
 *   **Global Minimizer:** $f(x^*) \le f(x)$ for all $x \in \mathbb{R}$.
 *   **Local Minimizer:** There exists a neighborhood $N$ of $x^*$ such that $f(x^*) \le f(x)$ for all $x \in N(x^*)$.
-*   **Strict Local Minimizer:** There exists a neighborhood $N$ of $x^*$ such that $f(x^*) < f(x)$ for all $x \in N(x^*)$, $x \ne x^*$.
+*   **Strict Local Minimizer:** There exists a neighborhood $N$ of $x^*$ such that $f(x^*) $<$ f(x)$ for all $x \in N(x^*)$, $x \ne x^*$.
 
 **First-Order Necessary Condition:** If $x^*$ is a local minimizer (or maximizer) of a continuously differentiable function $f$ in an open neighborhood of $x^*$, then $f'(x^*) = 0$. This condition is necessary but not sufficient (e.g., $f(x)=x^3$ at $x=0$).
 
 ## Second Derivative Test for Local Extrema
 Suppose $f''$ is continuous on an open interval containing $x=c$:
-1.  If $f'(c)=0$ and $f''(c) < 0$, then $f$ has a **local maximum** at $x=c$.
-2.  If $f'(c)=0$ and $f''(c) > 0$, then $f$ has a **local minimum** at $x=c$.
+1.  If $f'(c)=0$ and $f''(c) $<$ 0$, then $f$ has a **local maximum** at $x=c$.
+2.  If $f'(c)=0$ and $f''(c) $>$ 0$, then $f$ has a **local minimum** at $x=c$.
 3.  If $f'(c)=0$ and $f''(c) = 0$, the test fails; $f$ may have a local maximum, local minimum, or neither.
 
 ## Considerations for Optimization
@@ -71,27 +71,27 @@ When optimizing, it is critical to be aware of:
 *   **Unbounded Functions:** Some functions may not have a finite minimum or maximum over their entire domain.
 
 ## Numerical Solution Methods
-When analytical solutions are not available, **Iterative Algorithms** provide numerical approximations. An iterative method generates a sequence of approximations $\{x_0, x_1, x_2, \dots, x_n\}$ that converges to the true solution $x^*$. Each iteration typically requires evaluating the objective function and/or its derivatives. Algorithms stop based on **convergence criteria**, such as changes in function value, argument value, or gradient falling below a tolerance ($|\Delta f(x)| < \text{tol}$, $|\Delta x| < \text{tol}$, or $|\nabla f(x)| < \text{tol}$). If criteria are not met within a maximum number of iterations, convergence is not achieved.
+When analytical solutions are not available, **Iterative Algorithms** provide numerical approximations. An iterative method generates a sequence of approximations $\{x_0, x_1, x_2, \dots, x_n\}$ that converges to the true solution $x^*$. Each iteration typically requires evaluating the objective function and/or its derivatives. Algorithms stop based on **convergence criteria**, such as changes in function value, argument value, or gradient falling below a tolerance ($|\Delta f(x)| $<$ \text{tol}$, $|\Delta x| $<$ \text{tol}$, or $|\nabla f(x)| $<$ \text{tol}$). If criteria are not met within a maximum number of iterations, convergence is not achieved.
 
 ## Bisection Method for Finding Zeros
 The Bisection Method is used to find zeros of a continuous function $f(x)$ on an interval $[a,b]$ based on the Intermediate Value Theorem.
 **Assumptions:**
 1.  $f(x)$ is continuous on $[a,b]$.
-2.  $f(a) \cdot f(b) < 0$ (i.e., $f(a)$ and $f(b)$ have opposite signs), guaranteeing at least one root in $(a,b)$.
+2.  $f(a) \cdot f(b) $<$ 0$ (i.e., $f(a)$ and $f(b)$ have opposite signs), guaranteeing at least one root in $(a,b)$.
 **Steps:**
 1.  Find the midpoint $x_0 = \frac{a+b}{2}$.
 2.  If $f(x_0) = 0$, then $x_0$ is the root.
 3.  If $f(x_0) \neq 0$:
-    *   If $f(a) \cdot f(x_0) < 0$, the root lies in $[a, x_0]$. Update $b = x_0$.
-    *   If $f(b) \cdot f(x_0) < 0$, the root lies in $[x_0, b]$. Update $a = x_0$.
+    *   If $f(a) \cdot f(x_0) $<$ 0$, the root lies in $[a, x_0]$. Update $b = x_0$.
+    *   If $f(b) \cdot f(x_0) $<$ 0$, the root lies in $[x_0, b]$. Update $a = x_0$.
 4.  Repeat until the interval of uncertainty $[a,b]$ is sufficiently small.
 
 ## Bisection Method for Optimization
 To find critical points (zeros of $f'(x)$) for optimization, the Bisection Method can be applied to the derivative function $f'(x)$.
 **Steps:**
-1.  Start with an interval $[a,b]$ where $f'(a) \cdot f'(b) < 0$. This ensures a root (critical point) of $f'$ exists.
+1.  Start with an interval $[a,b]$ where $f'(a) \cdot f'(b) $<$ 0$. This ensures a root (critical point) of $f'$ exists.
 2.  In each iteration, evaluate $f'$ at the midpoint $x_0 = \frac{a+b}{2}$.
-3.  Reduce the interval: if $f'(a) \cdot f'(x_0) < 0$, the new interval is $[a, x_0]$; otherwise, it's $[x_0, b]$.
+3.  Reduce the interval: if $f'(a) \cdot f'(x_0) $<$ 0$, the new interval is $[a, x_0]$; otherwise, it's $[x_0, b]$.
 
 ## Newton's Method for Finding Zeros
 Newton's Method is an iterative technique for finding successively better approximations to the roots (or zeros) of a real-valued function.
@@ -112,11 +112,11 @@ Computational tools like `scipy.optimize.minimize_scalar` implement sophisticate
 *   **Optimization Problem General Form:** $\min f(x)$ s.t. $c_i(x)=0, c_i(x) \ge 0$.
 *   **Relationship between Max and Min:** $\max f = - \min (-f)$.
 *   **First-Order Necessary Condition:** $f'(x^*) = 0$.
-*   **Second Derivative Test (Local Max):** $f'(c)=0, f''(c) < 0$.
-*   **Second Derivative Test (Local Min):** $f'(c)=0, f''(c) > 0$.
+*   **Second Derivative Test (Local Max):** $f'(c)=0, f''(c) $<$ 0$.
+*   **Second Derivative Test (Local Min):** $f'(c)=0, f''(c) $>$ 0$.
 *   **Bisection Method Midpoint:** $x_0 = \frac{a+b}{2}$.
 *   **Newton's Method for Zeros of $f(x)$:** $x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}$.
 *   **Newton's Method for Zeros of $f'(x)$ (Optimization):** $x_{k+1} = x_k - \frac{f'(x_k)}{f''(x_k)}$.
 
 ## Quick Summary
-Optimization involves identifying extrema using first and second derivative tests, or numerical methods for complex functions. The First-Order Necessary Condition ($f'(x^*)=0$) identifies critical points, classified by the Second Derivative Test ($f''(c) < 0$ for max, $f''(c) > 0$ for min). Numerical methods like the Bisection Method and Newton's Method provide iterative approximations for roots (critical points), essential when analytical solutions are intractable. These methods apply directly to $f(x)$ for zeros or to $f'(x)$ for optimization.
+Optimization involves identifying extrema using first and second derivative tests, or numerical methods for complex functions. The First-Order Necessary Condition ($f'(x^*)=0$) identifies critical points, classified by the Second Derivative Test ($f''(c) $<$ 0$ for max, $f''(c) $>$ 0$ for min). Numerical methods like the Bisection Method and Newton's Method provide iterative approximations for roots (critical points), essential when analytical solutions are intractable. These methods apply directly to $f(x)$ for zeros or to $f'(x)$ for optimization.

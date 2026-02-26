@@ -62,7 +62,7 @@ To find the area under a curve $y = f(x)$, we can approximate this area using a 
 
 ## Partitions and Riemann Sums
 **DEFINITION: Partition**
-By a **partition** of an interval $[a, b]$ (where $a, b \in \mathbb{R}$ and $a < b$), we mean a finite set $\{a = x_0, x_1, \dots, x_{n-1}, x_n = b\}$ of points in $[a, b]$ such that $a = x_0 < x_1 < \dots < x_{n-1} < x_n = b$.
+By a **partition** of an interval $[a, b]$ (where $a, b \in \mathbb{R}$ and $a $<$ b$), we mean a finite set $\{a = x_0, x_1, \dots, x_{n-1}, x_n = b\}$ of points in $[a, b]$ such that $a = x_0 $<$ x_1 $<$ \dots $<$ x_{n-1} $<$ x_n = b$.
 If the interval $[a, b]$ is divided into $n$ subintervals of equal length $\Delta x = \frac{b-a}{n}$:
 **DEFINITION: Riemann Sum**
 If $f$ is defined on a closed interval $[a, b]$, which is divided into $n$ subintervals of equal length $\Delta x$, and $x_k^*$ is any point in the $k$-th subinterval $[x_{k-1}, x_k]$, for $k=1, 2, \dots, n$, then the sum $\sum_{k=1}^{n} f(x_k^*) \Delta x$ is called a **Riemann sum** for $f$ on $[a, b]$.

@@ -81,7 +81,7 @@ The **characteristic equation** (or auxiliary equation) is formed by substitutin
 $$\lambda^2 + P\lambda + Q = 0$$
 The roots of this quadratic equation, $\lambda_{1,2} = \frac{-P \pm \sqrt{P^2-4Q}}{2}$, determine the form of the general solution.
 
-### Case I: Distinct Real Roots ($P^2-4Q > 0$)
+### Case I: Distinct Real Roots ($P^2-4Q $>$ 0$)
 If $\lambda_1$ and $\lambda_2$ are distinct real roots, the general solution is:
 $$y(x) = c_1e^{\lambda_1 x} + c_2e^{\lambda_2 x}$$
 
@@ -89,7 +89,7 @@ $$y(x) = c_1e^{\lambda_1 x} + c_2e^{\lambda_2 x}$$
 If $\lambda_1 = \lambda_2 = \lambda = -P/2$ is a repeated real root, the general solution is:
 $$y(x) = (c_1 + c_2x)e^{\lambda x}$$
 
-### Case III: Distinct Complex Conjugate Roots ($P^2-4Q < 0$)
+### Case III: Distinct Complex Conjugate Roots ($P^2-4Q $<$ 0$)
 If the roots are complex conjugates, $\lambda_{1,2} = \alpha \pm i\beta$, where $\alpha = -P/2$ and $\beta = \frac{\sqrt{4Q-P^2}}{2}$, the general solution is:
 $$y(x) = e^{\alpha x}(c_1 \cos(\beta x) + c_2 \sin(\beta x))$$
 

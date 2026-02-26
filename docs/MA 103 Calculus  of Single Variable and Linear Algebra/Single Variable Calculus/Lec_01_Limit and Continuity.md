@@ -59,9 +59,9 @@ $$ \lim_{x \to a} f(x) = L $$
 The existence of a limit at $a$ does not depend on the function's value at $a$.
 
 ## One-Sided Limits
-**Definition (Right-sided limit):** If $f$ is defined for all $x$ near $a$ with $x > a$, and $f(x)$ is arbitrarily close to $L$ for $x$ sufficiently close to $a$ with $x > a$, we write:
+**Definition (Right-sided limit):** If $f$ is defined for all $x$ near $a$ with $x $>$ a$, and $f(x)$ is arbitrarily close to $L$ for $x$ sufficiently close to $a$ with $x $>$ a$, we write:
 $$ \lim_{x \to a^+} f(x) = L $$
-**Definition (Left-sided limit):** If $f$ is defined for all $x$ near $a$ with $x < a$, and $f(x)$ is arbitrarily close to $L$ for $x$ sufficiently close to $a$ with $x < a$, we write:
+**Definition (Left-sided limit):** If $f$ is defined for all $x$ near $a$ with $x $<$ a$, and $f(x)$ is arbitrarily close to $L$ for $x$ sufficiently close to $a$ with $x $<$ a$, we write:
 $$ \lim_{x \to a^-} f(x) = L $$
 
 ## Infinite Limits
@@ -85,7 +85,7 @@ If one-sided limits differ or do not exist, the two-sided limit does not exist.
 4.  **Product Rule:** $\lim_{x \to c}(f(x) \cdot g(x)) = L \cdot M$
 5.  **Quotient Rule:** $\lim_{x \to c}\frac{f(x)}{g(x)} = \frac{L}{M}$, provided $M \neq 0$
 6.  **Power Rule:** $\lim_{x \to c}[f(x)]^n = L^n$, for a positive integer $n$
-7.  **Root Rule:** $\lim_{x \to c}\sqrt[n]{f(x)} = \sqrt[n]{L} = L^{1/n}$, for a positive integer $n$. If $n$ is even, assume $L > 0$.
+7.  **Root Rule:** $\lim_{x \to c}\sqrt[n]{f(x)} = \sqrt[n]{L} = L^{1/n}$, for a positive integer $n$. If $n$ is even, assume $L $>$ 0$.
 
 ## The Sandwich Theorem
 **Theorem 4 (Also known as Squeeze Theorem or Pinching Theorem):** Suppose that $g(x) \le f(x) \le h(x)$ for all $x$ in some open interval containing $c$, except possibly at $x = c$ itself. If also $\lim_{x \to c} g(x) = \lim_{x \to c} h(x) = L$, then:
@@ -96,22 +96,22 @@ $$ \lim_{x \to c} f(x) = L $$
 $$ \lim_{\theta \to 0} \frac{\sin \theta}{\theta} = 1 $$
 
 ## Epsilon-Delta Definition of Limit
-**Definition:** Let $f(x)$ be defined on an open interval about $c$, except possibly at $c$ itself. We say that the limit of $f(x)$ as $x$ approaches $c$ is the number $L$, and write $\lim_{x \to c} f(x) = L$, if for every number $\epsilon > 0$, there exists a corresponding number $\delta > 0$ such that for all $x$:
-$$ 0 < |x - c| < \delta \implies |f(x) - L| < \epsilon $$
+**Definition:** Let $f(x)$ be defined on an open interval about $c$, except possibly at $c$ itself. We say that the limit of $f(x)$ as $x$ approaches $c$ is the number $L$, and write $\lim_{x \to c} f(x) = L$, if for every number $\epsilon $>$ 0$, there exists a corresponding number $\delta $>$ 0$ such that for all $x$:
+$$ 0 $<$ |x - c| $<$ \delta \implies |f(x) - L| $<$ \epsilon $$
 This means that $f(x)$ can be made arbitrarily close to $L$ (within $\epsilon$) by taking $x$ sufficiently close to $c$ (within $\delta$), but not equal to $c$.
 
 ## Epsilon-Delta Definitions of One-Sided Limits
-**Definition (Right-hand limit):** We say that $f(x)$ has right-hand limit $L$ at $c$, and write $\lim_{x \to c^+} f(x) = L$, if for every $\epsilon > 0$ there exists a corresponding $\delta > 0$ such that for all $x$:
-$$ c < x < c + \delta \implies |f(x) - L| < \epsilon $$
-**Definition (Left-hand limit):** We say that $f(x)$ has left-hand limit $L$ at $c$, and write $\lim_{x \to c^-} f(x) = L$, if for every $\epsilon > 0$ there exists a corresponding $\delta > 0$ such that for all $x$:
-$$ c - \delta < x < c \implies |f(x) - L| < \epsilon $$
+**Definition (Right-hand limit):** We say that $f(x)$ has right-hand limit $L$ at $c$, and write $\lim_{x \to c^+} f(x) = L$, if for every $\epsilon $>$ 0$ there exists a corresponding $\delta $>$ 0$ such that for all $x$:
+$$ c $<$ x $<$ c + \delta \implies |f(x) - L| $<$ \epsilon $$
+**Definition (Left-hand limit):** We say that $f(x)$ has left-hand limit $L$ at $c$, and write $\lim_{x \to c^-} f(x) = L$, if for every $\epsilon $>$ 0$ there exists a corresponding $\delta $>$ 0$ such that for all $x$:
+$$ c - \delta $<$ x $<$ c \implies |f(x) - L| $<$ \epsilon $$
 
 ## Epsilon-B Definition of Infinite Limits
 **Definition:**
-*   $\lim_{x \to c} f(x) = \infty$: For every large positive real number $B$, there exists a corresponding $\delta > 0$ such that for all $x$:
-    $$ 0 < |x - c| < \delta \implies f(x) > B $$
-*   $\lim_{x \to c} f(x) = -\infty$: For every large positive real number $B$, there exists a corresponding $\delta > 0$ such that for all $x$:
-    $$ 0 < |x - c| < \delta \implies f(x) < -B $$
+*   $\lim_{x \to c} f(x) = \infty$: For every large positive real number $B$, there exists a corresponding $\delta $>$ 0$ such that for all $x$:
+    $$ 0 $<$ |x - c| $<$ \delta \implies f(x) $>$ B $$
+*   $\lim_{x \to c} f(x) = -\infty$: For every large positive real number $B$, there exists a corresponding $\delta $>$ 0$ such that for all $x$:
+    $$ 0 $<$ |x - c| $<$ \delta \implies f(x) $<$ -B $$
 
 ## Continuity Definitions
 Let $c$ be a real number on the $x$-axis.
@@ -137,7 +137,7 @@ Let $c$ be a real number on the $x$-axis.
 *   Limit Laws (Sum, Difference, Constant Multiple, Product, Quotient, Power, Root)
 *   Sandwich Theorem: If $g(x) \le f(x) \le h(x)$ and $\lim g(x) = \lim h(x) = L$, then $\lim f(x) = L$.
 *   Special Limit: $\lim_{\theta \to 0} \frac{\sin \theta}{\theta} = 1$
-*   Epsilon-Delta Limit Definition: $0 < |x - c| < \delta \implies |f(x) - L| < \epsilon$
+*   Epsilon-Delta Limit Definition: $0 $<$ |x - c| $<$ \delta \implies |f(x) - L| $<$ \epsilon$
 *   Continuity at $c$: $\lim_{x \to c} f(x) = f(c)$
 
 ## Quick Summary

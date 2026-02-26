@@ -66,7 +66,7 @@ The eigenvalues are $\lambda_1 = 1$ with algebraic multiplicity $e_1 = 2$, and $
 For $\lambda_2 = 2$, its geometric multiplicity $g_2 = 1$, which equals its algebraic multiplicity $e_2$.
 For $\lambda_1 = 1$, we find the eigenspace $N_1 = \ker(A - I)$. Solving $(A-I)v=0$ for $v=(v_1, v_2, v_3)$ yields $v_2=0$ and $v_3=-v_1$.
 Thus, $N_1 = \{(t, 0, -t) \mid t \in \mathbb{R}\}$, and its dimension, the geometric multiplicity $g_1 = \dim(N_1) = 1$.
-Since $g_1 = 1 < e_1 = 2$, the matrix $A$ is **not diagonalizable**.
+Since $g_1 = 1 $<$ e_1 = 2$, the matrix $A$ is **not diagonalizable**.
 (Exercise: Prove that eigenvectors corresponding to distinct eigenvalues are linearly independent.)
 
 ## Key Formulas

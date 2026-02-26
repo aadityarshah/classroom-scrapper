@@ -57,10 +57,10 @@ Consider the IVP: $y'=f(x,y)$ with $y(x_0)=y_0$.
 *   **Conditions:**
     *   Let $f(x,y)$ and its partial derivative $\partial f/\partial y$ be continuous in a rectangular domain $D = \{(x,y) : |x-x_0|<a, |y-y_0|<b\}$.
     *   Assume $f$ and $\partial f/\partial y$ are bounded on $D$, such that $|f(x,y)| \leq K$ and $|\partial f/\partial y| \leq M$ for all $(x,y) \in D$.
-*   **Conclusion:** The IVP has at most one solution $y(x)$ for $x$ such that $|x-x_0| < \alpha$, where $\alpha = \min\{a, b/K\}$.
+*   **Conclusion:** The IVP has at most one solution $y(x)$ for $x$ such that $|x-x_0| $<$ \alpha$, where $\alpha = \min\{a, b/K\}$.
 
 ### Remark: Global Uniqueness from Local Solutions
-If $f(x,y)$ and $\partial f/\partial y$ are continuous for all $(x,y) \in \mathbb{R}^2$, and bounded on any finite rectangular domain $D_L = (x_0-L, x_0+L) \times (y_0-b, y_0+b)$ for any real number $L>0$, then a unique global solution $y(x)$ for all $x \in \mathbb{R}$ can be constructed by patching together local unique solutions defined on increasingly larger intervals $(x_0-n, x_0+n)$ for $n \in \mathbb{N}$.
+If $f(x,y)$ and $\partial f/\partial y$ are continuous for all $(x,y) \in \mathbb{R}^2$, and bounded on any finite rectangular domain $D_L = (x_0-L, x_0+L) \times (y_0-b, y_0+b)$ for any real number $L $>$ 0$, then a unique global solution $y(x)$ for all $x \in \mathbb{R}$ can be constructed by patching together local unique solutions defined on increasingly larger intervals $(x_0-n, x_0+n)$ for $n \in \mathbb{N}$.
 
 ## Key Formulas
 *   **Variable Transformation:**
@@ -74,7 +74,7 @@ If $f(x,y)$ and $\partial f/\partial y$ are continuous for all $(x,y) \in \mathb
 *   **Uniqueness Theorem Conditions (Boundedness):**
     *   $|f(x,y)| \leq K$
     *   $|\partial f/\partial y| \leq M$
-    *   Interval of uniqueness: $|x-x_0| < \min\{a, b/K\}$
+    *   Interval of uniqueness: $|x-x_0| $<$ \min\{a, b/K\}$
 
 ## Quick Summary
 The technique of shifting initial conditions simplifies solving an IVP by transforming it into an equivalent problem with the initial condition at the origin. The Uniqueness Theorem establishes conditions (continuity and boundedness of $f$ and $\partial f/\partial y$) under which an IVP is guaranteed to have at most one solution locally, and these local solutions can sometimes be extended to prove global uniqueness.

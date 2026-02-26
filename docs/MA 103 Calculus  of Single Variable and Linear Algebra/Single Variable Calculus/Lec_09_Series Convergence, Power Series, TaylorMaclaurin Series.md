@@ -51,8 +51,8 @@ math: true
 
 ## The Root Test
 **THEOREM 13 (The Root Test):** Let $\sum a_n$ be a series with $a_n \geq 0$ for $n \geq N$, and suppose that $\rho = \lim_{n \to \infty} \sqrt[n]{|a_n|}$.
-*   If $\rho < 1$, the series converges.
-*   If $\rho > 1$ or $\rho$ is infinite, the series diverges.
+*   If $\rho $<$ 1$, the series converges.
+*   If $\rho $>$ 1$ or $\rho$ is infinite, the series diverges.
 *   If $\rho = 1$, the test is inconclusive.
 
 ## Alternating Series Test
@@ -73,12 +73,12 @@ math: true
 **DEFINITION (Power Series about $x=a$):** A series of the form $\sum_{n=0}^{\infty} c_n (x-a)^n = c_0 + c_1(x-a) + c_2(x-a)^2 + \dots + c_n(x-a)^n + \dots$, where $a$ is the **center** and $c_0, c_1, c_2, \dots, c_n, \dots$ are **coefficients**.
 
 ## Geometric Power Series
-A geometric power series, such as $\sum_{n=0}^{\infty} x^n$, converges to $\frac{1}{1-x}$ for $|x|<1$. Generally, a power series of the form $\sum_{n=0}^{\infty} r_0^n (\frac{x-a}{r_0})^n$ will converge for $|\frac{x-a}{r_0}| < 1$.
+A geometric power series, such as $\sum_{n=0}^{\infty} x^n$, converges to $\frac{1}{1-x}$ for $|x|<1$. Generally, a power series of the form $\sum_{n=0}^{\infty} r_0^n (\frac{x-a}{r_0})^n$ will converge for $|\frac{x-a}{r_0}| $<$ 1$.
 
 ## The Convergence Theorem for Power Series
 **THEOREM 18 (The Convergence Theorem for Power Series):**
-*   If a power series $\sum a_n x^n$ converges for some $x=c \neq 0$, then it converges absolutely for all $x$ with $|x| < |c|$.
-*   If it diverges for some $x=d$, then it diverges for all $x$ with $|x| > |d|$.
+*   If a power series $\sum a_n x^n$ converges for some $x=c \neq 0$, then it converges absolutely for all $x$ with $|x| $<$ |c|$.
+*   If it diverges for some $x=d$, then it diverges for all $x$ with $|x| $>$ |d|$.
 
 ## Radius and Interval of Convergence
 **COROLLARY TO THEOREM 18:** For a power series $\sum c_n (x-a)^n$, one of three possibilities holds:
@@ -88,15 +88,15 @@ A geometric power series, such as $\sum_{n=0}^{\infty} x^n$, converges to $\frac
 The **interval of convergence** is the set of all $x$ values for which the series converges, centered at $x=a$ with radius $R$. The Ratio Test is commonly used to find the radius of convergence.
 
 ## Term-by-Term Differentiation Theorem
-**THEOREM 19 (The Term-by-Term Differentiation Theorem):** If $f(x) = \sum_{n=0}^{\infty} c_n (x-a)^n$ converges for $a-R < x < a+R$ (where $R>0$), then $f$ has derivatives of all orders on this interval. The derivatives can be obtained by differentiating the original series term by term:
+**THEOREM 19 (The Term-by-Term Differentiation Theorem):** If $f(x) = \sum_{n=0}^{\infty} c_n (x-a)^n$ converges for $a-R $<$ x $<$ a+R$ (where $R $>$ 0$), then $f$ has derivatives of all orders on this interval. The derivatives can be obtained by differentiating the original series term by term:
 $$ f'(x) = \sum_{n=1}^{\infty} n c_n (x-a)^{n-1} $$
 $$ f''(x) = \sum_{n=2}^{\infty} n(n-1) c_n (x-a)^{n-2} $$
 Each derived series converges at every interior point of the original series' interval of convergence, maintaining the same radius $R$.
 
 ## Term-by-Term Integration Theorem
-**THEOREM 20 (The Term-by-Term Integration Theorem):** Suppose $f(x) = \sum_{n=0}^{\infty} c_n (x-a)^n$ converges for $a-R < x < a+R$ (where $R>0$). Then $f$ is integrable on this interval, and its integral can be found by integrating term by term:
+**THEOREM 20 (The Term-by-Term Integration Theorem):** Suppose $f(x) = \sum_{n=0}^{\infty} c_n (x-a)^n$ converges for $a-R $<$ x $<$ a+R$ (where $R $>$ 0$). Then $f$ is integrable on this interval, and its integral can be found by integrating term by term:
 $$ \int f(x)dx = \sum_{n=0}^{\infty} c_n \frac{(x-a)^{n+1}}{n+1} + C $$
-The integrated series also converges for $a-R < x < a+R$, maintaining the same radius $R$.
+The integrated series also converges for $a-R $<$ x $<$ a+R$, maintaining the same radius $R$.
 
 ## The Series Multiplication Theorem for Power Series
 **THEOREM 21 (The Series Multiplication Theorem for Power Series):** If $A(x) = \sum_{n=0}^{\infty} a_n x^n$ and $B(x) = \sum_{n=0}^{\infty} b_n x^n$ converge absolutely for $|x|<R$, then their product $A(x)B(x) = \sum_{n=0}^{\infty} c_n x^n$ also converges absolutely for $|x|<R$, where the coefficients $c_n$ are given by $c_n = a_0 b_n + a_1 b_{n-1} + \dots + a_{n-1} b_1 + a_n b_0 = \sum_{k=0}^{n} a_k b_{n-k}$.

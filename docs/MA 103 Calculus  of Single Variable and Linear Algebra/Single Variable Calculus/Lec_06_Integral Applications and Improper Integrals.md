@@ -94,7 +94,7 @@ Integrals of functions that become infinite at a point within the interval of in
     $$\int_{a}^{b} f(x) dx = \lim_{c \to a^+} \int_{c}^{b} f(x) dx$$
 2.  If $f(x)$ is continuous on $[a, b)$ and discontinuous at $b$:
     $$\int_{a}^{b} f(x) dx = \lim_{c \to b^-} \int_{a}^{c} f(x) dx$$
-3.  If $f(x)$ is discontinuous at $c$, where $a < c < b$, and continuous on $[a, c) \cup (c, b]$:
+3.  If $f(x)$ is discontinuous at $c$, where $a $<$ c $<$ b$, and continuous on $[a, c) \cup (c, b]$:
     $$\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$$
 If the limit is finite, the integral **converges** to that value; otherwise, it **diverges**.
 
@@ -108,7 +108,7 @@ Let $f$ and $g$ be continuous on $[a, \infty)$ with $0 \leq f(x) \leq g(x)$ for 
 ## Limit Comparison Test for Improper Integrals
 
 **THEOREM 2: Limit Comparison Test**
-If the positive functions $f$ and $g$ are continuous on $[a, \infty)$ and $\lim_{x \to \infty} \frac{f(x)}{g(x)} = L$, where $0 < L < \infty$.
+If the positive functions $f$ and $g$ are continuous on $[a, \infty)$ and $\lim_{x \to \infty} \frac{f(x)}{g(x)} = L$, where $0 $<$ L $<$ \infty$.
 Then $\int_{a}^{\infty} f(x) dx$ and $\int_{a}^{\infty} g(x) dx$ either both converge or both diverge.
 
 ## Key Formulas
@@ -121,10 +121,10 @@ Then $\int_{a}^{\infty} f(x) dx$ and $\int_{a}^{\infty} g(x) dx$ either both con
 5.  $\int \sec ax \tan ax \, dx = \frac{1}{a} \sec ax + C$
 6.  $\int \csc ax \cot ax \, dx = -\frac{1}{a} \csc ax + C$
 7.  $\int e^{ax} \, dx = \frac{1}{a} e^{ax} + C$
-8.  $\int b^x \, dx = \frac{b^x}{\ln b} + C$, for $b > 0$, $b \neq 1$
+8.  $\int b^x \, dx = \frac{b^x}{\ln b} + C$, for $b $>$ 0$, $b \neq 1$
 9.  $\int \frac{dx}{a^2 + x^2} = \frac{1}{a} \tan^{-1} \frac{x}{a} + C$
-10. $\int \frac{dx}{\sqrt{a^2 - x^2}} = \sin^{-1} \frac{x}{a} + C$, for $a > 0$
-11. $\int \frac{dx}{x\sqrt{x^2 - a^2}} = \frac{1}{a} \sec^{-1} \left| \frac{x}{a} \right| + C$, for $a > 0$
+10. $\int \frac{dx}{\sqrt{a^2 - x^2}} = \sin^{-1} \frac{x}{a} + C$, for $a $>$ 0$
+11. $\int \frac{dx}{x\sqrt{x^2 - a^2}} = \frac{1}{a} \sec^{-1} \left| \frac{x}{a} \right| + C$, for $a $>$ 0$
 
 ## Quick Summary
 

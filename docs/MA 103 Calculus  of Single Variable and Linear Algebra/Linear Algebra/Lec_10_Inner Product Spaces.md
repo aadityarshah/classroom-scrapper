@@ -53,7 +53,7 @@ Common examples include the usual dot product in $\mathbb{R}^n$, the complex dot
 ## Norm Definition and Properties
 The **norm** (or length) of a vector $x \in V$ in an Inner Product Space is defined as $||x|| = \sqrt{\langle x,x \rangle}$. From this definition, the following properties are derived:
 1.  $||cx|| = |c| ||x||$ for any scalar $c \in \mathbb{F}$.
-2.  $||x|| = 0$ if and only if $x=0$. (Note that $||x|| > 0$ if $x \ne 0$).
+2.  $||x|| = 0$ if and only if $x=0$. (Note that $||x|| $>$ 0$ if $x \ne 0$).
 
 ## Cauchy-Schwarz Inequality
 **Theorem (Cauchy-Schwarz Inequality):** For any vectors $x, y$ in an Inner Product Space $V$, the absolute value of their inner product is less than or equal to the product of their norms:

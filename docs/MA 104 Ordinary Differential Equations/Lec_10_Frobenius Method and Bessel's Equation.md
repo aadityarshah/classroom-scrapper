@@ -73,7 +73,7 @@ $$y_1(x) = x^r \sum_{n=0}^\infty a_n(r)x^n$$
 $$y_2(x) = y_1(x) \ln x + x^r \sum_{n=1}^\infty a'_n(r)x^n$$
 where $a'_n(r)$ are coefficients obtained by differentiating the recurrence relation with respect to $r$.
 
-**Case 3: Roots Differing by an Integer ($r_1 - r_2 \in \mathbb{Z}$ with $r_1 > r_2$)**
+**Case 3: Roots Differing by an Integer ($r_1 - r_2 \in \mathbb{Z}$ with $r_1 $>$ r_2$)**
 A basis of solutions is:
 $$y_1(x) = x^{r_1} \sum_{n=0}^\infty a_n(r_1)x^n$$
 $$y_2(x) = k y_1(x) \ln x + x^{r_2} \sum_{n=0}^\infty A_n x^n$$

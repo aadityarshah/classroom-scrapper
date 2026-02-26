@@ -49,8 +49,8 @@ The graph of a differentiable function $y = f(x)$ is:
 ## Second Derivative Test for Concavity
 **THEOREM: Second Derivative Test for Concavity**
 Let $y = f(x)$ be twice-differentiable on an interval $I$.
-1.  If $f''(x) > 0$ on $I$, the graph of $f$ over $I$ is **concave up**.
-2.  If $f''(x) < 0$ on $I$, the graph of $f$ over $I$ is **concave down**.
+1.  If $f''(x) $>$ 0$ on $I$, the graph of $f$ over $I$ is **concave up**.
+2.  If $f''(x) $<$ 0$ on $I$, the graph of $f$ over $I$ is **concave down**.
 
 ## Point of Inflection
 **DEFINITION: Point of Inflection**
@@ -59,8 +59,8 @@ A point where the graph of a function has a tangent line and where the concavity
 ## Second Derivative Test for Local Extrema
 **THEOREM: Second Derivative Test for Local Extrema**
 Suppose $f''(x)$ is continuous on an open interval containing $c$ with $f'(c) = 0$.
-- If $f''(c) > 0$, then $f$ has a local **minimum** at $c$.
-- If $f''(c) < 0$, then $f$ has a local **maximum** at $c$.
+- If $f''(c) $>$ 0$, then $f$ has a local **minimum** at $c$.
+- If $f''(c) $<$ 0$, then $f$ has a local **maximum** at $c$.
 - If $f''(c) = 0$, the test is inconclusive; $f$ may have a local maximum, a local minimum, or neither at $c$.
 
 ## Linear Approximation
@@ -88,15 +88,15 @@ $$\frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}$$
 
 ## Darboux's Theorem (Intermediate Value Property for $f'$)
 **THEOREM: Darboux's Theorem**
-Let $I$ be a closed interval, and $f: I \to \mathbb{R}$ be a differentiable function. Then $f'$ has an intermediate value property: if $a, b \in I$ with $a < b$, then for every $y$ between $f'(a)$ and $f'(b)$, there exists $x \in [a, b]$ such that $f'(x) = y$.
+Let $I$ be a closed interval, and $f: I \to \mathbb{R}$ be a differentiable function. Then $f'$ has an intermediate value property: if $a, b \in I$ with $a $<$ b$, then for every $y$ between $f'(a)$ and $f'(b)$, there exists $x \in [a, b]$ such that $f'(x) = y$.
 
 ## Key Formulas
 - **Concavity:**
-  - $f''(x) > 0 \implies$ Concave Up
-  - $f''(x) < 0 \implies$ Concave Down
+  - $f''(x) $>$ 0 \implies$ Concave Up
+  - $f''(x) $<$ 0 \implies$ Concave Down
 - **Local Extrema (Second Derivative Test):**
-  - If $f'(c) = 0$ and $f''(c) > 0 \implies$ Local Minimum at $c$.
-  - If $f'(c) = 0$ and $f''(c) < 0 \implies$ Local Maximum at $c$.
+  - If $f'(c) = 0$ and $f''(c) $>$ 0 \implies$ Local Minimum at $c$.
+  - If $f'(c) = 0$ and $f''(c) $<$ 0 \implies$ Local Maximum at $c$.
 - **Linear Approximation:**
   $$L(x) = f(a) + f'(a)(x-a)$$
 - **L'Hôpital's Rule:** (for $0/0$ or $\infty/\infty$ forms)

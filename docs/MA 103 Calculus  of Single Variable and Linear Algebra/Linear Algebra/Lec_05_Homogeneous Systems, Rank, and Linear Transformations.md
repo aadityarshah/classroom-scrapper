@@ -47,7 +47,7 @@ A linear system is **homogeneous** if $b=0$, i.e., $Ax=0$. This system always ha
 
 **Theorem: Non-Zero Solutions for Homogeneous Systems**
 A homogeneous system $Ax=0$ has a non-zero solution if and only if:
-1.  $\text{rank}(A) < n$, where $n$ is the number of unknowns (columns of $A$).
+1.  $\text{rank}(A) $<$ n$, where $n$ is the number of unknowns (columns of $A$).
 2.  The column vectors of $A$ are linearly dependent.
 
 **Definition: Rank of a Matrix**
@@ -85,7 +85,7 @@ Any linear transformation $T: \mathbb{R}^n \to \mathbb{R}^m$ can be represented 
 
 ## Key Formulas
 
-*   **Homogeneous System Non-Zero Solution Condition:** $Ax=0 \text{ has non-zero solution } \iff \text{rank}(A) < n$.
+*   **Homogeneous System Non-Zero Solution Condition:** $Ax=0 \text{ has non-zero solution } \iff \text{rank}(A) $<$ n$.
 *   **Consistency Condition for $Ax=b$:** $Ax=b \text{ has solution } \iff \text{rank}(A) = \text{rank}(A|b)$.
 *   **Structure of Solution Set:** $S = \{ x_p + x_h \mid Ax_p=b, Ax_h=0 \}$, where $x_p$ is a particular solution and $x_h$ is a solution to the homogeneous system.
 *   **Linear Transformation Properties:**

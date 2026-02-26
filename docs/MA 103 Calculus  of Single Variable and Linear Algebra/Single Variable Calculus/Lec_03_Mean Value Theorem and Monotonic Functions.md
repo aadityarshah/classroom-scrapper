@@ -58,8 +58,8 @@ If $f'(x) = g'(x)$ at each point $x$ in an open interval $(a, b)$, then there ex
 
 **Definitions: Increasing, Decreasing, and Monotonic Functions**
 Let $f$ be a function defined on an interval $I$, and let $x_1, x_2$ be any two points in $I$:
-*   **Increasing Function:** If $f(x_1) < f(x_2)$ whenever $x_1 < x_2$, then $f$ is said to be increasing on $I$.
-*   **Decreasing Function:** If $f(x_2) < f(x_1)$ whenever $x_1 < x_2$, then $f$ is said to be decreasing on $I$.
+*   **Increasing Function:** If $f(x_1) $<$ f(x_2)$ whenever $x_1 $<$ x_2$, then $f$ is said to be increasing on $I$.
+*   **Decreasing Function:** If $f(x_2) $<$ f(x_1)$ whenever $x_1 $<$ x_2$, then $f$ is said to be decreasing on $I$.
 *   **Monotonic Function:** A function that is either increasing or decreasing on an interval $I$ is called monotonic on $I$.
 
 ## First Derivative Test for Local Extrema
