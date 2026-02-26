@@ -13,7 +13,6 @@ course: |
   MA 104
 topic: |
   Power Series Solutions
-date: |
   2023-10-27
 tags:
   - Mathematics

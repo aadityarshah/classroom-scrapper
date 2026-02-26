@@ -13,7 +13,6 @@ course: |
   MA 103 Calculus of Single Variable and Linear Algebra
 topic: |
   Uncategorized
-date: |
   10/9/2025
 tags:
   - Math

@@ -12,7 +12,6 @@ course: |
   MA 104 Ordinary Differential Equations
 topic: |
   Laplace Transforms
-date: |
   YYYY-MM-DD
 tags: ['Math', 'Ordinary Differential Equations', 'Laplace Transform']
 summary: |

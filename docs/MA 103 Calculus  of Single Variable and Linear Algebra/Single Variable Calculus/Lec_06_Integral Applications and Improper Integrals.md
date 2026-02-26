@@ -13,7 +13,6 @@ course: |
   MA 103 Calculus of Single Variable and Linear Algebra
 topic: |
   Integral Applications and Improper Integrals
-date: |
   2023-10-27
 tags:
   - Math

@@ -12,7 +12,6 @@ course: |
   MA 104 Ordinary Differential Equations
 topic: |
   Partial Derivatives, Chain Rule, Exact Equations, Integrating Factors
-date: |
   January 09, 2026
 tags: ['ODE', 'Differential Equations', 'Calculus', 'Partial Derivatives', 'Chain Rule', 'Exact Equations', 'Integrating Factors']
 summary: |

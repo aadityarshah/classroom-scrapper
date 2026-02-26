@@ -15,7 +15,6 @@ course: |
   MA 103
 topic: |
   Vector Subspaces and Row-Reduced Echelon Form
-date: |
   20/08/2025
 tags:
   - Linear Algebra

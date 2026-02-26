@@ -13,7 +13,6 @@ course: |
   MA 104 Ordinary Differential Equations
 topic: |
   Initial Value Problems, Uniqueness
-date: |
   2023-10-27
 tags: ['ODE', 'Initial Value Problem', 'Uniqueness Theorem', 'Transformation']
 summary: |

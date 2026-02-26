@@ -13,7 +13,6 @@ course: |
   MA 103 Calculus of Single Variable and Linear Algebra
 topic: |
   Linear Independence & Dependence
-date: |
   2025-08-27
 tags:
   - Linear Algebra

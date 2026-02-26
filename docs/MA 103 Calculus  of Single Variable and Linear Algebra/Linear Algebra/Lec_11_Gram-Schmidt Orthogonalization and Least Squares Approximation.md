@@ -13,7 +13,6 @@ course: |
   MA 103 Calculus of Single Variable and Linear Algebra
 topic: |
   Gram-Schmidt Orthogonalization, Orthogonal Complement, Least Square Approximation, Adjoint
-date: |
   24/10/2025
 tags:
   - Linear Algebra

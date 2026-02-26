@@ -13,7 +13,6 @@ course: |
   MA 104 Ordinary Differential Equations
 topic: |
   Frobenius Method, Regular Singular Points, Cauchy-Euler Equation, Bessel's Equation
-date: |
   2023-10-26
 tags: ['Differential Equations', 'Frobenius Method', 'Cauchy-Euler', 'Bessel Equation', 'Special Functions']
 summary: |

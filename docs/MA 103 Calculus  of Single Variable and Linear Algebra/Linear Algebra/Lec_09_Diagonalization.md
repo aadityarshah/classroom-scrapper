@@ -13,7 +13,6 @@ course: |
   MA 103 Calculus of Single Variable and Linear Algebra
 topic: |
   Diagonalization
-date: |
   2025-09-17
 tags:
   - Linear Algebra

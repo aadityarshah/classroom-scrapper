@@ -12,7 +12,6 @@ course: |
   MA 104 Ordinary Differential Equations
 topic: |
   First Order ODEs
-date: |
   2023-10-27
 tags:
   - ODE

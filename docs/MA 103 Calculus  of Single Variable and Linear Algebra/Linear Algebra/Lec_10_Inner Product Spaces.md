@@ -13,7 +13,6 @@ course: |
   MA 103 Calculus of Single Variable and Linear Algebra
 topic: |
   Inner Product Spaces
-date: |
   22/10/2025
 tags:
   - Math

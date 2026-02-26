@@ -13,7 +13,6 @@ course: |
   MA 103 Calculus of Single Variable and Linear Algebra
 topic: |
   Antiderivatives, Riemann Sums, Definite Integrals, Fundamental Theorem of Calculus
-date: |
   2023-10-27
 tags:
   - Math

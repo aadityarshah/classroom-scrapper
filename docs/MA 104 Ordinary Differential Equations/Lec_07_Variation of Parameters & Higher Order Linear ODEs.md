@@ -12,7 +12,6 @@ course: |
   MA 104
 topic: |
   Ordinary Differential Equations
-date: |
   2023-10-27
 tags:
   - Ordinary Differential Equations

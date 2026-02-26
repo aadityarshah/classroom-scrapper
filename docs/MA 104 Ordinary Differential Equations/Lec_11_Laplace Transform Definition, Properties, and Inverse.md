@@ -12,7 +12,6 @@ course: |
   MA 104 Ordinary Differential Equations
 topic: |
   Laplace Transform
-date: 2023-10-27
 tags: ['Math', 'ODE', 'Laplace Transform']
 summary: |
   This lecture introduces the Laplace transform as a method to solve Ordinary Differential Equations (ODEs). It covers the definition of the Laplace transform, improper integrals, piecewise continuous functions, and functions of exponential order. Key properties such as linearity and the first shifting theorem are discussed, along with a table of elementary Laplace transforms. Finally, the inverse Laplace transform, its linearity, and the uniqueness theorem are presented.

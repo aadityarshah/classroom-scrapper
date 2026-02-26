@@ -13,7 +13,6 @@ course: |
   MA 104 Ordinary Differential Equations
 topic: |
   Power Series Solutions, Legendre's Equation, Legendre Polynomials
-date: |
   2023-10-26
 tags: ['Differential Equations', 'Power Series', 'Legendre Equation', 'Special Functions']
 summary: |

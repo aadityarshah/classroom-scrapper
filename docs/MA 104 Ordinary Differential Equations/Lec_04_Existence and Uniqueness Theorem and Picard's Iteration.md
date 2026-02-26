@@ -12,7 +12,6 @@ course: |
   MA 104 Ordinary Differential Equations
 topic: |
   Existence and Uniqueness of Solutions to IVPs
-date: |
   2023-10-27
 tags: ['Ordinary Differential Equations', 'Existence and Uniqueness', 'Picard Iteration', 'IVP']
 summary: |
