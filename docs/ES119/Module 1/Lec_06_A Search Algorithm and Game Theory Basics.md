@@ -127,4 +127,3 @@ Due to its high computational cost, pure Min-max search is often enhanced with t
 ## Quick Summary
 
 This lecture covered the A\* search algorithm, highlighting its improvements over BFS by using an estimated total cost $f(n) = g(n) + h(n)$. We defined $g(n)$ as the cost from the start and $h(n)$ as an admissible (optimistic) heuristic estimate to the goal. The optimality of A\* relies on the admissibility and consistency of its heuristic. We then transitioned to multi-agent systems, specifically two-player zero-sum adversarial games. The components of such games were outlined, leading to an introduction to game trees and the Min-max search algorithm, which allows an agent to make optimal decisions against an optimal opponent by evaluating future game states. The exponential time complexity of Min-max was also noted.
----
