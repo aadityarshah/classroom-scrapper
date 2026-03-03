@@ -1,104 +1,106 @@
 # Classroom to Docusaurus: AI-Powered Lecture Notes
 
-A modern, professional portal that automatically synchronizes your Google Classroom PDF materials, processes them using Gemini AI into concise, high-quality Markdown notes, and serves them via a sleek, monochrome Docusaurus site.
-
-## ✨ Features
-
-- **AI Note Generation**: Converts messy PDFs into structured, revision-ready Markdown.
-- **$\LaTeX$ Support**: Beautifully rendered mathematical formulas via KaTeX.
-- **Smart Categorization**: Automatically detects course sub-sections (e.g., Linear Algebra vs. Calculus).
-- **Master Summaries**: Generates category-level "Big Picture" overviews using the `--summarize` flag.
-- **Mobile Responsive**: Optimized for studying on-the-go with a premium glassmorphism design.
-- **Instant Search**: Local search functionality across all synchronized notes.
+A modern, professional portal that automatically synchronizes your academic materials from Google Classroom or any web URL, processes them using Gemini AI into concise, high-quality Markdown notes, and serves them via a sleek, monochrome Docusaurus site.
 
 ---
 
-## 🚀 Getting Started
+## ✨ Key Features
+
+- **Multi-Source Sync**: Fetch materials from Google Classroom or any public URL (Google Sites, SharePoint, etc.).
+- **Smart HTML Detection**: **New!** Automatically prioritizes HTML-based slides (Marp/Reveal.js) over heavy PDFs for 10x faster generation.
+- **AI Note Generation**: Converts messy slides into structured prose with definitions, theorems, and summaries.
+- **$\LaTeX$ Support**: High-fidelity mathematical rendering via KaTeX.
+- **Auto-Scrolling TOC**: The right sidebar automatically follows your reading position.
+- **Mobile Optimized**: Premium glassmorphism design optimized for study sessions on any device.
+
+---
+
+## 🚀 Local Setup & Installation
 
 ### 1. Prerequisites
+- **Node.js**: v18.0.0 or higher
+- **Python**: v3.10.0 or higher
+- **Gemini API Key**: Obtain from [Google AI Studio](https://aistudio.google.com/)
 
-- **Node.js**: v18 or higher.
-- **Python**: v3.10 or higher.
-- **Google Cloud Account**: To access Classroom and Drive APIs.
-- **Google AI Studio Key**: To access Gemini.
-
-### 2. Setup Google Cloud (Classroom & Drive Access)
-
-1.  Go to the [Google Cloud Console](https://console.cloud.google.com/).
-2.  Create a new project named `Classroom-Scrapper`.
-3.  **Enable APIs**: Search for and enable the following:
-    - **Google Classroom API**
-    - **Google Drive API**
-4.  **Configure OAuth Consent Screen**:
-    - Choose "External" (or "Internal" if you have a Workspace).
-    - Add the scope: `.../auth/classroom.courses.readonly`, `.../auth/classroom.courseworkmaterials.readonly`, `.../auth/classroom.topics.readonly`, and `.../auth/drive.readonly`.
-5.  **Create Credentials**:
-    - Go to **Credentials** > **Create Credentials** > **OAuth client ID**.
-    - Select **Desktop App**.
-    - Download the JSON file and rename it to `credentials.json` in the root of this repository.
-
-### 3. Setup Gemini API
-
-1.  Get an API Key from [Google AI Studio](https://aistudio.google.com/).
-2.  Create a file named `api_key.py` in the root directory:
-    ```python
-    GEMINI_API_KEY = "your_actual_key_here"
-    ```
-
-### 4. Install Dependencies
-
+### 2. Repository Setup
 ```bash
-# Install Python libraries
+# Clone the repository
+git clone https://github.com/aadityarshah/classroom-scrapper.git
+cd classroom-to-gh-pages
+
+# Install Python dependencies
 pip install -r requirements.txt
 
-# Install Node.js dependencies
+# Install Node dependencies
 npm install --legacy-peer-deps
 ```
 
----
-
-## 🛠️ Usage
-
-### Synchronizing Notes
-
-The sync script is highly flexible. It will download new PDFs, send them to Gemini, and save them to the `docs/` folder.
-
-```bash
-# Synchronize ALL configured courses (MA103, MA104)
-python sync_classroom.py
-
-# Synchronize ONLY a specific course
-python sync_classroom.py --course "MA104"
-
-# Update an existing note (overwrite)
-python sync_classroom.py --filter "Lec 7" --force
-```
-
-### Generating Master Summaries
-
-Build high-level overviews for specific categories:
-
-```bash
-# Summarize everything
-python sync_classroom.py --summarize
-
-# Summarize a specific category (e.g., Linear Algebra)
-python sync_classroom.py --summarize --filter "Linear Algebra"
-```
-
-### Running the Website
-
-```bash
-npm run start
-```
-Your notes will be live at `http://localhost:3000`.
+### 3. Configuration
+1. **API Key**: Create `api_key.py` in the root directory:
+   ```python
+   GEMINI_API_KEY = "your_actual_key_here"
+   ```
+2. **Google Cloud (Optional for Classroom Sync)**: 
+   - Create a project in [Google Cloud Console](https://console.cloud.google.com/).
+   - Enable **Google Classroom API** and **Google Drive API**.
+   - Download the OAuth Client ID JSON and save it as `credentials.json` in the root.
 
 ---
 
-## 🎨 Personalization
+## 🛠️ CLI Reference (Synchronizing Content)
 
-- **Course Logic**: Edit `TARGET_IDS` in `sync_classroom.py` to add your own course codes.
-- **Styling**: Modify `src/css/custom.css` to change the monochrome theme.
-- **Logo**: Replace `static/img/logo.svg` with your own branding.
+All synchronization scripts are located in the `scripts/` directory.
+
+### A. Syncing from a URL (e.g. Google Sites)
+Use this when your course materials are hosted on a public website.
+```bash
+python scripts/sync_url.py --url "YOUR_URL" --course "COURSE_NAME" [FLAGS]
+```
+**Available Flags:**
+- `--url`: (Required) The page containing PDF or HTML links.
+- `--course`: (Required) Folder name in `docs/` (e.g., ES119).
+- `--summarize`: Generates a "Summary.md" for each category based on AI insights.
+- `--force`: Overwrites existing files even if they haven't changed.
+
+### B. Syncing from Google Classroom
+Use this for officially enrolled courses.
+```bash
+# Sync all courses defined in TARGET_IDS within the script
+python scripts/sync_classroom.py
+
+# Sync a specific course only
+python scripts/sync_classroom.py --course "MA104"
+```
+
+---
+
+## 💻 Running the Website
+
+Once the notes are generated in the `docs/` folder, start the site:
+
+| Command | Description |
+| :--- | :--- |
+| `npm run start` | Starts a local development server at `http://localhost:3000` |
+| `npm run build` | Bundles the site into static files for production (in `build/`) |
+| `npm run serve` | Serves the production build locally |
+| `npm run clear` | Clears the Docusaurus cache |
+
+---
+
+## 🎨 Customization
+
+- **Add New Courses**: Run `sync_url.py` with a new course name; the sidebar will update automatically.
+- **Change Aesthetics**: Modify `src/css/custom.css` to adjust colors, fonts, or glassmorphism intensity.
+- **Home Page**: Edit `docs/index.mdx` to update the cards and welcome message.
+- **Site Config**: Edit `docusaurus.config.mjs` to change the site title, navbar links, or organization name.
+
+---
+
+## 📁 Project Structure
+
+- `scripts/`: Python logic for scraping, downloading, and AI processing.
+- `docs/`: The generated Markdown notes (categorized by course).
+- `src/`: Custom CSS and JavaScript (including TOC scroll logic).
+- `static/`: Images, logos, and static assets.
 
 **Developed by Aaditya Rushabh Shah**

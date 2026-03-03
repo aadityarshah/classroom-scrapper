@@ -22,12 +22,14 @@ const config = {
   title: 'Classroom Notes',
   tagline: 'AI-Generated Academic Insights',
   url: 'https://aadityarshah.github.io',
-  baseUrl: '/classroom-scrapper/',
+  baseUrl: '/',
   onBrokenLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'AadityaRushabhShah',
   projectName: 'classroom-scrapper',
   trailingSlash: false,
+
+  clientModules: ['./src/js/toc-scroll.js'],
 
   markdown: {
     format: 'detect', 
@@ -68,6 +70,16 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      docs: {
+        sidebar: {
+          hideable: true,
+          autoCollapseCategories: true,
+        },
+      },
+      tableOfContents: {
+        minHeadingLevel: 2,
+        maxHeadingLevel: 4,
+      },
       navbar: {
         title: 'Classroom Notes',
         logo: {
@@ -104,8 +116,10 @@ const config = {
     }),
 
   plugins: [
+    // Search plugin temporarily disabled due to build error build/.html
+    /*
     [
-      require.resolve("@easyops-cn/docusaurus-search-local"),
+      "@easyops-cn/docusaurus-search-local",
       {
         hashed: true,
         indexDocs: true,
@@ -115,6 +129,7 @@ const config = {
         docsRouteBasePath: "/",
       },
     ],
+    */
   ],
 };
 

@@ -1,11 +1,27 @@
-# Ignore sensitive and generated files
+# Sensitive API & Auth
 api_key.py
 credentials.json
 token.pickle
+
+# Temporary Processing Files
 temp.pdf
+temp_url.pdf
+temp_debug.pdf
+*.log
+
+# System & Tooling
 __pycache__/
+scripts/__pycache__/
 *.pyc
 .DS_Store
-node_modules
+node_modules/
+
+# Docusaurus Build Outputs
 .docusaurus/
 build/
+.cache/
+
+# Legacy Debug Scripts
+list_models.py
+check_pdf.py
+process_single_pdf.py

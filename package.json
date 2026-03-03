@@ -11,7 +11,7 @@
   "dependencies": {
     "@docusaurus/core": "^3.9.2",
     "@docusaurus/preset-classic": "^3.9.2",
-    "@easyops-cn/docusaurus-search-local": "^0.55.0",
+    "@easyops-cn/docusaurus-search-local": "^0.26.1",
     "katex": "^0.16.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.2.4",
