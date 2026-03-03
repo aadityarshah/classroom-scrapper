@@ -22,7 +22,7 @@ const config = {
   title: 'Classroom Notes',
   tagline: 'AI-Generated Academic Insights',
   url: 'https://aadityarshah.github.io',
-  baseUrl: '/',
+  baseUrl: '/classroom-scrapper/',
   onBrokenLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'AadityaRushabhShah',
