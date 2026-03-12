@@ -289,3 +289,80 @@ h2#table-of-contents + ul li {
   background-color: #e6e6e6;
   border-color: #e6e6e6;
 }
+
+/* Lecture Header Actions (Download Pills) */
+.lecture-header-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 1rem;
+}
+
+[data-theme='dark'] .lecture-header-actions {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.download-pills {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.download-pill {
+  display: flex;
+  align-items: center;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none !important;
+  border: 1px solid var(--ifm-color-primary);
+  background: transparent;
+  color: var(--ifm-color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.download-pill:hover {
+  background: var(--ifm-color-primary);
+  color: var(--ifm-background-color);
+  transform: translateY(-1px);
+}
+
+.pill-icon {
+  margin-right: 6px;
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+/* Print Styles */
+@media print {
+  .navbar,
+  .footer,
+  .theme-doc-sidebar-container,
+  .theme-doc-toc-desktop,
+  .theme-doc-toc-mobile,
+  .theme-doc-footer-edit-meta-row,
+  .theme-doc-breadcrumbs,
+  .theme-doc-doc-footer-edit-this-page,
+  .theme-doc-footer-tags-row,
+  .pagination-nav,
+  .lecture-header-actions {
+    display: none !important;
+  }
+  
+  .theme-doc-container {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  .theme-doc-markdown {
+    color: #000 !important;
+  }
+
+  body {
+    background: #fff !important;
+  }
+}

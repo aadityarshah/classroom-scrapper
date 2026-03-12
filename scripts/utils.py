@@ -5,8 +5,10 @@ import io
 import re
 import yaml
 import pickle
+import requests
 import warnings
 import google.generativeai as genai
+from bs4 import BeautifulSoup
 
 # Add root to path for api_key
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -61,7 +63,7 @@ def get_pdf_page_count(pdf_path):
     except: return 0
 
 def analyze_page_structure(soup, base_url, course_name):
-    print(f"    --- AI analyzing structural hierarchy for {course_name} ...")
+    print(f"    --- AI analyzing structural hierarchy for {course_name} ...", flush=True)
     structure_summary = []
     current_heading = "General"
     for element in soup.find_all(['h1', 'h2', 'h3', 'h4', 'p', 'a']):
@@ -70,10 +72,11 @@ def analyze_page_structure(soup, base_url, course_name):
         elif element.name == 'a' and element.get('href'):
             href = element.get('href')
             link_text = element.get_text(strip=True)
-            if ".pdf" in href.lower() or "drive.google" in href or "sharepoint" in href:
+            if any(k in href.lower() for k in [".pdf", "drive.google", "sharepoint", "onedrive", ".html", ".htm"]):
                 abs_url = urljoin(base_url, href)
                 structure_summary.append(f"Heading: '{current_heading}' -> Link: '{link_text}' (URL: {abs_url})")
 
+    print(f"    --- Found {len(structure_summary)} potential structured links. Sending to AI...", flush=True)
     prompt = (
         f"You are an expert academic organizer for '{course_name}'.\n"
         "Group links into Categories based strictly on page headings.\n"
@@ -84,12 +87,17 @@ def analyze_page_structure(soup, base_url, course_name):
     for model_id in MODELS_TO_TRY:
         try:
             model = genai.GenerativeModel(model_name=model_id)
+            print(f"    --- Attempting model {model_id} ...", flush=True)
             response = model.generate_content(prompt)
             if response.text:
                 clean_text = response.text.replace("```yaml", "").replace("```", "").strip()
                 if "---" in clean_text: clean_text = clean_text.split("---")[-1].strip()
-                return yaml.safe_load(clean_text) or {}
-        except: continue
+                result = yaml.safe_load(clean_text) or {}
+                print(f"    --- AI structure analysis complete. Found {len(result)} mappings.", flush=True)
+                return result
+        except Exception as e:
+            print(f"    --- AI structure analysis error with {model_id}: {e}", flush=True)
+            continue
     return {}
 
 def fix_markdown_formatting(text):
@@ -140,7 +148,7 @@ def fix_markdown_formatting(text):
     
     return fm_final + "".join(content_parts)
 
-def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, category_hint=None, lec_hint=None, is_extra_file=False, allow_large_split=False):
+def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, category_hint=None, lec_hint=None, is_extra_file=False, allow_large_split=False, is_concise=False):
     page_count = get_pdf_page_count(pdf_path)
     if page_count > 200 and not (allow_large_split and "lecture" in filename.lower()): return None
 
@@ -149,10 +157,17 @@ def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, category_h
     split_instruction = "### SPECIAL RULE: Large file. Split into docs with '<!-- LECTURE_SPLIT -->'.\n" if page_count > 200 else ""
     cat_instruction = f"### CATEGORY: '{category_hint}'.\n" if category_hint else ""
     lec_instruction = f"### LECTURE NUMBER: This is Lecture {lec_hint}.\n" if lec_hint else ""
+    concise_instruction = (
+        "### CONCISE MODE ACTIVE:\n"
+        "- Generate a high-level summary that captures core concepts and logic.\n"
+        "- DO NOT include examples, lengthy derivations, or implementation details.\n"
+        "- The notes should be brief enough to be read in 2-3 minutes, serving as a quick reference.\n"
+        "- Focus on 'What it is', 'Why it matters', and 'Key Formulas/Logic'.\n"
+    ) if is_concise else ""
 
     prompt_base = (
         "You are a world-class professor creating ELITE Docusaurus notes.\n\n"
-        + split_instruction + cat_instruction + lec_instruction +
+        + split_instruction + cat_instruction + lec_instruction + concise_instruction +
         "## 1. YAML FRONT-MATTER RULES (STRICT):\n"
         "- EVERYTHING must be valid YAML.\n"
         "- VALUES with colons (:) MUST be wrapped in double quotes.\n"
@@ -252,7 +267,7 @@ def summarize_category(course_name, category_name, summaries):
         except: continue
     return None
 
-def html_to_notes(url, course_name=None, category_hint=None, lec_hint=None):
+def html_to_notes(url, course_name=None, category_hint=None, lec_hint=None, is_concise=False):
     """Fetch HTML, extract text from sections (Marp/Slides style), and generate notes."""
     try:
         print(f"    --- Fetching HTML slides from: {url}")
@@ -282,11 +297,18 @@ def html_to_notes(url, course_name=None, category_hint=None, lec_hint=None):
         print(f"    --- AI processing HTML slides ({len(full_text)} chars) ...")
         cat_instruction = f"### CATEGORY: '{category_hint}'.\n" if category_hint else ""
         lec_instruction = f"### LECTURE NUMBER: This is Lecture {lec_hint}.\n" if lec_hint else ""
+        concise_instruction = (
+            "### CONCISE MODE ACTIVE:\n"
+            "- Generate a high-level summary that captures core concepts and logic.\n"
+            "- DO NOT include examples, lengthy derivations, or implementation details.\n"
+            "- The notes should be brief enough to be read in 2-3 minutes, serving as a quick reference.\n"
+            "- Focus on 'What it is', 'Why it matters', and 'Key Formulas/Logic'.\n"
+        ) if is_concise else ""
 
         prompt = (
             f"You are a world-class professor creating ELITE Docusaurus notes from HTML slides.\n"
             f"COURSE: {course_name}\n"
-            + cat_instruction + lec_instruction +
+            + cat_instruction + lec_instruction + concise_instruction +
             "## 1. YAML FRONT-MATTER RULES (STRICT):\n"
             "- EVERYTHING must be valid YAML.\n"
             "- VALUES with colons (:) MUST be wrapped in double quotes.\n"

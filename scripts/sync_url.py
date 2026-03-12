@@ -1,4 +1,5 @@
 import os
+import sys
 import time
 import io
 import re
@@ -81,6 +82,8 @@ def main():
     parser.add_argument('--course', type=str, required=True, help='Course name (e.g., MA104).')
     parser.add_argument('--force', action='store_true', help='Overwrite existing files.')
     parser.add_argument('--summarize', action='store_true', help='Generate Master Summaries.')
+    parser.add_argument('--concise', action='store_true', help='Generate concise notes (summary style).')
+    parser.add_argument('--filter', type=str, help='Filter for specific category/module (e.g., "Module 2").')
     args = parser.parse_args()
 
     _, drive = get_google_services()
@@ -93,7 +96,12 @@ def main():
         response.raise_for_status()
 
         is_pdf_direct = 'application/pdf' in response.headers.get('content-type', '').lower() or args.url.lower().endswith('.pdf')
-        is_html_direct = 'text/html' in response.headers.get('content-type', '').lower() and (args.url.lower().endswith('.html') or args.url.lower().endswith('.htm'))
+        # Only treat as direct HTML note if it's explicitly an .html file and NOT a known course contents/index page
+        is_html_direct = ('text/html' in response.headers.get('content-type', '').lower() and 
+                          (args.url.lower().endswith('.html') or args.url.lower().endswith('.htm')) and 
+                          not any(k in args.url.lower() for k in ['course-contents', 'index', 'schedule']))
+        
+        print(f"   [DEBUG] is_pdf_direct: {is_pdf_direct}, is_html_direct: {is_html_direct}", flush=True)
         
         pdf_links = []
         html_links = []
@@ -107,17 +115,26 @@ def main():
             soup = BeautifulSoup(response.text, 'html.parser')
             # Pass the soup object for deep structural analysis
             url_to_category = analyze_page_structure(soup, args.url, course_clean)
+            print(f"   [DEBUG] Category mapping found for {len(url_to_category)} URLs", flush=True)
             
             for link in soup.find_all('a'):
                 href = link.get('href')
                 if not href: continue
                 abs_url = urljoin(args.url, href)
+                print(f"   [DEBUG] Found raw URL: {abs_url}", flush=True)
+
+                # Skip Colab/Notebook/Video links as requested by user
+                if any(k in abs_url.lower() for k in ['colab', 'notebook', 'youtube', 'vimeo', 'video']):
+                    continue
+
                 drive_id = extract_drive_id(abs_url)
                 if drive_id: pdf_links.append({'type': 'drive', 'id': drive_id, 'url': abs_url, 'orig_href': href})
                 elif ".pdf" in abs_url.lower() or "sharepoint.com" in abs_url or "onedrive.live.com" in abs_url:
                     pdf_links.append({'type': 'direct', 'url': abs_url, 'orig_href': href})
                 elif ".html" in abs_url.lower() or ".htm" in abs_url.lower():
-                    html_links.append({'url': abs_url, 'orig_href': href})
+                    # Relaxed filter for HTML links
+                    if any(k in abs_url.lower() for k in ['note', 'slide', 'lecture', 'lec', 'foundation', 'regression', 'neural', 'module', 'learning']):
+                        html_links.append({'url': abs_url, 'orig_href': href})
 
         # --- ALGORITHM: HTML-over-PDF Prioritization ---
         seen_pdf = set()
@@ -125,6 +142,8 @@ def main():
         
         seen_html = set()
         unique_html = [l for l in html_links if l['url'] not in seen_html and not seen_html.add(l['url'])]
+        
+        print(f"   [DEBUG] Unique PDFs: {len(unique_pdf)}, Unique HTMLs: {len(unique_html)}", flush=True)
         
         final_links = []
         html_used = set()
@@ -150,39 +169,31 @@ def main():
         # Add remaining HTML links that likely contain slides
         for h in unique_html:
             if h['url'] not in html_used:
-                if any(k in h['url'].lower() for k in ['slide', 'lecture', 'lec', 'foundation']):
-                    h['is_html'] = True
-                    final_links.append(h)
+                h['is_html'] = True
+                final_links.append(h)
 
         print(f"   Found {len(final_links)} unique potential links.")
         
         all_summaries = {}
         for link_data in final_links:
             url = link_data['url']
-            print(f"   Processing: {url}")
             
             # Lookup pre-analyzed category using both absolute and relative URLs
             cat_hint = url_to_category.get(url) or url_to_category.get(link_data['orig_href']) or ""
             
-            temp_pdf = "temp_url.pdf"
-            success, original_filename = (download_from_drive(drive, link_data['id'], temp_pdf) if link_data['type'] == 'drive' else download_direct(url, temp_pdf))
-            print(f"      Download success: {success}, filename: {original_filename}")
-            
-            if not success or not original_filename or any(word in original_filename.lower() for word in BLACKLIST): 
-                if original_filename and any(word in original_filename.lower() for word in BLACKLIST):
-                    print(f"      [SKIP] Blacklisted: {original_filename}")
-                continue
-            
-            # Try to extract lecture number hint from filename or URL
-            lec_hint = None
-            match = re.search(r'(?:Lec|Lecture|svc|Unit)\D*(\d+)', url, re.IGNORECASE)
-            if match: lec_hint = match.group(1)
+            # FILTER: If filter is provided, skip if category doesn't match
+            if args.filter and args.filter.lower() not in cat_hint.lower():
+                # Double check the URL/Title if category hint is empty or doesn't match
+                if args.filter.lower() not in url.lower():
+                    continue
 
+            print(f"   Processing: {url} (Category: {cat_hint})")
+            
             md_text = None
             original_filename = "file.pdf"
 
             if link_data.get('is_html'):
-                md_text = html_to_notes(url, course_name=course_clean, category_hint=cat_hint, lec_hint=lec_hint)
+                md_text = html_to_notes(url, course_name=course_clean, category_hint=cat_hint, lec_hint=None, is_concise=args.concise)
                 original_filename = os.path.basename(urlparse(url).path)
             else:
                 temp_pdf = "temp_url.pdf"
@@ -194,13 +205,15 @@ def main():
                         print(f"      [SKIP] Blacklisted: {original_filename}")
                     continue
                 
-                # Re-check lecture hint from filename if URL didn't have it
-                if not lec_hint:
+                # Try to extract lecture number hint from filename or URL
+                lec_hint = None
+                match = re.search(r'(?:Lec|Lecture|svc|Unit)\D*(\d+)', url, re.IGNORECASE)
+                if not match:
                     match = re.search(r'(?:Lec|Lecture|svc|Unit)\D*(\d+)', original_filename, re.IGNORECASE)
-                    if match: lec_hint = match.group(1)
+                if match: lec_hint = match.group(1)
 
                 md_text = pdf_to_notes(temp_pdf, original_filename, is_math=("MA" in course_clean.upper() or "ES" in course_clean.upper()), 
-                                    course_name=course_clean, category_hint=cat_hint, lec_hint=lec_hint)
+                                    course_name=course_clean, category_hint=cat_hint, lec_hint=lec_hint, is_concise=args.concise)
             
             if md_text:
                 for seg in md_text.split("<!-- LECTURE_SPLIT -->"):
@@ -209,6 +222,10 @@ def main():
                     lec_num, lec_name, category = extract_lecture_metadata(seg)
                     
                     category = category or cat_hint # AI output or Structural Analysis fallback
+
+                    # Final safety filter check on the extracted category
+                    if args.filter and args.filter.lower() not in (category or "").lower():
+                        continue
 
                     if args.summarize:
                         fm_match = re.search(r'---\s*(.*?)\s*---', seg, re.DOTALL)
