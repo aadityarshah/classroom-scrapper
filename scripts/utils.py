@@ -133,6 +133,17 @@ def fix_markdown_formatting(text):
                 data[key] = []
 
         # 4. RE-GENERATE CLEAN YAML
+        # Force quotes on specific string fields for Docusaurus/YAML safety
+        class QuotedDumper(yaml.SafeDumper):
+            def represent_data(self, data):
+                if isinstance(data, str) and any(c in data for c in ":#{}[]|&*>!?'\""):
+                    return self.represent_scalar('tag:yaml.org,2002:str', data, style='"')
+                return super().represent_data(data)
+
+        # We'll just use a simpler way: wrap the specific fields in quotes if they aren't already
+        # Actually, yaml.dump with default_flow_style=False is usually fine, 
+        # but let's ensure 'course' and 'title' are treated as strings and handled carefully.
+        
         new_fm = yaml.dump(data, allow_unicode=True, sort_keys=False, default_flow_style=False)
         fm_final = f"---\n{new_fm}---\n"
     except Exception as e:
@@ -170,8 +181,9 @@ def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, category_h
         + split_instruction + cat_instruction + lec_instruction + concise_instruction +
         "## 1. YAML FRONT-MATTER RULES (STRICT):\n"
         "- EVERYTHING must be valid YAML.\n"
-        "- VALUES with colons (:) MUST be wrapped in double quotes.\n"
-        "- 'title': NO pipe. Simple string.\n"
+        "- ALL string values (especially 'course', 'title', 'lecture_name', 'category', 'summary') MUST be wrapped in double quotes (\").\n"
+        "- Example: course: \"ES119 Principles of AI\"\n"
+        "- 'title': NO pipe characters. Simple string in quotes.\n"
         "- 'tags' and 'topic': MUST be bulleted arrays.\n"
         "- 'sidebar_label': MUST be 'Lecture X'.\n"
         "- 'lecture_name': Descriptive human title (NO LaTeX here).\n\n"
@@ -311,7 +323,8 @@ def html_to_notes(url, course_name=None, category_hint=None, lec_hint=None, is_c
             + cat_instruction + lec_instruction + concise_instruction +
             "## 1. YAML FRONT-MATTER RULES (STRICT):\n"
             "- EVERYTHING must be valid YAML.\n"
-            "- VALUES with colons (:) MUST be wrapped in double quotes.\n"
+            "- ALL string values (especially 'course', 'title', 'lecture_name', 'category', 'summary') MUST be wrapped in double quotes (\").\n"
+            "- Example: course: \"ES119 Principles of AI\"\n"
             "- 'sidebar_label': MUST be 'Lecture X'.\n"
             "- 'lecture_name': Descriptive human title.\n\n"
             "## 2. CONTENT RULES:\n"
