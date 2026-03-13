@@ -186,12 +186,12 @@ def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, category_h
         "- 'title': NO pipe characters. Simple string in quotes.\n"
         "- 'tags' and 'topic': MUST be bulleted arrays.\n"
         "- 'sidebar_label': MUST be 'Lecture X'.\n"
-        "- 'lecture_name': Descriptive human title (NO LaTeX here).\n\n"
+        "- 'lecture_name': Descriptive human title (NO LaTeX or math symbols here).\n\n"
         "## 2. CONTENT RULES:\n"
         "- MANDATORY: End with '## Quick Summary' section.\n"
         "- Focus 85% on theory. High density, concise.\n"
         "- LaTeX: Use $...$ for inline and $$...$$ for blocks.\n"
-        "- TOC FIX: Do NOT use LaTeX in main section headers (#, ##, ###) as it breaks the sidebar Table of Contents. Use plain text for headers.\n"
+        "- TOC COMPATIBILITY: Do NOT use LaTeX or backslashes in main section headers (#, ##, ###). Headers must be plain text only (use basic bold **text** if needed) to ensure they render correctly in the Table of Contents.\n"
         "KEYS: title, lecture_number, lecture_name, category, sidebar_label, sidebar_position, course, topic, tags, summary, math: true.\n"
     )
 

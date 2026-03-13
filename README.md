@@ -7,11 +7,13 @@ A modern, professional portal that automatically synchronizes your academic mate
 ## ✨ Key Features
 
 - **Multi-Source Sync**: Fetch materials from Google Classroom or any public URL (Google Sites, SharePoint, etc.).
-- **Smart HTML Detection**: **New!** Automatically prioritizes HTML-based slides (Marp/Reveal.js) over heavy PDFs for 10x faster generation.
+- **Smart HTML Detection**: Automatically prioritizes HTML-based slides (Marp/Reveal.js) over heavy PDFs for 10x faster generation.
 - **AI Note Generation**: Converts messy slides into structured prose with definitions, theorems, and summaries.
-- **$\LaTeX$ Support**: High-fidelity mathematical rendering via KaTeX.
+- **$\LaTeX$ Support**: High-fidelity mathematical rendering via KaTeX, now **fully rendered in the Table of Contents (TOC)** and throughout the site.
+- **Downloadable Notes**: **New!** Download any lecture note as a clean `.md` file or save it as a professionally formatted `.pdf`.
+- **Concise Mode**: **New!** Generate high-level summaries focusing on core concepts and logic for quick 2-3 minute reads.
 - **Auto-Scrolling TOC**: The right sidebar automatically follows your reading position.
-- **Mobile Optimized**: Premium glassmorphism design optimized for study sessions on any device.
+- **Mobile Optimized**: Premium glassmorphism design with a fully functional mobile sidebar for study sessions on any device.
 
 ---
 
@@ -59,6 +61,8 @@ python scripts/sync_url.py --url "YOUR_URL" --course "COURSE_NAME" [FLAGS]
 **Available Flags:**
 - `--url`: (Required) The page containing PDF or HTML links.
 - `--course`: (Required) Folder name in `docs/` (e.g., ES119).
+- `--concise`: **New!** Generates concise, summary-style notes instead of full lecture notes.
+- `--filter`: **New!** Filter for specific categories or modules (e.g., `--filter "Module 2"`).
 - `--summarize`: Generates a "Summary.md" for each category based on AI insights.
 - `--force`: Overwrites existing files even if they haven't changed.
 
@@ -100,7 +104,7 @@ Once the notes are generated in the `docs/` folder, start the site:
 
 - `scripts/`: Python logic for scraping, downloading, and AI processing.
 - `docs/`: The generated Markdown notes (categorized by course).
-- `src/`: Custom CSS and JavaScript (including TOC scroll logic).
+- `src/`: Custom CSS, JavaScript (TOC scroll & LaTeX rendering), and theme swizzles.
 - `static/`: Images, logos, and static assets.
 
 **Developed by Aaditya Rushabh Shah**

@@ -58,62 +58,21 @@ body {
   min-height: 3.8rem;
 }
 
-/* Fixed Mobile Sidebar - FORCE FULL HEIGHT */
+/* Hide Mobile Menu Toggle - Relying on Home Page Cards for Navigation */
+@media (max-width: 996px) {
+  .navbar__toggle {
+    display: none !important;
+  }
+  
+  /* Ensure Home/GitHub links are accessible if needed, but keeping navbar minimal */
+  .navbar__item {
+    display: flex !important;
+  }
+}
+
+/* Remove all custom sidebar overrides to restore default behavior if toggle is ever restored */
 .navbar-sidebar {
-  background-color: var(--ifm-background-color) !important;
-  box-shadow: 20px 0 50px rgba(0,0,0,0.1) !important;
-  border-right: 1px solid var(--glass-border);
-  height: 100dvh !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 80vw !important;
-  max-width: 300px !important;
-  z-index: 1000 !important;
-}
-
-[data-theme='dark'] .navbar-sidebar {
-  box-shadow: 20px 0 50px rgba(0,0,0,0.4) !important;
-}
-
-.navbar-sidebar__brand {
-  border-bottom: 1px solid var(--glass-border);
-  background-color: var(--glass-bg);
-  backdrop-filter: blur(var(--glass-blur));
-  height: 3.8rem;
-}
-
-.navbar-sidebar__items {
-  padding: 1.5rem !important;
-  height: calc(100dvh - 3.8rem) !important;
-  overflow-y: auto !important;
-}
-
-.navbar__toggle {
-  color: var(--ifm-color-primary) !important;
-  margin-right: 0.5rem;
-}
-
-.navbar-sidebar__close {
-  color: var(--ifm-color-primary) !important;
-  margin-right: 0.5rem;
-}
-
-/* Sidebar Menu Items Visibility */
-.menu__link {
-  color: var(--ifm-color-primary) !important;
-  font-weight: 500;
-  border-radius: 6px;
-  padding: 0.6rem 1rem;
-}
-
-.menu__link--active {
-  background-color: rgba(0,0,0,0.05) !important;
-  font-weight: 700;
-}
-
-[data-theme='dark'] .menu__link--active {
-  background-color: rgba(255,255,255,0.1) !important;
+  display: none !important;
 }
 
 /* GitHub Icon in Header - PERSIST ON MOBILE */

@@ -71,6 +71,18 @@ const config = {
     },
   ],
 
+  scripts: [
+    {
+      src: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js',
+      defer: true,
+    },
+    {
+      src: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js',
+      defer: true,
+      onload: "renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]})",
+    },
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
@@ -96,6 +108,12 @@ const config = {
             docId: 'index',
             position: 'left',
             label: 'Home',
+          },
+          {
+            type: 'docSidebar',
+            sidebarId: 'tutorialSidebar',
+            position: 'left',
+            label: 'Courses',
           },
           {
             href: 'https://github.com/aadityarshah/classroom-scrapper',
