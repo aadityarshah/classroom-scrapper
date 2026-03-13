@@ -110,8 +110,8 @@ const config = {
             label: 'Home',
           },
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            type: 'doc',
+            docId: 'courses',
             position: 'left',
             label: 'Courses',
           },
