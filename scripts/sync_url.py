@@ -84,6 +84,7 @@ def main():
     parser.add_argument('--summarize', action='store_true', help='Generate Master Summaries.')
     parser.add_argument('--concise', action='store_true', help='Generate concise notes (summary style).')
     parser.add_argument('--filter', type=str, help='Filter for specific category/module (e.g., "Module 2").')
+    parser.add_argument('--lecture', type=str, help='Force a specific lecture number hint.')
     args = parser.parse_args()
 
     _, drive = get_google_services()
@@ -181,19 +182,23 @@ def main():
             # Lookup pre-analyzed category using both absolute and relative URLs
             cat_hint = url_to_category.get(url) or url_to_category.get(link_data['orig_href']) or ""
             
+            # Use filter as cat_hint if it's empty and filter is provided
+            if not cat_hint and args.filter:
+                cat_hint = args.filter
+
             # FILTER: If filter is provided, skip if category doesn't match
             if args.filter and args.filter.lower() not in cat_hint.lower():
                 # Double check the URL/Title if category hint is empty or doesn't match
                 if args.filter.lower() not in url.lower():
                     continue
 
-            print(f"   Processing: {url} (Category: {cat_hint})")
+            print(f"   Processing: {url} (Category Hint: {cat_hint})")
             
             md_text = None
             original_filename = "file.pdf"
 
             if link_data.get('is_html'):
-                md_text = html_to_notes(url, course_name=course_clean, category_hint=cat_hint, lec_hint=None, is_concise=args.concise)
+                md_text = html_to_notes(url, course_name=course_clean, category_hint=cat_hint, lec_hint=args.lecture, is_concise=args.concise)
                 original_filename = os.path.basename(urlparse(url).path)
             else:
                 temp_pdf = "temp_url.pdf"
@@ -206,11 +211,12 @@ def main():
                     continue
                 
                 # Try to extract lecture number hint from filename or URL
-                lec_hint = None
-                match = re.search(r'(?:Lec|Lecture|svc|Unit)\D*(\d+)', url, re.IGNORECASE)
-                if not match:
-                    match = re.search(r'(?:Lec|Lecture|svc|Unit)\D*(\d+)', original_filename, re.IGNORECASE)
-                if match: lec_hint = match.group(1)
+                lec_hint = args.lecture
+                if not lec_hint:
+                    match = re.search(r'(?:Lec|Lecture|svc|Unit)\D*(\d+)', url, re.IGNORECASE)
+                    if not match:
+                        match = re.search(r'(?:Lec|Lecture|svc|Unit)\D*(\d+)', original_filename, re.IGNORECASE)
+                    if match: lec_hint = match.group(1)
 
                 md_text = pdf_to_notes(temp_pdf, original_filename, is_math=("MA" in course_clean.upper() or "ES" in course_clean.upper()), 
                                     course_name=course_clean, category_hint=cat_hint, lec_hint=lec_hint, is_concise=args.concise)

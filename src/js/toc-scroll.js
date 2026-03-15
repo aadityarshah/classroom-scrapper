@@ -1,5 +1,22 @@
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
+/**
+ * Re-render KaTeX in the given element.
+ */
+function renderKaTeX(element) {
+  if (window.renderMathInElement && element) {
+    window.renderMathInElement(element, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false},
+        {left: '\\(', right: '\\)', display: false},
+        {left: '\\[', right: '\\]', display: true},
+      ],
+      throwOnError: false,
+    });
+  }
+}
+
 if (ExecutionEnvironment.canUseDOM) {
   const scrollActiveIntoView = () => {
     const activeLink = document.querySelector('.table-of-contents__link--active');
@@ -9,7 +26,6 @@ if (ExecutionEnvironment.canUseDOM) {
       const containerRect = tocContainer.getBoundingClientRect();
       const activeRect = activeLink.getBoundingClientRect();
 
-      // If the active link is above or below the visible area of the sticky TOC container
       if (activeRect.top < containerRect.top || activeRect.bottom > containerRect.bottom) {
         activeLink.scrollIntoView({
           behavior: 'smooth',
@@ -19,56 +35,7 @@ if (ExecutionEnvironment.canUseDOM) {
     }
   };
 
-  const renderLatexInTOC = () => {
-    const tocLinks = document.querySelectorAll('.table-of-contents__link, .theme-doc-toc-mobile .table-of-contents__link');
-    if (tocLinks.length === 0 || !window.renderMathInElement) return;
-
-    tocLinks.forEach(link => {
-      // Avoid re-rendering
-      if (link.querySelector('.katex')) return;
-
-      let html = link.innerHTML;
-      let changed = false;
-
-      // 1. Recovery: If Docusaurus stripped delimiters but left LaTeX commands
-      // We look for common patterns like mathbf{X}, \mathbf{X}, alpha, \alpha
-      const commands = ['mathbf', 'mathbb', 'mathcal', 'sqrt', 'frac', 'alpha', 'beta', 'gamma', 'delta', 'theta', 'mu', 'sigma', 'pi', 'lambda', 'phi', 'omega'];
-      
-      commands.forEach(cmd => {
-        // Regex to find command (optionally with backslash) not already in $
-        // Handles: mathbf{X}, \mathbf{X}, \alpha, alpha
-        // We use a simpler regex to avoid lookbehind issues in older browsers if any
-        const regex = new RegExp('(\\\\?' + cmd + '(\\{[^{}]+\\}|\\b))', 'g');
-        
-        // Only replace if NOT already wrapped in $
-        // We do a simple check: is there a $ before and after?
-        // This is a heuristic but works for Docusaurus TOC
-        if (!html.includes('$') || !html.includes(cmd)) {
-          html = html.replace(regex, (match) => {
-            // Ensure backslash is present
-            const withBackslash = match.startsWith('\\') ? match : '\\' + match;
-            return '$' + withBackslash + '$';
-          });
-          changed = true;
-        }
-      });
-
-      if (changed) {
-        link.innerHTML = html;
-      }
-
-      // 2. Trigger KaTeX
-      window.renderMathInElement(link, {
-        delimiters: [
-          {left: '$$', right: '$$', display: true},
-          {left: '$', right: '$', display: false}
-        ],
-        throwOnError: false
-      });
-    });
-  };
-
-  // Run on scroll for active link tracking
+  // Sync with scroll
   let ticking = false;
   window.addEventListener('scroll', () => {
     if (!ticking) {
@@ -80,47 +47,28 @@ if (ExecutionEnvironment.canUseDOM) {
     }
   });
 
-  // Watch for DOM changes to re-render LaTeX in TOC (e.g., on navigation)
+  // Initial render for TOC
   const observer = new MutationObserver((mutations) => {
-    let shouldRender = false;
-    for (const mutation of mutations) {
-      if (mutation.addedNodes.length > 0) {
-        // Check if TOC or content was added
-        for (const node of mutation.addedNodes) {
-          if (node.nodeType === 1 && (
-            node.querySelector('.table-of-contents') || 
-            node.classList.contains('table-of-contents') ||
-            node.querySelector('.theme-doc-markdown')
-          )) {
-            shouldRender = true;
-            break;
-          }
-        }
-      }
-      if (shouldRender) break;
-    }
-    if (shouldRender) {
-      setTimeout(renderLatexInTOC, 100);
-    }
+    const toc = document.querySelector('.table-of-contents');
+    const sidebar = document.querySelector('.theme-doc-sidebar-container');
+    if (toc) renderKaTeX(toc);
+    if (sidebar) renderKaTeX(sidebar);
   });
 
-  // Initial and periodic rendering to ensure KaTeX catches up with Docusaurus hydration
-  const init = () => {
-    renderLatexInTOC();
-    // Observe changes
-    observer.observe(document.body, { childList: true, subtree: true });
-  };
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+}
 
-  if (document.readyState === 'complete') {
-    init();
-  } else {
-    window.addEventListener('load', init);
+// Docusaurus client module exports
+export function onRouteUpdate() {
+  if (ExecutionEnvironment.canUseDOM) {
+    setTimeout(() => {
+      const toc = document.querySelector('.table-of-contents');
+      const sidebar = document.querySelector('.theme-doc-sidebar-container');
+      if (toc) renderKaTeX(toc);
+      if (sidebar) renderKaTeX(sidebar);
+    }, 100);
   }
-  
-  // Re-run periodically for the first few seconds to handle slow hydration
-  let count = 0;
-  const interval = setInterval(() => {
-    renderLatexInTOC();
-    if (++count > 10) clearInterval(interval);
-  }, 1000);
 }
