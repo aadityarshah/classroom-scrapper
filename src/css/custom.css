@@ -94,14 +94,13 @@ body {
   padding: 1rem !important;
 }
 
-/* RESTORE Toggle for Mobile Sidebar */
-.navbar__toggle {
-  display: flex !important;
-  margin-right: 0.5rem;
-}
-
-/* Force GitHub icon on mobile */
+/* Force GitHub icon on mobile and restrict Toggle */
 @media (max-width: 996px) {
+  .navbar__toggle {
+    display: flex !important;
+    margin-right: 0.5rem;
+  }
+
   .navbar__item.header-github-link {
     display: flex !important;
   }
