@@ -20,10 +20,16 @@ export default function LayoutWrapper(props: Props): ReactNode {
     window.print();
   };
 
+  const defaultDate = "13 March 2026";
+  const lastUpdated = (frontMatter.last_updated as string) || defaultDate;
+
   return (
     <div className="doc-layout-wrapper">
       {isLecture && (
         <div className="lecture-header-actions">
+          <div className="last-updated-badge">
+            Last Updated: <b>{lastUpdated}</b>
+          </div>
           <div className="download-pills">
             <a 
               href={mdDownloadUrl}

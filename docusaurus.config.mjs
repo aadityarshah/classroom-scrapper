@@ -51,6 +51,8 @@ const config = {
           breadcrumbs: false,
           remarkPlugins: [remarkMath, lectureNameAsDescription],
           rehypePlugins: [rehypeKatex],
+          showLastUpdateTime: false,
+          showLastUpdateAuthor: false,
         },
         blog: false,
         theme: {

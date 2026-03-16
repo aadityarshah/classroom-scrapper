@@ -6,6 +6,7 @@ category: 'Module 2: Learning'
 sidebar_label: Lecture 4
 sidebar_position: 4
 course: ES119 Principles of AI
+last_updated: "16 March 2026"
 topic:
 - Neural Network Paradigms
 - Perceptron Architecture
@@ -109,8 +110,8 @@ An MLP consists of an **Input Layer** (Layer 0), one or more **Hidden Layers**, 
 
 ### Layerwise Computation (Vectorized)
 For a specific layer $l$, the linear combination $z^{[l]}$ and activation $a^{[l]}$ are calculated as:
-$$z^{[l]} = W^{[l]} a^{[l-1]} + b^{[l]}$$
-$$a^{[l]} = g(z^{[l]})$$
+- $$z^{[l]} = W^{[l]} a^{[l-1]} + b^{[l]}$$
+- $$a^{[l]} = g(z^{[l]})$$
 
 ### Matrix Dimensions
 To ensure valid matrix multiplication:
@@ -135,7 +136,7 @@ $$W^{[2]} = \begin{bmatrix} 1 & -2 \end{bmatrix}, \quad b^{[2]} = [0]$$
 3. $z^{[2]} = W^{[2]}a^{[1]} + b^{[2]} = 0 \implies \hat{y} = 0$. (Correct)
 
 **Case $x = [0, 1]^T$:**
-1. $z^{[1]} = \begin{bmatrix} 1 \\ 1 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix} + \begin{bmatrix} 0 \\ -1 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$
+1. $z^{[1]} = \begin{bmatrix} 1 & 1\\ 1 & 1 \end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix} + \begin{bmatrix} 0 \\ -1 \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$
 2. $a^{[1]} = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$
 3. $z^{[2]} = [1, -2] \begin{bmatrix} 1 \\ 0 \end{bmatrix} + 0 = 1 \implies \hat{y} = 1$. (Correct)
 

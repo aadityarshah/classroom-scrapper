@@ -221,10 +221,27 @@ body {
 /* Lecture Header Actions (Pills) */
 .lecture-header-actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--glass-border);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.last-updated-badge {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  color: var(--ifm-color-primary);
+  background: rgba(0,0,0,0.03);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid var(--glass-border);
+}
+
+[data-theme='dark'] .last-updated-badge {
+  background: rgba(255,255,255,0.05);
 }
 
 .download-pills {
