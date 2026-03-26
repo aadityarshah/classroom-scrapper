@@ -7,6 +7,7 @@ import yaml
 import pickle
 import requests
 import warnings
+from datetime import date
 import google.generativeai as genai
 from bs4 import BeautifulSoup
 
@@ -102,6 +103,21 @@ def analyze_page_structure(soup, base_url, course_name):
 
 def fix_markdown_formatting(text):
     """Deeply clean and validate Markdown front-matter and content."""
+    generated_date = date.today().strftime("%d %B %Y")
+    text = text.strip()
+    if text.startswith("```"):
+        text = re.sub(r'^```[a-zA-Z]*\n', '', text)
+        text = re.sub(r'\n```$', '', text)
+
+    if not text.startswith("---"):
+        lines = text.splitlines()
+        first_header_idx = next((i for i, line in enumerate(lines) if line.lstrip().startswith("#")), None)
+        if first_header_idx is not None:
+            fm_candidate = "\n".join(line for line in lines[:first_header_idx] if line.strip() and line.strip() != "```").strip()
+            content_candidate = "\n".join(lines[first_header_idx:]).strip()
+            if "title:" in fm_candidate and "lecture_number:" in fm_candidate:
+                text = f"---\n{fm_candidate}\n---\n\n{content_candidate}"
+
     if not text.startswith("---"): return text
     parts = text.split("---", 2)
     if len(parts) < 3: return text
@@ -123,6 +139,9 @@ def fix_markdown_formatting(text):
         lec_num = data.get('lecture_number', '0')
         data['sidebar_label'] = f"Lecture {lec_num}"
         data['sidebar_position'] = float(lec_num) if "." in str(lec_num) else int(lec_num)
+
+        # 2.5. KEEP LAST UPDATED CONSISTENT FOR GENERATED NOTES
+        data['last_updated'] = generated_date
 
         # 3. ENSURE ARRAYS
         for key in ['tags', 'topic']:
@@ -170,10 +189,11 @@ def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, category_h
     lec_instruction = f"### LECTURE NUMBER: This is Lecture {lec_hint}.\n" if lec_hint else ""
     concise_instruction = (
         "### CONCISE MODE ACTIVE:\n"
-        "- Generate a high-level summary that captures core concepts and logic.\n"
-        "- DO NOT include examples, lengthy derivations, or implementation details.\n"
-        "- The notes should be brief enough to be read in 2-3 minutes, serving as a quick reference.\n"
-        "- Focus on 'What it is', 'Why it matters', and 'Key Formulas/Logic'.\n"
+        "- Generate compact study notes that preserve all core concepts and definitions.\n"
+        "- DO NOT include worked examples, repeated intuition, long derivations, or implementation detail unless essential.\n"
+        "- Compress each major topic into the minimum text needed for revision.\n"
+        "- Prefer formulas, assumptions, conditions, and takeaways over narrative explanation.\n"
+        "- The notes should feel like high-quality revision notes, not a transcript.\n"
     ) if is_concise else ""
 
     prompt_base = (
@@ -190,6 +210,11 @@ def pdf_to_notes(pdf_path, filename, is_math=False, course_name=None, category_h
         "## 2. CONTENT RULES:\n"
         "- MANDATORY: End with '## Quick Summary' section.\n"
         "- Focus 85% on theory. High density, concise.\n"
+        "- Cover all major concepts from the source, but compress aggressively.\n"
+        "- Prefer short, information-dense sections over long explanations.\n"
+        "- Include only essential examples. Omit routine or repetitive examples.\n"
+        "- Do not restate the same idea in multiple ways.\n"
+        "- Keep derivations brief unless a derivation is itself the key concept.\n"
         "- LaTeX: Use $...$ for inline and $$...$$ for blocks.\n"
         "- TOC COMPATIBILITY: Do NOT use LaTeX or backslashes in main section headers (#, ##, ###). Headers must be plain text only (use basic bold **text** if needed) to ensure they render correctly in the Table of Contents.\n"
         "KEYS: title, lecture_number, lecture_name, category, sidebar_label, sidebar_position, course, topic, tags, summary, math: true.\n"
@@ -311,10 +336,11 @@ def html_to_notes(url, course_name=None, category_hint=None, lec_hint=None, is_c
         lec_instruction = f"### LECTURE NUMBER: This is Lecture {lec_hint}.\n" if lec_hint else ""
         concise_instruction = (
             "### CONCISE MODE ACTIVE:\n"
-            "- Generate a high-level summary that captures core concepts and logic.\n"
-            "- DO NOT include examples, lengthy derivations, or implementation details.\n"
-            "- The notes should be brief enough to be read in 2-3 minutes, serving as a quick reference.\n"
-            "- Focus on 'What it is', 'Why it matters', and 'Key Formulas/Logic'.\n"
+            "- Generate compact study notes that preserve all core concepts and definitions.\n"
+            "- DO NOT include worked examples, repeated intuition, long derivations, or implementation detail unless essential.\n"
+            "- Compress each major topic into the minimum text needed for revision.\n"
+            "- Prefer formulas, assumptions, conditions, and takeaways over narrative explanation.\n"
+            "- The notes should feel like high-quality revision notes, not a transcript.\n"
         ) if is_concise else ""
 
         prompt = (
@@ -329,6 +355,10 @@ def html_to_notes(url, course_name=None, category_hint=None, lec_hint=None, is_c
             "- 'lecture_name': Descriptive human title.\n\n"
             "## 2. CONTENT RULES:\n"
             "- Focus 85% on theory. High density, concise.\n"
+            "- Cover all major concepts from the source, but compress aggressively.\n"
+            "- Prefer short, information-dense sections over long explanations.\n"
+            "- Include only essential examples. Omit routine or repetitive examples.\n"
+            "- Do not restate the same idea in multiple ways.\n"
             "- Convert slide bullet points into coherent academic prose and structured lists.\n"
             "- Use LaTeX for any formulas ($...$ for inline, $$...$$ for blocks).\n"
             "- MANDATORY: End with '## Quick Summary' section.\n"

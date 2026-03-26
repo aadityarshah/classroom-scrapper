@@ -92,50 +92,55 @@ def main():
     print(f"\n>> Synchronizing: {course_clean} from {args.url}")
 
     try:
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
-        response = requests.get(args.url, timeout=30, headers=headers)
-        response.raise_for_status()
-
-        is_pdf_direct = 'application/pdf' in response.headers.get('content-type', '').lower() or args.url.lower().endswith('.pdf')
-        # Only treat as direct HTML note if it's explicitly an .html file and NOT a known course contents/index page
-        is_html_direct = ('text/html' in response.headers.get('content-type', '').lower() and 
-                          (args.url.lower().endswith('.html') or args.url.lower().endswith('.htm')) and 
-                          not any(k in args.url.lower() for k in ['course-contents', 'index', 'schedule']))
-        
-        print(f"   [DEBUG] is_pdf_direct: {is_pdf_direct}, is_html_direct: {is_html_direct}", flush=True)
-        
         pdf_links = []
         html_links = []
         url_to_category = {}
 
-        if is_pdf_direct:
-            pdf_links.append({'type': 'direct', 'url': args.url, 'orig_href': args.url})
-        elif is_html_direct:
-            html_links.append({'url': args.url, 'orig_href': args.url})
+        direct_drive_id = extract_drive_id(args.url)
+        if direct_drive_id:
+            print(f"   [DEBUG] Direct Google Drive file detected: {direct_drive_id}", flush=True)
+            pdf_links.append({'type': 'drive', 'id': direct_drive_id, 'url': args.url, 'orig_href': args.url})
         else:
-            soup = BeautifulSoup(response.text, 'html.parser')
-            # Pass the soup object for deep structural analysis
-            url_to_category = analyze_page_structure(soup, args.url, course_clean)
-            print(f"   [DEBUG] Category mapping found for {len(url_to_category)} URLs", flush=True)
+            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+            response = requests.get(args.url, timeout=30, headers=headers)
+            response.raise_for_status()
+
+            is_pdf_direct = 'application/pdf' in response.headers.get('content-type', '').lower() or args.url.lower().endswith('.pdf')
+            # Only treat as direct HTML note if it's explicitly an .html file and NOT a known course contents/index page
+            is_html_direct = ('text/html' in response.headers.get('content-type', '').lower() and 
+                              (args.url.lower().endswith('.html') or args.url.lower().endswith('.htm')) and 
+                              not any(k in args.url.lower() for k in ['course-contents', 'index', 'schedule']))
             
-            for link in soup.find_all('a'):
-                href = link.get('href')
-                if not href: continue
-                abs_url = urljoin(args.url, href)
-                print(f"   [DEBUG] Found raw URL: {abs_url}", flush=True)
+            print(f"   [DEBUG] is_pdf_direct: {is_pdf_direct}, is_html_direct: {is_html_direct}", flush=True)
+            
+            if is_pdf_direct:
+                pdf_links.append({'type': 'direct', 'url': args.url, 'orig_href': args.url})
+            elif is_html_direct:
+                html_links.append({'url': args.url, 'orig_href': args.url})
+            else:
+                soup = BeautifulSoup(response.text, 'html.parser')
+                # Pass the soup object for deep structural analysis
+                url_to_category = analyze_page_structure(soup, args.url, course_clean)
+                print(f"   [DEBUG] Category mapping found for {len(url_to_category)} URLs", flush=True)
+                
+                for link in soup.find_all('a'):
+                    href = link.get('href')
+                    if not href: continue
+                    abs_url = urljoin(args.url, href)
+                    print(f"   [DEBUG] Found raw URL: {abs_url}", flush=True)
 
-                # Skip Colab/Notebook/Video links as requested by user
-                if any(k in abs_url.lower() for k in ['colab', 'notebook', 'youtube', 'vimeo', 'video']):
-                    continue
+                    # Skip Colab/Notebook/Video links as requested by user
+                    if any(k in abs_url.lower() for k in ['colab', 'notebook', 'youtube', 'vimeo', 'video']):
+                        continue
 
-                drive_id = extract_drive_id(abs_url)
-                if drive_id: pdf_links.append({'type': 'drive', 'id': drive_id, 'url': abs_url, 'orig_href': href})
-                elif ".pdf" in abs_url.lower() or "sharepoint.com" in abs_url or "onedrive.live.com" in abs_url:
-                    pdf_links.append({'type': 'direct', 'url': abs_url, 'orig_href': href})
-                elif ".html" in abs_url.lower() or ".htm" in abs_url.lower():
-                    # Relaxed filter for HTML links
-                    if any(k in abs_url.lower() for k in ['note', 'slide', 'lecture', 'lec', 'foundation', 'regression', 'neural', 'module', 'learning']):
-                        html_links.append({'url': abs_url, 'orig_href': href})
+                    drive_id = extract_drive_id(abs_url)
+                    if drive_id: pdf_links.append({'type': 'drive', 'id': drive_id, 'url': abs_url, 'orig_href': href})
+                    elif ".pdf" in abs_url.lower() or "sharepoint.com" in abs_url or "onedrive.live.com" in abs_url:
+                        pdf_links.append({'type': 'direct', 'url': abs_url, 'orig_href': href})
+                    elif ".html" in abs_url.lower() or ".htm" in abs_url.lower():
+                        # Relaxed filter for HTML links
+                        if any(k in abs_url.lower() for k in ['note', 'slide', 'lecture', 'lec', 'foundation', 'regression', 'neural', 'module', 'learning']):
+                            html_links.append({'url': abs_url, 'orig_href': href})
 
         # --- ALGORITHM: HTML-over-PDF Prioritization ---
         seen_pdf = set()
