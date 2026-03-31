@@ -1,0 +1,9 @@
+﻿{
+  "label": "Random Variables",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "Lecture notes on random variables, probability mass functions, cumulative distribution functions, and expectation.",
+    "slug": "es114/random-variables"
+  }
+}

@@ -1,0 +1,9 @@
+﻿{
+  "label": "Probability Theory",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Foundational lecture notes on set theory, probability spaces, axioms, conditional probability, independence, and Bayes theorem.",
+    "slug": "es114/probability-theory"
+  }
+}
