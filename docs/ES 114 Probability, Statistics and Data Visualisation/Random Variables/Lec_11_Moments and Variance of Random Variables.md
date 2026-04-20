@@ -1,11 +1,11 @@
----
+﻿---
 title: Moments and Variance of Random Variables
 lecture_number: 11
 lecture_name: Moments and Variance of Random Variables
 category: Random Variables
 sidebar_label: Lecture 11
 sidebar_position: 11
-course: 'ECE 302: Principles of AI'
+course: 'ES 114: Principles of AI'
 topic:
 - Expectation Properties
 - Moments

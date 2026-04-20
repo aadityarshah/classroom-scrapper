@@ -1,4 +1,4 @@
----
+﻿---
 title: Probability Space
 lecture_number: 2
 lecture_name: 'Probability Space Fundamentals: Sample Space, Events, and Probability
@@ -33,7 +33,7 @@ math: true
 ---
 
 
-Welcome to Lecture 2 of ECE 302. Today, we embark on a journey into the fundamental building blocks of probability theory: the **Probability Space**. Understanding these core concepts is paramount for anyone delving into the fascinating world of uncertainty and random phenomena.
+Welcome to Lecture 2 of ES 114. Today, we embark on a journey into the fundamental building blocks of probability theory: the **Probability Space**. Understanding these core concepts is paramount for anyone delving into the fascinating world of uncertainty and random phenomena.
 
 ## What is Probability?
 
@@ -195,3 +195,4 @@ This lecture established the three foundational components of a probability mode
 *   The **probability law ($P$)** is a function that maps events from the event space to a value between $0$ and $1$, quantifying their likelihood. It can be intuitively understood as a measure of the relative "size" of an event within the sample space, leading to concepts like measure zero sets and "almost surely" events for continuous distributions.
 Together, these three elements form the **probability space ($\Omega, \mathcal{F}, P$)**, the essential framework for all probability calculations.
 ---
+

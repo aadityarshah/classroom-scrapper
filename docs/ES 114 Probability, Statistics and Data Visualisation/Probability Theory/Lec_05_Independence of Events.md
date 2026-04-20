@@ -1,4 +1,4 @@
----
+﻿---
 title: "Independence"
 lecture_number: 5
 lecture_name: "Independence of Events"
@@ -23,7 +23,7 @@ math: true
 
 ## Introduction to Event Independence
 
-Welcome to Lecture 5 of ECE 302, where we delve into one of the most crucial concepts in probability theory: **independence of events**. Understanding independence is fundamental for simplifying probabilistic calculations and accurately modeling real-world phenomena.
+Welcome to Lecture 5 of ES 114, where we delve into one of the most crucial concepts in probability theory: **independence of events**. Understanding independence is fundamental for simplifying probabilistic calculations and accurately modeling real-world phenomena.
 
 Previously, we've discussed set theory, probability spaces, axioms of probability, and conditional probability. Today, we build upon these foundations to define and identify independent events.
 
@@ -40,7 +40,7 @@ This lecture will cover:
 
 At its core, two events are independent if the occurrence of one does not influence the probability of the other. Let's explore this with dice-rolling scenarios.
 
-### The Game of Throw Dices — Easy Case
+### The Game of Throw Dices â€” Easy Case
 
 Consider throwing a fair six-sided die twice. Let's define two events:
 *   Event $A$: The first die is a 3.
@@ -49,7 +49,7 @@ Consider throwing a fair six-sided die twice. Let's define two events:
 **Are $A$ and $B$ independent?**
 Intuitively, the outcome of the first die roll should not affect the outcome of the second die roll. If you know the first die was a 3, it doesn't change your belief about the probability of the second die being a 4. In this case, it feels natural to say these events are independent.
 
-### The Game of Throw Dices — Hard Case
+### The Game of Throw Dices â€” Hard Case
 
 Now, let's consider a slightly more complex scenario with two fair dice rolls:
 *   Event $A$: The first die is a 1.
@@ -221,3 +221,4 @@ The graphical representation of dependent versus independent data (as seen in Sl
 *   **Conditional Probability Equivalence:** If $A$ and $B$ are independent, then $P(A|B) = P(A)$ (if $P(B) > 0$) and $P(B|A) = P(B)$ (if $P(A) > 0$). This means knowing one event occurred does not change the probability of the other.
 *   **Disjoint vs. Independent:** Non-trivial disjoint events (events with non-zero probability that cannot occur simultaneously) are always dependent, as the occurrence of one makes the other impossible ($P(A \cap B) = 0$ but $P(A)P(B) \ne 0$).
 *   **Importance:** Independence simplifies probability calculations, is crucial for modeling various real-world systems, and forms a cornerstone of statistical inference.
+
