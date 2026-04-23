@@ -109,3 +109,6 @@ If 10 points are added to everyone's score ($X+10$):
     *   $\text{Var}[X] = E[X^2] - (E[X])^2$.
     *   $\text{Var}[cX] = c^2 \text{Var}[X]$.
     *   $\text{Var}[X + c] = \text{Var}[X]$.
+
+
+

@@ -1,10 +1,10 @@
 ﻿---
 title: Joint PDF and CDF
-lecture_number: 13
+lecture_number: 14
 lecture_name: Joint Probability Distributions
 category: Random Variables
-sidebar_label: Lecture 13
-sidebar_position: 13
+sidebar_label: Lecture 14
+sidebar_position: 14
 course: ES 114 Probability, Statistics and Data Visualisation
 topic:
 - Joint Probability Mass Functions
@@ -98,3 +98,6 @@ $$F_{X,Y}(x, y) = P[X \le x \cap Y \le y]$$
 *   **Independence:** $X$ and $Y$ are independent if $f_{X,Y}(x, y) = f_X(x)f_Y(y)$.
 *   **i.i.d.:** Variables that are both independent and follow the same marginal distribution.
 *   **CDF to PDF:** Use mixed partial derivatives to convert a joint CDF back into a joint PDF.
+
+
+

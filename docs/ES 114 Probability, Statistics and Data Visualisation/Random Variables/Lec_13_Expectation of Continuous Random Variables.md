@@ -1,11 +1,11 @@
 ﻿---
 course: ES 114 Probability, Statistics and Data Visualisation
 title: "Expectation of Continuous Random Variables"
-lecture_number: 12
+lecture_number: 13
 lecture_name: "Expectation of Continuous Random Variables"
 category: "Random Variables"
-sidebar_label: "Lecture 12"
-sidebar_position: 12
+sidebar_label: Lecture 13
+sidebar_position: 13
 topic:
   - "Expectation"
   - "Properties of Expectation"
@@ -113,3 +113,6 @@ $$ \text{Var}[X] = \frac{a^2-2ab+b^2}{12} = \frac{(b-a)^2}{12} $$
 *   **Existence of Expectation:** $E[X]$ exists if $E[|X|] = \int_{\Omega} |x|f_X(x)dx < \infty$ (absolutely integrable). The Cauchy distribution is a counter-example where expectation does not exist.
 *   **$k$-th Moment:** $E[X^k] = \int_{\Omega} x^k f_X(x)dx$.
 *   **Variance $\text{Var}[X]$:** Measures the spread, defined as $\text{Var}[X] = E[(X-\mu)^2]$ or computationally as $\text{Var}[X] = E[X^2] - (E[X])^2$.
+
+
+

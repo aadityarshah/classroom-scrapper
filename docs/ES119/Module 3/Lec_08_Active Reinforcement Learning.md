@@ -1,11 +1,11 @@
 ﻿---
 course: ES119 Principles of AI
 title: Active Reinforcement Learning
-lecture_number: 7
+lecture_number: 8
 lecture_name: Active Reinforcement Learning
 category: Module 3
-sidebar_label: Lecture 7
-sidebar_position: 7
+sidebar_label: Lecture 8
+sidebar_position: 8
 topic:
 - Exploration vs. Exploitation
 - Q-Learning Algorithm
@@ -110,3 +110,4 @@ $$Q(s, a) \leftarrow Q(s, a) + \alpha \left[ R + \gamma Q(s', a') - Q(s, a) \rig
 - **Q-Learning** is an **off-policy** algorithm using the $\max$ operator to find optimal values.
 - **SARSA** is an **on-policy** algorithm that updates based on actual future actions.
 - Large state spaces necessitate a shift from tables to **feature-based** or **Deep RL** for generalization.
+

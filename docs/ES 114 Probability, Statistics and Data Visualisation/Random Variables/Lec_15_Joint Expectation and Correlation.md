@@ -1,10 +1,10 @@
 ﻿---
 title: Joint Expectation
-lecture_number: 14
+lecture_number: 15
 lecture_name: Joint Expectation and Correlation
 category: Random Variables
-sidebar_label: Lecture 14
-sidebar_position: 14
+sidebar_label: Lecture 15
+sidebar_position: 15
 course: ES 114 Probability, Statistics and Data Visualisation
 topic:
 - Joint Expectation
@@ -93,3 +93,6 @@ This inequality guarantees that the correlation between two variables is always 
 *   **Linear Algebra View**: $\mathbb{E}[XY] = \mathbf{x}^T \mathbf{P} \mathbf{y}$, representing a weighted inner product between state vectors.
 *   **Geometric Similarity**: The ratio of joint expectation to the square root of the product of second moments defines the cosine of the angle between two random variables.
 *   **Cauchy-Schwarz**: Provides the upper bound for joint expectation: $(\mathbb{E}[XY])^2 \leq \mathbb{E}[X^2]\mathbb{E}[Y^2]$.
+
+
+
